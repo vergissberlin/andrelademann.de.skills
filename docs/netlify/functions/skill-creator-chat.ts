@@ -1,5 +1,15 @@
 type Role = 'user' | 'assistant';
 type Message = { role: Role; content: string };
+type ChatQuestion = {
+  id: string;
+  label: string;
+  multiSelect: boolean;
+  options: string[];
+};
+type ChatResponsePayload = {
+  message: string;
+  questions?: ChatQuestion[];
+};
 
 const MAX_MESSAGES = 40;
 const MAX_MESSAGE_LENGTH = 6000;
@@ -62,13 +72,64 @@ async function callOpenAi(messages: Message[]) {
   return payload.choices?.[0]?.message?.content?.trim() ?? '';
 }
 
+function stripCodeFence(value: string): string {
+  return value
+    .replace(/^```json\s*/i, '')
+    .replace(/^```\s*/i, '')
+    .replace(/\s*```$/, '')
+    .trim();
+}
+
+function parseChatResponsePayload(content: string): ChatResponsePayload {
+  const payload = JSON.parse(stripCodeFence(content)) as {
+    message?: unknown;
+    questions?: unknown;
+  };
+  if (typeof payload.message !== 'string' || !payload.message.trim()) {
+    throw new Error('message is required');
+  }
+
+  const questions = payload.questions === undefined
+    ? undefined
+    : Array.isArray(payload.questions)
+      ? payload.questions.map((question) => {
+          if (!question || typeof question !== 'object') throw new Error('question must be an object');
+          const item = question as {
+            id?: unknown;
+            label?: unknown;
+            multiSelect?: unknown;
+            options?: unknown;
+          };
+          if (typeof item.id !== 'string' || !item.id.trim()) throw new Error('question id is invalid');
+          if (typeof item.label !== 'string' || !item.label.trim()) throw new Error('question label is invalid');
+          if (typeof item.multiSelect !== 'boolean') throw new Error('question multiSelect is invalid');
+          if (!Array.isArray(item.options) || item.options.some((option) => typeof option !== 'string' || !option.trim())) {
+            throw new Error('question options are invalid');
+          }
+          return {
+            id: item.id.trim(),
+            label: item.label.trim(),
+            multiSelect: item.multiSelect,
+            options: item.options.map((option) => option.trim())
+          } satisfies ChatQuestion;
+        })
+      : (() => {
+          throw new Error('questions must be an array');
+        })();
+
+  return {
+    message: payload.message.trim(),
+    questions
+  };
+}
+
 export default async (request: Request) => {
   const headers = Object.fromEntries(request.headers.entries());
   if (!allowed({ headers })) return json({ error: 'Too many requests. Try again later.' }, 429);
   try {
     const body = await request.json() as { messages?: unknown };
     const content = await callOpenAi(normalizeMessages(body.messages));
-    return json({ message: content });
+    return json(parseChatResponsePayload(content));
   } catch {
     return json({ error: 'Unable to generate a response.' }, 400);
   }
