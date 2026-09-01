@@ -52,7 +52,7 @@ async function callOpenAi(messages: Message[]) {
       temperature: 0.3,
       max_tokens: 2000,
       messages: [
-        { role: 'system', content: 'Help users design reusable coding-agent skills. Return strict JSON with message and optional questions. For yes/no questions use exactly ["Ja", "Nein"] and multiSelect false.' },
+        { role: 'system', content: 'Help users design reusable coding-agent skills. Return strict JSON with message and optional questions. For yes/no questions use exactly ["Yes", "No"] and multiSelect false.' },
         ...messages
       ]
     })

@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
-import { createCanvas, GlobalFonts, loadImage } from '@napi-rs/canvas';
+import { createCanvas, loadImage } from '@napi-rs/canvas';
 
 const WIDTH = 1200;
 const HEIGHT = 630;
@@ -29,9 +29,6 @@ function configureCanvasQuality(ctx) {
   if ('patternQuality' in ctx) ctx.patternQuality = 'best';
   if ('textDrawingMode' in ctx) ctx.textDrawingMode = 'path';
 }
-
-GlobalFonts.registerFromPath('/System/Library/Fonts/Supplemental/Arial Bold.ttf', 'Arial');
-GlobalFonts.registerFromPath('/System/Library/Fonts/Supplemental/Arial.ttf', 'Arial Regular');
 
 function formatSkillLabel(skillName) {
   return skillName
@@ -112,7 +109,7 @@ async function renderOgImage(targetPath, title, iconName) {
   ctx.textBaseline = 'middle';
 
   const maxTextWidth = WIDTH - 200;
-  ctx.font = '700 76px Arial';
+  ctx.font = '700 76px sans-serif';
   const lines = wrapText(ctx, title, maxTextWidth);
   const lineHeight = 92;
   const textBlockHeight = lines.length * lineHeight;
@@ -123,7 +120,7 @@ async function renderOgImage(targetPath, title, iconName) {
     ctx.fillText(line, WIDTH / 2, startY + index * lineHeight);
   }
 
-  ctx.font = '500 34px Arial Regular';
+  ctx.font = '500 34px sans-serif';
   ctx.fillStyle = subtitleColor;
   ctx.fillText(subtitleText, WIDTH / 2, HEIGHT - 82);
 

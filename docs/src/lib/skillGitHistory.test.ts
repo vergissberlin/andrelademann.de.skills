@@ -102,6 +102,6 @@ describe('buildCommitGroups', () => {
 describe('resolvePreferredSemVerTag', () => {
   it('chooses highest semver tag when multiple tags are present', () => {
     const result = resolvePreferredSemVerTag(['latest', 'v1.4.0', '1.12.0', 'v2.0.0-beta.1']);
-    expect(result).toBe('1.12.0');
+    expect(result).toBe('v2.0.0-beta.1');
   });
 });
