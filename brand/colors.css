@@ -1,0 +1,18 @@
+/**
+ * André Lademann — official brand colors (CSS custom properties).
+ * Use in any web stack; import before Tailwind @theme if you map tokens there.
+ */
+:root {
+  --kieks-aqua: #00ffdc;
+  --kieks-navy: #1e2a45;
+  --kieks-fuchsia: #ff008f;
+  --kieks-white: #ffffff;
+  --kieks-dark-gray: #333333;
+
+  /* Derived UI tokens (selection / focus / soft surfaces) */
+  --kieks-navy-deep: color-mix(in srgb, var(--kieks-navy) 88%, black);
+  --kieks-aqua-50: color-mix(in srgb, var(--kieks-aqua) 12%, white);
+  --kieks-aqua-100: color-mix(in srgb, var(--kieks-aqua) 22%, white);
+  --kieks-aqua-200: color-mix(in srgb, var(--kieks-aqua) 38%, white);
+  --kieks-aqua-300: color-mix(in srgb, var(--kieks-aqua) 55%, white);
+}

@@ -1,0 +1,19 @@
+{
+  "name": "andrelademann-terraform-module-generation",
+  "version": "1.0.0",
+  "description": "Terraform module generation skills for refactoring reusable modules and operating Terraform Stacks across environments.",
+  "author": {
+    "name": "André Lademann",
+    "url": "https://github.com/vergissberlin"
+  },
+  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/terraform/module-generation",
+  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "license": "GPL-3.0",
+  "keywords": [
+    "terraform",
+    "modules",
+    "stacks",
+    "refactoring",
+    "infrastructure-as-code"
+  ]
+}

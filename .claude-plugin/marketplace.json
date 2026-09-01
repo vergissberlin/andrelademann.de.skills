@@ -1,0 +1,161 @@
+{
+  "name": "andrelademann-skills",
+  "owner": {
+    "name": "André Lademann",
+    "url": "https://github.com/vergissberlin"
+  },
+  "metadata": {
+    "description": "André Lademann marketplace for platform, frontend, data, meta, and Terraform workflow plugins.",
+    "version": "1.11.0"
+  },
+  "plugins": [
+    {
+      "name": "andrelademann-frontend-skills",
+      "source": "./skills/frontend",
+      "description": "Frontend skills for Next.js App Router performance diagnostics and scalable Tailwind CSS design system patterns.",
+      "version": "1.0.0",
+      "author": {
+        "name": "André Lademann",
+        "url": "https://github.com/vergissberlin"
+      },
+      "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/frontend",
+      "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+      "license": "GPL-3.0",
+      "keywords": [
+        "frontend",
+        "nextjs",
+        "tailwind",
+        "app-router",
+        "design-tokens"
+      ],
+      "category": "frontend"
+    },
+    {
+      "name": "andrelademann-platform-skills",
+      "source": "./skills/platform",
+      "description": "Platform skills for infrastructure-as-code risk reviews and observability-driven analysis of edge latency and reliability incidents.",
+      "version": "1.0.0",
+      "author": {
+        "name": "André Lademann",
+        "url": "https://github.com/vergissberlin"
+      },
+      "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/platform",
+      "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+      "license": "GPL-3.0",
+      "keywords": [
+        "platform",
+        "infrastructure",
+        "iac",
+        "observability",
+        "edge",
+        "mcp"
+      ],
+      "category": "platform"
+    },
+    {
+      "name": "andrelademann-data-skills",
+      "source": "./skills/data",
+      "description": "Data skills for streaming pipeline stabilization, big data platform performance and cost optimization, and AI SDK tooling guardrails.",
+      "version": "1.0.0",
+      "author": {
+        "name": "André Lademann",
+        "url": "https://github.com/vergissberlin"
+      },
+      "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/data",
+      "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+      "license": "GPL-3.0",
+      "keywords": [
+        "data",
+        "ai",
+        "streaming",
+        "big-data",
+        "guardrails"
+      ],
+      "category": "data"
+    },
+    {
+      "name": "andrelademann-meta-skills",
+      "source": "./skills/meta",
+      "description": "Meta skills for creating André-Lademann-compatible skills and auditing SKILL.md prompts for adversarial and secret-handling risks.",
+      "version": "1.0.0",
+      "author": {
+        "name": "André Lademann",
+        "url": "https://github.com/vergissberlin"
+      },
+      "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/meta",
+      "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+      "license": "GPL-3.0",
+      "keywords": [
+        "meta",
+        "skill-authoring",
+        "catalog",
+        "prompt-security",
+        "skill-md"
+      ],
+      "category": "meta"
+    },
+    {
+      "name": "andrelademann-terraform-code-generation",
+      "source": "./skills/terraform/code-generation",
+      "description": "Terraform code generation skills focused on style, testing, imports, and Azure module quality requirements.",
+      "version": "1.0.0",
+      "author": {
+        "name": "André Lademann",
+        "url": "https://github.com/vergissberlin"
+      },
+      "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/terraform/code-generation",
+      "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+      "license": "GPL-3.0",
+      "keywords": [
+        "terraform",
+        "code-generation",
+        "testing",
+        "azure-verified-modules",
+        "import"
+      ],
+      "category": "terraform"
+    },
+    {
+      "name": "andrelademann-terraform-module-generation",
+      "source": "./skills/terraform/module-generation",
+      "description": "Terraform module generation skills for refactoring reusable modules and operating Terraform Stacks across environments.",
+      "version": "1.0.0",
+      "author": {
+        "name": "André Lademann",
+        "url": "https://github.com/vergissberlin"
+      },
+      "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/terraform/module-generation",
+      "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+      "license": "GPL-3.0",
+      "keywords": [
+        "terraform",
+        "modules",
+        "stacks",
+        "refactoring",
+        "infrastructure-as-code"
+      ],
+      "category": "terraform"
+    },
+    {
+      "name": "andrelademann-terraform-provider-development",
+      "source": "./skills/terraform/provider-development",
+      "description": "Terraform provider development skills for building resources, actions, and acceptance tests with the Plugin Framework.",
+      "version": "1.0.0",
+      "author": {
+        "name": "André Lademann",
+        "url": "https://github.com/vergissberlin"
+      },
+      "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/terraform/provider-development",
+      "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+      "license": "GPL-3.0",
+      "keywords": [
+        "terraform",
+        "provider",
+        "plugin-framework",
+        "resources",
+        "acceptance-testing"
+      ],
+      "category": "terraform"
+    }
+  ]
+}

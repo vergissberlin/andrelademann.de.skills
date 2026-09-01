@@ -1,0 +1,8 @@
+{
+  "title": "MCP Server Development Guide",
+  "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools.",
+  "purpose": "Use when designing and implementing MCP servers that expose reliable tools for LLM-driven workflows.",
+  "tags": ["mcp", "server-development", "llm-tools", "integration"],
+  "source": "https://github.com/microsoft/skills/tree/main/.github/skills/mcp-builder",
+  "version": "1.0.0"
+}

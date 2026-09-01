@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="logo-title logo-desc">
+  <title id="logo-title">Create Skill logo</title>
+  <desc id="logo-desc">A layered generator mark with a plus symbol to represent creating skills.</desc>
+  <defs>
+    <linearGradient id="accentGradient" x1="24" y1="20" x2="96" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38bdf8" />
+      <stop offset="1" stop-color="#0ea5e9" />
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke-linejoin="round">
+    <path d="M21 46L60 26L99 46L60 66Z" stroke="#334155" stroke-width="5" />
+    <path d="M21 64L60 44L99 64L60 84Z" stroke="#64748b" stroke-width="5" />
+    <path d="M21 82L60 62L99 82L60 102Z" stroke="url(#accentGradient)" stroke-width="5" />
+  </g>
+  <g>
+    <circle cx="95" cy="24" r="16" fill="#38bdf8" />
+    <path d="M95 16V32M87 24H103" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" />
+  </g>
+</svg>

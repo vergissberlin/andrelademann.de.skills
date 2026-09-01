@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "André Lademann Brand Colors",
+  "colors": {
+    "aqua": {
+      "hex": "#00FFDC",
+      "rgb": { "r": 0, "g": 255, "b": 220 },
+      "cmyk": { "c": 100, "m": 0, "y": 14, "k": 0 },
+      "description": "Bright turquoise/aqua selection color"
+    },
+    "navy": {
+      "hex": "#1E2A45",
+      "rgb": { "r": 30, "g": 42, "b": 69 },
+      "cmyk": { "c": 57, "m": 39, "y": 0, "k": 73 },
+      "description": "Dark blue/navy selection color"
+    },
+    "fuchsia": {
+      "hex": "#FF008F",
+      "rgb": { "r": 255, "g": 0, "b": 143 },
+      "cmyk": { "c": 0, "m": 100, "y": 44, "k": 0 },
+      "description": "Vibrant pink/fuchsia selection color"
+    },
+    "white": {
+      "hex": "#FFFFFF",
+      "rgb": { "r": 255, "g": 255, "b": 255 },
+      "cmyk": { "c": 0, "m": 0, "y": 0, "k": 0 },
+      "usage": "Text and surfaces on dark backgrounds"
+    },
+    "darkGray": {
+      "hex": "#333333",
+      "rgb": { "r": 51, "g": 51, "b": 51 },
+      "cmyk": { "c": 0, "m": 0, "y": 0, "k": 80 },
+      "usage": "Body text on light backgrounds"
+    }
+  }
+}

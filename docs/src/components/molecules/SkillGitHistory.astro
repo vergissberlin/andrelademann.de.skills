@@ -1,0 +1,324 @@
+---
+import { createHash } from 'node:crypto';
+import type { SkillGitCommitGroup } from '../../lib/skillGitHistory';
+import type { SkillFile } from '../../lib/skillFiles';
+import type { SkillHarnessResult } from '../../lib/skillTesting';
+
+interface Props {
+  commitGroups: SkillGitCommitGroup[];
+  skillFiles: SkillFile[];
+  hasHarnessFixtures: boolean;
+  harnessMode: string | null;
+  harnessResult: SkillHarnessResult | null;
+}
+
+const { commitGroups, skillFiles, hasHarnessFixtures, harnessMode, harnessResult } = Astro.props;
+const totalCommits = commitGroups.reduce((sum, group) => sum + group.commits.length, 0);
+
+type TestingStatus = {
+  label: string;
+  className: string;
+};
+
+function getTestingStatus(
+  hasFixtures: boolean,
+  mode: string | null,
+  result: SkillHarnessResult | null,
+): TestingStatus {
+  const snapshotStatus = result?.status;
+  const source = result?.evaluation_source;
+
+  if (snapshotStatus === "catalog_only" || source === "catalog_only") {
+    return {
+      label: "Catalog checks only",
+      className: "border-slate-300 bg-slate-100 text-slate-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300",
+    };
+  }
+
+  if (snapshotStatus === "error") {
+    return {
+      label: `Evaluation error (${mode ?? "unknown"} mode)`,
+      className: "border-rose-300 bg-rose-50 text-rose-700 dark:border-rose-700 dark:bg-rose-950/40 dark:text-rose-300",
+    };
+  }
+
+  if (snapshotStatus === "passed") {
+    return {
+      label: `Passed (${mode ?? "unknown"} mode)`,
+      className: "border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300",
+    };
+  }
+
+  if (snapshotStatus === "failed") {
+    return {
+      label: `Failed (${mode ?? "unknown"} mode)`,
+      className: "border-rose-300 bg-rose-50 text-rose-700 dark:border-rose-700 dark:bg-rose-950/40 dark:text-rose-300",
+    };
+  }
+
+  if (!hasFixtures) {
+    return {
+      label: 'Catalog checks only',
+      className: 'border-slate-300 bg-slate-100 text-slate-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300',
+    };
+  }
+
+  if (!result) {
+    return {
+      label: 'Snapshot missing',
+      className: 'border-amber-300 bg-amber-50 text-amber-700 dark:border-amber-700 dark:bg-amber-950/40 dark:text-amber-300',
+    };
+  }
+
+  if (result.failed === 0) {
+    return {
+      label: `Passed (${mode ?? 'unknown'} mode)`,
+      className: 'border-emerald-300 bg-emerald-50 text-emerald-700 dark:border-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300',
+    };
+  }
+
+  return {
+    label: `Failed (${mode ?? 'unknown'} mode)`,
+    className: 'border-rose-300 bg-rose-50 text-rose-700 dark:border-rose-700 dark:bg-rose-950/40 dark:text-rose-300',
+  };
+}
+
+const testingStatus = getTestingStatus(hasHarnessFixtures, harnessMode, harnessResult);
+
+function gravatarUrl(email: string): string {
+  const normalized = email.trim().toLowerCase();
+  const hash = createHash('md5').update(normalized).digest('hex');
+  return `https://www.gravatar.com/avatar/${hash}?s=80&d=identicon`;
+}
+
+function formatDateTime(date: Date): string {
+  return new Intl.DateTimeFormat('de-DE', {
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  }).format(date);
+}
+---
+
+{
+  (totalCommits > 0 || skillFiles.length > 0) && (
+    <section class="mt-6">
+      <details class="overflow-hidden rounded-xs border border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 marker:content-['']">
+          <span class="text-sm font-semibold text-slate-900 dark:text-slate-100">Skill insights</span>
+          <div class="flex items-center gap-2">
+            <span class="rounded-full border border-slate-300 bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300">
+              Commits: {totalCommits}
+            </span>
+            <span class="rounded-full border border-slate-300 bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300">
+              Files: {skillFiles.length}
+            </span>
+            <span class={`rounded-full border px-2 py-0.5 text-xs ${testingStatus.className}`}>
+              {testingStatus.label}
+            </span>
+          </div>
+        </summary>
+
+        <div class="border-t border-slate-200 dark:border-slate-700">
+          <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 marker:content-['']">
+              <span class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400">Testing &amp; evaluation</span>
+              <div class="flex items-center gap-2">
+                <span class={`rounded-full border px-2 py-0.5 text-xs ${testingStatus.className}`}>
+                  {testingStatus.label}
+                </span>
+                <svg
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                  class="size-4 text-slate-500 transition-transform duration-200 group-open:rotate-180 dark:text-slate-400"
+                >
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </summary>
+            <div class="px-5 pb-4 text-sm text-slate-700 dark:text-slate-300">
+              <ul class="space-y-2">
+                <li>
+                  Methodology: Skills with `tests/scenarios/&lt;skill&gt;/scenarios.yaml` and `acceptance-criteria.md`
+                  are evaluated with the scenario harness from
+                  <a
+                    href="https://github.com/vergissberlin/andrelademann.de.skills/blob/main/.github/workflows/test-harness.yml"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline decoration-slate-300 underline-offset-2 hover:text-kieks-navy dark:decoration-slate-600 dark:hover:text-kieks-aqua"
+                  >
+                    test-harness.yml
+                  </a>.
+                </li>
+                <li>
+                  Baseline checks: all skills also run catalog and unit checks in `tests/`, independent of harness fixtures.
+                </li>
+                <li>
+                  Optional non-mock run:
+                  <a
+                    href="https://github.com/vergissberlin/andrelademann.de.skills/blob/main/.github/workflows/skill-evaluation.yml"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline decoration-slate-300 underline-offset-2 hover:text-kieks-navy dark:decoration-slate-600 dark:hover:text-kieks-aqua"
+                  >
+                    skill-evaluation.yml
+                  </a>.
+                </li>
+              </ul>
+
+              <div class="mt-4 grid gap-2 text-xs sm:grid-cols-2">
+                <div class="rounded-xs border border-slate-200 bg-slate-50 px-3 py-2 dark:border-slate-700 dark:bg-slate-800/60">
+                  <span class="font-semibold text-slate-500 dark:text-slate-400">Harness fixtures:</span>
+                  <span class="ml-1">{hasHarnessFixtures ? 'yes' : 'no'}</span>
+                </div>
+                <div class="rounded-xs border border-slate-200 bg-slate-50 px-3 py-2 dark:border-slate-700 dark:bg-slate-800/60">
+                  <span class="font-semibold text-slate-500 dark:text-slate-400">Snapshot mode:</span>
+                  <span class="ml-1">{harnessMode ?? 'not generated for this build'}</span>
+                </div>
+                <div class="rounded-xs border border-slate-200 bg-slate-50 px-3 py-2 dark:border-slate-700 dark:bg-slate-800/60">
+                  <span class="font-semibold text-slate-500 dark:text-slate-400">Snapshot status:</span>
+                  <span class="ml-1">{harnessResult?.status ?? "n/a"}</span>
+                </div>
+                <div class="rounded-xs border border-slate-200 bg-slate-50 px-3 py-2 dark:border-slate-700 dark:bg-slate-800/60">
+                  <span class="font-semibold text-slate-500 dark:text-slate-400">Scenarios passed:</span>
+                  <span class="ml-1">{harnessResult ? `${harnessResult.passed}/${harnessResult.total_scenarios}` : 'n/a'}</span>
+                </div>
+                <div class="rounded-xs border border-slate-200 bg-slate-50 px-3 py-2 dark:border-slate-700 dark:bg-slate-800/60">
+                  <span class="font-semibold text-slate-500 dark:text-slate-400">Average score:</span>
+                  <span class="ml-1">{harnessResult ? harnessResult.avg_score.toFixed(1) : 'n/a'}</span>
+                </div>
+              </div>
+            </div>
+          </details>
+        </div>
+
+        <div class="border-t border-slate-200 dark:border-slate-700">
+          <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 marker:content-['']">
+              <span class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400">Commit history</span>
+              <div class="flex items-center gap-2">
+                <span class="rounded-full border border-slate-300 bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300">
+                  {totalCommits}
+                </span>
+                <svg
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                  class="size-4 text-slate-500 transition-transform duration-200 group-open:rotate-180 dark:text-slate-400"
+                >
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </summary>
+            <div class="px-5 pb-4">
+              {
+                totalCommits > 0 ? (
+                  <div class="space-y-4">
+                    {commitGroups.map((group) => (
+                      <div class="rounded-xs border border-slate-200 dark:border-slate-700">
+                        <div class="flex items-center justify-between gap-3 border-b border-slate-200 bg-slate-50 px-3 py-2 dark:border-slate-700 dark:bg-slate-800/60">
+                          <p class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 dark:text-slate-300">
+                            {group.label}
+                          </p>
+                          <span class="rounded-full border border-slate-300 bg-white px-2 py-0.5 text-xs text-slate-600 dark:border-slate-600 dark:bg-slate-900 dark:text-slate-300">
+                            {group.commits.length}
+                          </span>
+                        </div>
+                        <ul class="divide-y divide-slate-200 px-3 py-1 dark:divide-slate-700">
+                          {group.commits.map((commit) => (
+                            <li class="py-4 first:pt-3 last:pb-3">
+                              <a
+                                href={`https://github.com/vergissberlin/andrelademann.de.skills/commit/${commit.hash}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="group block rounded-xs p-1 -m-1 transition hover:bg-slate-50 dark:hover:bg-slate-800/70"
+                              >
+                                <div class="flex items-start gap-3">
+                                  <img
+                                    src={gravatarUrl(commit.authorEmail)}
+                                    alt={`Avatar of ${commit.authorName}`}
+                                    class="size-10 shrink-0 rounded-full border border-slate-200 bg-slate-100 object-cover dark:border-slate-600 dark:bg-slate-700"
+                                    loading="lazy"
+                                  />
+                                  <div class="min-w-0 flex-1">
+                                    <p class="truncate text-sm font-semibold text-slate-900 group-hover:text-kieks-navy dark:text-slate-100 dark:group-hover:text-kieks-aqua">
+                                      {commit.message}
+                                    </p>
+                                    <p class="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                                      {commit.authorName} · {formatDateTime(commit.committedAt)}
+                                    </p>
+                                  </div>
+                                </div>
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p class="text-sm text-slate-500 dark:text-slate-400">No commit history found.</p>
+                )
+              }
+            </div>
+          </details>
+        </div>
+
+        <div class="border-t border-slate-200 dark:border-slate-700">
+          <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 marker:content-['']">
+              <span class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-500 dark:text-slate-400">Included files</span>
+              <div class="flex items-center gap-2">
+                <span class="rounded-full border border-slate-300 bg-slate-100 px-2 py-0.5 text-xs text-slate-600 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300">
+                  {skillFiles.length}
+                </span>
+                <svg
+                  viewBox="0 0 20 20"
+                  fill="none"
+                  aria-hidden="true"
+                  class="size-4 text-slate-500 transition-transform duration-200 group-open:rotate-180 dark:text-slate-400"
+                >
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+            </summary>
+            <div class="px-5 pb-4">
+              {
+                skillFiles.length > 0 ? (
+                  <ul class="divide-y divide-slate-200 dark:divide-slate-700">
+                    {skillFiles.map((file) => (
+                      <li class="py-3 first:pt-0 last:pb-0">
+                        <a
+                          href={file.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="group block rounded-xs p-1 -m-1 transition hover:bg-slate-50 dark:hover:bg-slate-800/70"
+                        >
+                          <div class="flex items-start justify-between gap-3">
+                            <div class="min-w-0">
+                              <p class="truncate text-sm font-semibold text-slate-900 group-hover:text-kieks-navy dark:text-slate-100 dark:group-hover:text-kieks-aqua">
+                                {file.name}
+                              </p>
+                              <p class="mt-1 truncate text-xs text-slate-500 dark:text-slate-400">
+                                {file.relativePath}
+                              </p>
+                            </div>
+                            <span class="shrink-0 text-xs text-slate-400 group-hover:text-kieks-fuchsia dark:text-slate-500 dark:group-hover:text-kieks-aqua">
+                              Open
+                            </span>
+                          </div>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p class="text-sm text-slate-500 dark:text-slate-400">No files found for this skill.</p>
+                )
+              }
+            </div>
+          </details>
+        </div>
+      </details>
+    </section>
+  )
+}

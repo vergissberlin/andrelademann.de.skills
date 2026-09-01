@@ -1,0 +1,19 @@
+{
+  "name": "andrelademann-data-skills",
+  "version": "1.0.0",
+  "description": "Data skills for streaming pipeline stabilization, big data platform performance and cost optimization, and AI SDK tooling guardrails.",
+  "author": {
+    "name": "André Lademann",
+    "url": "https://github.com/vergissberlin"
+  },
+  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/data",
+  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "license": "GPL-3.0",
+  "keywords": [
+    "data",
+    "ai",
+    "streaming",
+    "big-data",
+    "guardrails"
+  ]
+}

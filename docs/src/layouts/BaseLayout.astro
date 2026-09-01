@@ -1,0 +1,84 @@
+---
+import '../styles/tailwind.css';
+import SiteNavbar from '../components/organisms/SiteNavbar.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  lang?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: string;
+}
+
+const {
+  title,
+  description = 'Agent Skills',
+  lang = 'en',
+  canonicalUrl,
+  ogImage,
+
+  ogTitle,
+  ogDescription,
+  ogType = 'website'
+} = Astro.props;
+
+const siteOrigin = Astro.site ?? Astro.url;
+const resolvedCanonical = canonicalUrl
+  ? new URL(canonicalUrl, siteOrigin).toString()
+  : Astro.url.toString();
+const baseUrl = import.meta.env.BASE_URL;
+const resolvedOgImage = new URL(ogImage ?? `${baseUrl}og/default.png`, siteOrigin).toString();
+const resolvedOgTitle = ogTitle ?? title;
+const resolvedOgDescription = ogDescription ?? description;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={resolvedCanonical} />
+    <meta property="og:site_name" content="André Lademann Skills" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={resolvedOgTitle} />
+    <meta property="og:description" content={resolvedOgDescription} />
+    <meta property="og:url" content={resolvedCanonical} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={resolvedOgTitle} />
+    <meta name="twitter:description" content={resolvedOgDescription} />
+    <meta name="twitter:image" content={resolvedOgImage} />
+    <meta name="theme-color" content="#1E2A45" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="AL Skills" />
+    <link rel="icon" type="image/svg+xml" href={`${baseUrl}skills/skill-creator/logo.svg`} />
+    <link rel="apple-touch-icon" href={`${baseUrl}pwa-192x192.png`} />
+    <title>{title}</title>
+    <script is:inline>
+      (() => {
+        const themeKey = 'andrelademann-skills-theme';
+        const root = document.documentElement;
+        const media = window.matchMedia('(prefers-color-scheme: dark)');
+        const stored = localStorage.getItem(themeKey);
+        const theme = stored === 'light' || stored === 'dark' || stored === 'system' ? stored : 'system';
+        const shouldUseDark = theme === 'dark' || (theme === 'system' && media.matches);
+        root.classList.toggle('dark', shouldUseDark);
+      })();
+    </script>
+  </head>
+  <body class="font-sans bg-slate-50 text-slate-800 antialiased dark:bg-slate-950 dark:text-slate-400">
+    <SiteNavbar />
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "title": "Skill Prompt Security Audit",
+  "description": "Audit SKILL.md files for adversarial prompt patterns, unsafe secret handling instructions, and security-relevant false positives.",
+  "purpose": "Use when reviewing skill prompts for security risks, unsafe shell behavior, and prompt-injection style weaknesses.",
+  "tags": ["security", "prompt-audit", "skills", "risk-detection"],
+  "source": "https://github.com/vergissberlin/andrelademann.de.skills/blob/main/skills/meta/skill-prompt-security-audit/SKILL.md",
+  "version": "1.0.0"
+}

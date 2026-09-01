@@ -1,0 +1,94 @@
+name: Skill Harness Smoke Test
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ["Release Please"]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    if: ${{ github.event_name != 'workflow_run' || startsWith(github.event.workflow_run.head_branch, 'release-please--') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_sha || github.sha }}
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: tests/pnpm-lock.yaml
+
+      - name: Install dependencies
+        working-directory: tests
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript check
+        working-directory: tests
+        run: pnpm typecheck
+
+      - name: Validate skill metadata
+        working-directory: tests
+        run: pnpm check:metadata
+
+      - name: Run unit tests
+        working-directory: tests
+        run: pnpm test:run
+
+      - name: Run skill evaluations (all skills, mock mode)
+        id: harness
+        working-directory: tests
+        run: |
+          set +e
+          pnpm harness --all --mock --output markdown --output-file results.md
+          HARNESS_EXIT=$?
+          pnpm harness --all --mock --output json --output-file results.json
+          set -e
+          echo "exit_code=$HARNESS_EXIT" >> $GITHUB_OUTPUT
+          exit 0
+
+      - name: Write job summary
+        if: always()
+        working-directory: tests
+        run: |
+          if [ -f results.md ]; then
+            cat results.md >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No results file found." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Smoke test mode: mock responses for fast deterministic CI feedback." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Real Copilot evaluation is available via the optional skill-evaluation workflow." >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.harness.outputs.exit_code }}" != "0" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Some skills have failing scenarios." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Check evaluation results
+        if: always() && steps.harness.outputs.exit_code != '0'
+        run: |
+          echo "::error::Some skills have failing scenarios"
+          exit 1
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evaluation-results
+          path: |
+            tests/results.md
+            tests/results.json

@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  class?: string;
+}
+
+const { href, variant = 'secondary', class: className = '' } = Astro.props;
+const variantClasses = {
+  primary: 'inline-flex min-h-11 items-center justify-center rounded-xs border border-transparent bg-white px-4 py-2 text-sm font-semibold text-kieks-navy',
+  secondary: 'inline-flex min-h-11 items-center justify-center rounded-xs border border-white/40 px-4 py-2 text-sm font-semibold text-white',
+  outline: 'inline-flex min-h-11 items-center justify-center rounded-xs border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700'
+};
+const classes = `${variantClasses[variant]} ${className}`.trim();
+---
+
+<a class={classes} href={href}>
+  <slot />
+</a>
