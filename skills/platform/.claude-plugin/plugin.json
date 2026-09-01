@@ -1,0 +1,20 @@
+{
+  "name": "andrelademann-platform-skills",
+  "version": "1.0.0",
+  "description": "Platform skills for infrastructure-as-code risk reviews and observability-driven analysis of edge latency and reliability incidents.",
+  "author": {
+    "name": "André Lademann",
+    "url": "https://github.com/vergissberlin"
+  },
+  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/platform",
+  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "license": "GPL-3.0",
+  "keywords": [
+    "platform",
+    "infrastructure",
+    "iac",
+    "observability",
+    "edge",
+    "mcp"
+  ]
+}

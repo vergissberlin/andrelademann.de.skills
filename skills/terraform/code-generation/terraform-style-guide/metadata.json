@@ -1,0 +1,8 @@
+{
+  "title": "Terraform Style Guide",
+  "description": "Generate and review Terraform code using HashiCorp style conventions, structure, and security defaults.",
+  "purpose": "Use when creating or reviewing Terraform code to align with style conventions and secure defaults.",
+  "tags": ["terraform", "style-guide", "code-quality", "security"],
+  "source": "https://github.com/hashicorp/agent-skills/blob/main/terraform/code-generation/skills/terraform-style-guide/SKILL.md",
+  "version": "1.0.0"
+}

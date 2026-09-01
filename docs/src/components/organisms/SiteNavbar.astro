@@ -1,0 +1,127 @@
+---
+import ThemeToggle from '../molecules/ThemeToggle.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
+const currentPath = Astro.url.pathname;
+const navItems = [
+  { href: baseUrl, label: 'Skills' },
+  { href: `${baseUrl}agent-md-generator/`, label: 'AGENTS.md' },
+  { href: `${baseUrl}skill-creator/`, label: 'Skill Creator' }
+];
+
+const isActive = (href: string) => currentPath === href;
+
+const logoLight = `${baseUrl}brand/andre-lademann-horizontal-aqua-light.svg`;
+const logoDark = `${baseUrl}brand/andre-lademann-horizontal-aqua-dark.svg`;
+---
+
+<nav class="border-b border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-900">
+  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+    <a
+      href={baseUrl}
+      class="flex min-w-0 max-w-[min(100%,280px)] items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-kieks-aqua"
+      aria-label="André Lademann Skills — home"
+    >
+      <img
+        src={logoLight}
+        alt=""
+        width="500"
+        height="150"
+        class="h-8 w-auto max-h-8 shrink-0 object-contain object-left dark:hidden"
+        decoding="async"
+        fetchpriority="high"
+      />
+      <img
+        src={logoDark}
+        alt=""
+        width="500"
+        height="150"
+        class="hidden h-8 w-auto max-h-8 shrink-0 object-contain object-left dark:block"
+        decoding="async"
+        fetchpriority="high"
+      />
+    </a>
+
+    <div class="hidden items-center gap-2 md:flex">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'inline-flex min-h-10 items-center justify-center rounded-xs px-3 text-sm font-medium transition',
+            isActive(item.href)
+              ? 'bg-kieks-aqua-100 text-kieks-navy dark:bg-slate-800 dark:text-slate-200'
+              : 'text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200'
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <ThemeToggle />
+      <a
+        href="https://github.com/vergissberlin/andrelademann.de.skills"
+        class="inline-flex min-h-10 items-center justify-center rounded-xs border border-slate-200 px-3 text-sm font-medium text-slate-700 transition hover:bg-slate-100 hover:text-slate-900 dark:border-slate-700 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+      >
+        GitHub
+      </a>
+    </div>
+
+    <button
+      id="site-nav-toggle"
+      class="inline-flex h-10 w-10 flex-col items-center justify-center gap-1 rounded-xs border border-slate-200 text-slate-700 md:hidden dark:border-slate-700 dark:text-slate-400"
+      type="button"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="site-nav-panel"
+    >
+      <span class="h-0.5 w-4 rounded bg-current"></span>
+      <span class="h-0.5 w-4 rounded bg-current"></span>
+      <span class="h-0.5 w-4 rounded bg-current"></span>
+    </button>
+  </div>
+
+  <div id="site-nav-panel" class="hidden border-t border-slate-200 px-4 py-3 md:hidden dark:border-slate-800">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2">
+      <ThemeToggle />
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'inline-flex min-h-11 items-center rounded-xs px-3 text-sm font-medium',
+            isActive(item.href)
+              ? 'bg-kieks-aqua-100 text-kieks-navy dark:bg-slate-800 dark:text-slate-200'
+              : 'text-slate-700 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800'
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href="https://github.com/vergissberlin/andrelademann.de.skills"
+        class="inline-flex min-h-11 items-center rounded-xs px-3 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800"
+      >
+        GitHub
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.getElementById('site-nav-toggle');
+  const panel = document.getElementById('site-nav-panel');
+
+  function setMenuState(isOpen: boolean) {
+    if (!toggle || !panel) return;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    panel.classList.toggle('hidden', !isOpen);
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    setMenuState(!isOpen);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    setMenuState(false);
+  });
+</script>

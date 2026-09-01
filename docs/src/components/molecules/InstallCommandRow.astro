@@ -1,0 +1,26 @@
+---
+import IconButton from '../atoms/IconButton.astro';
+
+interface Props {
+  command: string;
+  commandId?: string;
+  buttonId?: string;
+}
+
+const {
+  command,
+  commandId = 'install-cmd',
+  buttonId = 'copy-btn'
+} = Astro.props;
+---
+
+<div class="install-row flex flex-col gap-2.5 sm:flex-row sm:items-center">
+  <code class="install-cmd min-w-0 flex-1 overflow-x-auto whitespace-nowrap rounded-lg border border-white/15 bg-slate-950/70 px-3.5 py-2.5 font-mono text-sm leading-relaxed text-slate-100 shadow-inner shadow-black/30" id={commandId}>{command}</code>
+  <IconButton id={buttonId} class="btn-copy inline-flex shrink-0 items-center justify-center gap-1.5 rounded-lg border border-white/25 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-white/45 hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kieks-aqua/70 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900" ariaLabel="Copy install command">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <rect x="9" y="9" width="13" height="13" rx="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+    <span>Copy</span>
+  </IconButton>
+</div>

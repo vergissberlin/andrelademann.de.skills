@@ -1,0 +1,204 @@
+---
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { marked } from 'marked';
+import DetailPageTemplate from '../../components/templates/DetailPageTemplate.astro';
+import InstallCommandRow from '../../components/molecules/InstallCommandRow.astro';
+import SkillDetailMetaAside from '../../components/molecules/SkillDetailMetaAside.astro';
+import SkillGitHistory from '../../components/molecules/SkillGitHistory.astro';
+import { getSkillGitCommitGroups, type SkillGitCommitGroup } from '../../lib/skillGitHistory';
+import { getSkillFiles, type SkillFile } from '../../lib/skillFiles';
+import {
+  getSkillHarnessResult,
+  loadHarnessResults,
+  skillHasHarnessFixtures,
+  type HarnessResultsSnapshot,
+  type SkillHarnessResult,
+} from '../../lib/skillTesting';
+import { buildSkillInstallCommand } from '../../lib/skillInstall';
+
+type Skill = { name: string; path: string; description: string };
+type Catalog = { version: string; skills: Skill[] };
+type SkillMetadata = {
+  title: string;
+  description: string;
+  purpose: string;
+  tags: string[];
+  source: string;
+  version: string;
+} | null;
+
+export async function getStaticPaths() {
+  const indexPath = path.join(process.cwd(), 'index.json');
+  const repoRoot = path.resolve(process.cwd(), '..');
+  const { skills, version } = JSON.parse(await fs.readFile(indexPath, 'utf-8')) as Catalog;
+  const harnessSnapshot = await loadHarnessResults();
+
+  const items = await Promise.all(skills.map(async (skill) => {
+    const fullPath = path.join(repoRoot, skill.path);
+    const metadataPath = path.join(path.dirname(fullPath), 'metadata.json');
+    const raw = await fs.readFile(fullPath, 'utf-8');
+    const markdown = raw.replace(/^---[\s\S]*?---\n?/, '');
+    const html = marked.parse(markdown) as string;
+    const commitGroups = await getSkillGitCommitGroups(skill.path, { cwd: repoRoot });
+    const skillFiles = await getSkillFiles(skill.path, repoRoot);
+    const hasHarnessFixtures = await skillHasHarnessFixtures(skill.name, repoRoot);
+    const harnessResult = getSkillHarnessResult(harnessSnapshot, skill.name);
+    let skillMetadata: SkillMetadata = null;
+
+    try {
+      const metadataRaw = await fs.readFile(metadataPath, 'utf-8');
+      const parsed = JSON.parse(metadataRaw) as Partial<{
+        title: string;
+        description: string;
+        purpose: string;
+        tags: string[];
+        source: string;
+        version: string;
+      }>;
+      if (
+        typeof parsed.title === 'string'
+        && typeof parsed.description === 'string'
+        && typeof parsed.purpose === 'string'
+        && Array.isArray(parsed.tags)
+        && parsed.tags.every((tag) => typeof tag === 'string')
+        && typeof parsed.source === 'string'
+        && typeof parsed.version === 'string'
+      ) {
+        skillMetadata = {
+          title: parsed.title,
+          description: parsed.description,
+          purpose: parsed.purpose,
+          tags: parsed.tags,
+          source: parsed.source,
+          version: parsed.version,
+        };
+      }
+    } catch {
+      skillMetadata = null;
+    }
+
+    return {
+      params: { slug: skill.name },
+      props: {
+        skill,
+        skillMetadata,
+        html,
+        commitGroups,
+        skillFiles,
+        catalogVersion: version,
+        hasHarnessFixtures,
+        harnessMode: harnessSnapshot?.mode ?? null,
+        harnessResult,
+      }
+    };
+  }));
+
+  return items;
+}
+
+const { skill, skillMetadata, html, commitGroups, skillFiles, catalogVersion, hasHarnessFixtures, harnessMode, harnessResult } = Astro.props as {
+  skill: Skill;
+  skillMetadata: SkillMetadata;
+  html: string;
+  commitGroups: SkillGitCommitGroup[];
+  skillFiles: SkillFile[];
+  catalogVersion: string;
+  hasHarnessFixtures: boolean;
+  harnessMode: HarnessResultsSnapshot['mode'] | null;
+  harnessResult: SkillHarnessResult | null;
+};
+const baseUrl = (import.meta as ImportMeta & { env: { BASE_URL: string } }).env.BASE_URL;
+const installCommand = buildSkillInstallCommand(catalogVersion, skill.name);
+const pageTitle = skillMetadata?.title ?? skill.name;
+const pageDescription = skillMetadata?.description ?? skill.description;
+const lastUpdated = commitGroups[0]?.commits[0]?.committedAt?.toISOString() ?? null;
+---
+
+<DetailPageTemplate
+  title={`${pageTitle} | André Lademann Skills`}
+  description={pageDescription}
+  heading={pageTitle}
+  subtitle={pageDescription}
+  catalogVersion={catalogVersion}
+  canonicalUrl={`${baseUrl}skills/${skill.name}/`}
+  ogImage={`${baseUrl}og/skills/${skill.name}.png`}
+  footerPrefix="Source:"
+  footerLinks={[
+    { href: `https://github.com/vergissberlin/andrelademann.de.skills/blob/main/${skill.path}`, label: skill.path },
+    { href: `${baseUrl}imprint/`, label: 'Imprint' }
+  ]}
+>
+  <div slot="header-extra" class="mt-6 w-full rounded-xl border border-white/25 bg-linear-to-br from-black/35 via-black/20 to-kieks-navy/30 p-1 shadow-lg shadow-kieks-navy/20 backdrop-blur-xs">
+    <div class="rounded-lg border border-white/10 bg-black/20 px-5 py-4 text-sm">
+      <div class="mb-3 flex flex-wrap items-center justify-between gap-3">
+        <span class="inline-flex items-center rounded-full border border-slate-400/20 bg-slate-500/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-[0.14em] text-slate-200">Install command</span>
+        <div class="flex items-center gap-3">
+          <span class="hidden text-[11px] font-medium text-slate-200/90 sm:block">CLI shortcut for this skill</span>
+          <a
+            href={`https://github.com/vergissberlin/andrelademann.de.skills/blob/main/${skill.path}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex min-h-9 items-center justify-center rounded-lg border border-white/20 bg-white/5 px-3 text-xs font-semibold text-slate-100 transition hover:border-white/40 hover:bg-white/15"
+          >
+            View skill on GitHub
+          </a>
+        </div>
+      </div>
+    <InstallCommandRow command={installCommand} />
+    </div>
+  </div>
+
+  <div class="flex flex-col gap-8 lg:grid lg:grid-cols-[minmax(0,1fr)_17.5rem] lg:items-start lg:gap-8">
+    <div class="min-w-0 space-y-6">
+      <section>
+        <article
+          class="rounded-xs border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900 [&_h1]:mt-0 [&_h1]:text-3xl [&_h1]:font-bold [&_h2]:mt-8 [&_h2]:text-2xl [&_h2]:font-semibold [&_h3]:mt-6 [&_h3]:text-xl [&_h3]:font-semibold [&_p]:my-4 [&_p]:leading-7 [&_ul]:my-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:my-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_li]:my-1 [&_a]:text-kieks-navy dark:[&_a]:text-kieks-aqua [&_a]:no-underline hover:[&_a]:underline [&_pre]:my-4 [&_pre]:overflow-auto [&_pre]:rounded-xs [&_pre]:bg-slate-900 [&_pre]:p-4 [&_pre]:text-slate-200 [&_code]:rounded [&_code]:bg-slate-100 [&_code]:px-1 [&_code]:py-0.5 dark:[&_code]:bg-slate-800 dark:[&_code]:text-slate-200 [&_pre_code]:bg-transparent [&_pre_code]:p-0"
+          set:html={html}
+        />
+      </section>
+
+      <SkillGitHistory
+        commitGroups={commitGroups}
+        skillFiles={skillFiles}
+        hasHarnessFixtures={hasHarnessFixtures}
+        harnessMode={harnessMode}
+        harnessResult={harnessResult}
+      />
+    </div>
+
+    <SkillDetailMetaAside skillMetadata={skillMetadata} lastUpdated={lastUpdated} />
+  </div>
+</DetailPageTemplate>
+
+<script>
+  // @ts-nocheck
+  const copyButton = document.getElementById('copy-btn');
+  const commandElement = document.getElementById('install-cmd');
+  function showCopied() {
+    if (!copyButton) return;
+    const label = copyButton.querySelector('span');
+    copyButton.classList.remove('bg-white/10', 'border-white/25', 'text-white');
+    copyButton.classList.add('border-emerald-400/70', 'bg-emerald-500/20', 'text-emerald-200');
+    if (label) label.textContent = 'Copied!';
+    setTimeout(() => {
+      copyButton.classList.remove('border-emerald-400/70', 'bg-emerald-500/20', 'text-emerald-200');
+      copyButton.classList.add('bg-white/10', 'border-white/25', 'text-white');
+      if (label) label.textContent = 'Copy';
+    }, 2000);
+  }
+  copyButton?.addEventListener('click', () => {
+    if (!commandElement) return;
+    const text = commandElement.textContent ?? '';
+    if (navigator.clipboard) return navigator.clipboard.writeText(text).then(showCopied);
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    showCopied();
+  });
+</script>

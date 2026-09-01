@@ -1,0 +1,45 @@
+name: Sync Repository Wiki
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'wiki/**'
+      - '.github/workflows/sync-wiki.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Clone wiki repository
+        run: |
+          rm -rf /tmp/skills-wiki
+          git clone "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vergissberlin/andrelademann.de.skills.wiki.git" /tmp/skills-wiki
+
+      - name: Sync wiki content
+        run: |
+          rsync -av --delete wiki/ /tmp/skills-wiki/
+
+      - name: Commit and push changes
+        run: |
+          cd /tmp/skills-wiki
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add .
+            git commit -m "docs: sync wiki from repository"
+            git push
+          else
+            echo "No wiki changes to sync"
+          fi
