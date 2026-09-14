@@ -1,5 +1,5 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "vergissberlin",
   "owner": {
     "name": "André Lademann",
@@ -7,15 +7,15 @@
   },
   "metadata": {
     "description": "Vergissberlin marketplace for André Lademann Skills.",
-    "version": "2.0.0"
+    "version": "2.4.0"
   },
   "plugins": [
     {
       "name": "andrelademann-skills",
       "displayName": "André Lademann Skills",
-      "source": ".",
+      "source": "./",
       "description": "Portable agent skills by André Lademann, grouped by domain in this catalog.",
-      "version": "1.0.0",
+      "version": "2.4.0",
       "author": {
         "name": "André Lademann",
         "url": "https://github.com/vergissberlin"
