@@ -4,6 +4,7 @@ import path from 'node:path';
 import CatalogPageTemplate from '../components/templates/CatalogPageTemplate.astro';
 import SkillsFilterBar from '../components/organisms/SkillsFilterBar.astro';
 import SkillsGrid from '../components/organisms/SkillsGrid.astro';
+import MarketplaceSetup from '../components/molecules/MarketplaceSetup.astro';
 
 type Skill = { name: string; path: string; description: string };
 type SkillMetadata = {
@@ -56,6 +57,7 @@ const scopeCounts = Object.fromEntries(scopes.map((scope) => [scope, withScope.f
   canonicalUrl={baseUrl}
   ogImage={`${baseUrl}og/default.png`}
 >
+  <MarketplaceSetup />
   <SkillsFilterBar scopes={scopes} totalCount={withScope.length} scopeCounts={scopeCounts} />
   <SkillsGrid skills={withScope} baseUrl={baseUrl} catalogVersion={catalogVersion} />
 </CatalogPageTemplate>

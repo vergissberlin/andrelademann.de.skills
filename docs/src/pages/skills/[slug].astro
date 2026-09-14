@@ -6,6 +6,7 @@ import DetailPageTemplate from '../../components/templates/DetailPageTemplate.as
 import InstallCommandRow from '../../components/molecules/InstallCommandRow.astro';
 import SkillDetailMetaAside from '../../components/molecules/SkillDetailMetaAside.astro';
 import SkillGitHistory from '../../components/molecules/SkillGitHistory.astro';
+import EditorInstallActions from '../../components/molecules/EditorInstallActions.astro';
 import { getSkillGitCommitGroups, type SkillGitCommitGroup } from '../../lib/skillGitHistory';
 import { getSkillFiles, type SkillFile } from '../../lib/skillFiles';
 import {
@@ -15,7 +16,7 @@ import {
   type HarnessResultsSnapshot,
   type SkillHarnessResult,
 } from '../../lib/skillTesting';
-import { buildSkillInstallCommand } from '../../lib/skillInstall';
+import { buildAgentSkillInstallCommand, buildSkillInstallCommand } from '../../lib/skillInstall';
 
 type Skill = { name: string; path: string; description: string };
 type Catalog = { version: string; skills: Skill[] };
@@ -151,6 +152,20 @@ const lastUpdated = commitGroups[0]?.commits[0]?.committedAt?.toISOString() ?? n
         </div>
       </div>
     <InstallCommandRow command={installCommand} />
+    <EditorInstallActions
+      actions={[
+        {
+          agent: 'cursor',
+          label: 'Add to Cursor',
+          command: buildAgentSkillInstallCommand(catalogVersion, skill.name, 'cursor'),
+        },
+        {
+          agent: 'github-copilot',
+          label: 'Add to VS Code',
+          command: buildAgentSkillInstallCommand(catalogVersion, skill.name, 'github-copilot'),
+        },
+      ]}
+    />
     </div>
   </div>
 

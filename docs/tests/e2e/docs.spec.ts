@@ -43,6 +43,14 @@ test('index search and filter interactions keep cards visible', async ({ page })
   await expect(page.locator('#visible-count')).not.toHaveText('0');
 });
 
+test('index explains how to add the Claude Code marketplace', async ({ page }) => {
+  await page.goto('/andrelademann.de.skills/');
+
+  await expect(page.getByRole('heading', { name: 'Add the complete marketplace' })).toBeVisible();
+  await expect(page.locator('#marketplace-add-cmd')).toHaveText('/plugin marketplace add vergissberlin/andrelademann.de.skills');
+  await expect(page.locator('#marketplace-install-cmd')).toHaveText('/plugin install andrelademann-skills@vergissberlin');
+});
+
 test('footer uses the André Lademann portrait and favicon uses the mug mark', async ({ page }) => {
   await page.goto('/andrelademann.de.skills/');
 
@@ -88,4 +96,6 @@ test('skill detail uses a short title and catalog origin', async ({ page }) => {
   await expect(banner.getByRole('heading', { level: 1 })).toHaveText('Blog Post Writer');
   await expect(page.getByText('Author', { exact: true })).toBeVisible();
   await expect(page.getByText('André Lademann', { exact: true }).first()).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Add to Cursor: copy install command' })).toHaveAttribute('data-command', /--agent cursor --yes$/);
+  await expect(page.getByRole('button', { name: 'Add to VS Code: copy install command' })).toHaveAttribute('data-command', /--agent github-copilot --yes$/);
 });
