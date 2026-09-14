@@ -86,6 +86,6 @@ test('skill detail uses a short title and catalog origin', async ({ page }) => {
   const banner = page.getByRole('banner');
   await expect(banner.getByText('André Lademann Skills')).toBeVisible();
   await expect(banner.getByRole('heading', { level: 1 })).toHaveText('Blog Post Writer');
-  await expect(page.getByText('Author')).toBeVisible();
+  await expect(page.getByText('Author', { exact: true })).toBeVisible();
   await expect(page.getByText('André Lademann', { exact: true }).first()).toBeVisible();
 });
