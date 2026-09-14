@@ -50,6 +50,7 @@ This document defines the guardrails for agent work in this repository.
 - Official brand tokens live in `brand/` (`colors.css`, `colors.json`, `tailwind.config.js`, `swatches/*.svg`). The docs app imports `brand/colors.css` from `docs/src/styles/tailwind.css` and exposes Tailwind v4 utilities as `kieks-*` (see `@theme` there).
 - Typography: **Hanken Grotesk** (headings, nav, buttons) and **Source Sans 3** (body) load from Google Fonts in `docs/src/layouts/BaseLayout.astro`; `--font-heading` / `--font-sans` and optional self-host layout are documented in `brand/fonts/README.md`.
 - Navbar logos live in `docs/public/brand/` as `andre-lademann-horizontal-aqua-light.svg` and `andre-lademann-horizontal-aqua-dark.svg`.
+- The portrait `docs/public/brand/andre-lademann-portrait.png` is the site identity photo: use it as favicon / apple-touch-icon, as the PWA icons (`docs/public/pwa-192x192.png`, `docs/public/pwa-512x512.png`), and next to the footer wordmark.
 - For UI changes under `docs/src/`, use Atomic Design composition: `atoms -> molecules -> organisms -> templates -> pages`.
 - Do not duplicate page-local markup when an existing atom or molecule can be reused.
 - When adding or changing component props, update the related TypeScript prop definitions and the relevant docs text in the same change.

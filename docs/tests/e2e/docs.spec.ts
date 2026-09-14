@@ -161,6 +161,17 @@ test('skill creator chat and zip flow works with mocked API', async ({ page }) =
   await expect(page.locator('#package-preview')).toContainText('playwright-ci-triage');
 });
 
+test('footer and favicon use the André Lademann portrait', async ({ page }) => {
+  await page.goto('/andrelademann.de.skills/');
+
+  const favicon = page.locator('link[rel="icon"]');
+  await expect(favicon).toHaveAttribute('href', /brand\/andre-lademann-portrait\.png$/);
+
+  const portrait = page.locator('footer img[alt="André Lademann"]');
+  await expect(portrait).toBeVisible();
+  await expect(portrait).toHaveAttribute('src', /brand\/andre-lademann-portrait\.png$/);
+});
+
 test('theme toggle applies dark class manually', async ({ page }) => {
   await page.goto('/andrelademann.de.skills/');
 
