@@ -17,6 +17,8 @@ type SkillCatalog = {
 
 const REPO_ROOT = resolve(import.meta.dirname, "..");
 const CATALOG_PATH = join(REPO_ROOT, "index.json");
+const PLUGIN_PATH = join(REPO_ROOT, ".claude-plugin", "plugin.json");
+const MARKETPLACE_PATH = join(REPO_ROOT, ".claude-plugin", "marketplace.json");
 
 function loadCatalog(): SkillCatalog {
   const raw = readFileSync(CATALOG_PATH, "utf-8");
@@ -31,6 +33,33 @@ describe("Skills catalog validation", () => {
     expect(catalog.version).toMatch(/^\d+\.\d+\.\d+/);
     expect(Array.isArray(catalog.skills)).toBe(true);
     expect(catalog.skills.length).toBeGreaterThan(0);
+  });
+
+  it("should expose a synchronized Claude marketplace plugin", () => {
+    const catalog = loadCatalog();
+    const plugin = JSON.parse(readFileSync(PLUGIN_PATH, "utf-8")) as {
+      name: string;
+      version: string;
+    };
+    const marketplace = JSON.parse(
+      readFileSync(MARKETPLACE_PATH, "utf-8")
+    ) as {
+      $schema: string;
+      metadata: { version: string };
+      plugins: Array<{ name: string; source: string; version: string }>;
+    };
+
+    expect(marketplace.$schema).toBe(
+      "https://json.schemastore.org/claude-code-marketplace.json"
+    );
+    expect(marketplace.plugins).toHaveLength(1);
+    expect(marketplace.plugins[0]).toMatchObject({
+      name: plugin.name,
+      source: "./",
+      version: catalog.version,
+    });
+    expect(plugin.version).toBe(catalog.version);
+    expect(marketplace.metadata.version).toBe(catalog.version);
   });
 
   it("should reference existing skill files with non-empty metadata and body", () => {
