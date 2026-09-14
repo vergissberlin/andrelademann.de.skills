@@ -66,7 +66,6 @@ function getIconName(skillName) {
   const iconMap = {
     default: 'sparkles',
     'andrelademann-blog-header-image': 'photo',
-    'andrelademann-blog-post-writer-guided': 'book-2',
     'andrelademann-blog-post-writer': 'article'
   };
 
