@@ -1,7 +1,7 @@
 ---
 name: andrelademann-blog-promote
 description: Promote a published blog article across LinkedIn, X/Twitter, Xing, daily.dev, and Teams. Use when a post was just published or when André asks to promote, share, or post an article on social channels — including older articles, not only posts written in the same session.
-version: 2.2.0 # x-release-please-version
+version: 2.3.0 # x-release-please-version
 scope: blog
 ---
 
