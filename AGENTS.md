@@ -28,6 +28,7 @@ This document defines the guardrails for agent work in this repository.
 
 ## Skills
 
+- The published catalog (`index.json`, `docs/index.json`) and the Claude marketplace plugin (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`) use the general names `andrelademann-skills` and **André Lademann Skills**. Do not name the root catalog after a single domain. Domain folders such as `skills/blog` may keep a domain-specific plugin manifest.
 - Using the blog-post skill (`andrelademann-blog-post-writer`) must also activate and follow `andrelademann-blog-header-image` in the same task, unless the user supplies an image, explicitly opts out, or explicitly requests a separate visual task.
 - For release notes, use `feat(skills):` or `feature(skills):` when a change primarily adds or updates skills in `skills/`, `index.json`, or `docs/index.json`. The `skills` scope maps to the **Skills** changelog section and matches **minor** semver bumps like any other feature (release-please only treats `feat` / `feature` as minor, not a separate `skills:` type).
 - Keep the catalog version in `index.json` and every skill version in `SKILL.md` frontmatter and `metadata.json` aligned with release tags (`X.Y.Z`). Register both version-bearing skill files in `release-please-config.json` whenever adding a skill so Release Please updates them together. Use pinned install commands such as `npx skills add vergissberlin/andrelademann.de.skills@X.Y.Z --skill <skill-name>`.
