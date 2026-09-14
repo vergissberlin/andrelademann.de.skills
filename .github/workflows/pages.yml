@@ -1,9 +1,16 @@
 # Builds the Astro docs site and deploys to GitHub Pages.
-# - release (published): runs after a GitHub Release is published (e.g. from release-please or manual). Checkout uses the release tag.
+# - workflow_call: runs directly after release-please creates a release. Checkout uses the supplied release tag.
+# - release (published): runs after a manually published GitHub Release. Checkout uses the release tag.
 # - workflow_dispatch: manual run; checkout uses the default-branch SHA.
 name: Deploy to GitHub Pages
 
 on:
+  workflow_call:
+    inputs:
+      ref:
+        description: Git ref to build and deploy
+        required: true
+        type: string
   workflow_dispatch:
   release:
     types: [published]
@@ -29,7 +36,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.release.tag_name || github.sha }}
+          ref: ${{ inputs.ref || github.event.release.tag_name || github.sha }}
           fetch-depth: 0
 
       - name: Setup pnpm
