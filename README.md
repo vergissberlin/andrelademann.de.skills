@@ -16,7 +16,7 @@ Marketplace hinzufügen und anschließend einzelne Plugins installieren:
 Alternativ kann ein einzelner Skill über den generischen Installer bezogen werden:
 
 ```bash
-npx skills add vergissberlin/andrelademann.de.skills@1.2.0 --skill <skill-name>
+npx skills add vergissberlin/andrelademann.de.skills@2.0.0 --skill <skill-name>
 ```
 
 Die Marketplace-Einträge und Domain-Plugins liegen unter [`.claude-plugin/`](.claude-plugin/).
@@ -50,14 +50,10 @@ Für einen Custom GPT:
 
 ChatGPT hat im Custom GPT keinen Live-Repo-Zugriff; Knowledge-Upload ist daher der vorgesehene Weg.
 
-### Tool-übergreifender Weg
-
-Der vorhandene [AGENTS.md-Generator](https://vergissberlin.github.io/andrelademann.de.skills/agent-md-generator/) erstellt aus ausgewählten Domänen eine kompakte `AGENTS.md`. Viele Coding-Agents, darunter Copilot und Cursor, lesen diese Datei als Kontextquelle.
-
 Alle Integrationsvorlagen sind unter [`integrations/`](integrations/) gesammelt. Sie sind Doku- und Config-Vorlagen, keine eigene Laufzeitkomponente.
 
 ## Skills
 
-Die fünf Skills stehen im Katalog [`index.json`](index.json). Die fachliche Quelle jedes Eintrags ist die verlinkte `SKILL.md`; zusätzliche Skill-Metadaten liegen jeweils in `metadata.json`.
+Die drei Blog-Skills stehen im Katalog [`index.json`](index.json). Die fachliche Quelle jedes Eintrags ist die verlinkte `SKILL.md`; zusätzliche Skill-Metadaten liegen jeweils in `metadata.json`.
 
 Weitere Entwicklungs-, Build- und Release-Informationen stehen in [`CONTRIBUTING.md`](CONTRIBUTING.md).

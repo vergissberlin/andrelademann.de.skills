@@ -12,10 +12,7 @@ Before starting work in a matching domain:
 
 Available catalog skills:
 
-- `iac-infrastructure-as-code` → `skills/platform/iac-infrastructure-as-code/SKILL.md`
-- `mcp-builder` → `skills/platform/mcp-builder/SKILL.md`
-- `skill-creator` → `skills/meta/skill-creator/SKILL.md`
-- `skill-prompt-security-audit` → `skills/meta/skill-prompt-security-audit/SKILL.md`
-- `terraform-style-guide` → `skills/terraform/code-generation/terraform-style-guide/SKILL.md`
+- `andrelademann-blog-header-image` → `skills/blog/andrelademann-blog-header-image/SKILL.md`
+- `andrelademann-blog-post-writer` → `skills/blog/andrelademann-blog-post-writer/SKILL.md`
 
-When adding or changing a skill, keep `index.json`, `docs/index.json`, metadata, the AGENTS.md generator, `.claude-plugin/marketplace.json`, and the integration examples consistent.
+When adding or changing a skill, keep `index.json`, `docs/index.json`, metadata, `.claude-plugin/marketplace.json`, and the integration examples consistent.

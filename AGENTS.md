@@ -26,21 +26,13 @@ This document defines the guardrails for agent work in this repository.
 - For ad-hoc deploys without a release, use **workflow dispatch** on the same workflow in the GitHub Actions UI.
 - The deploy build copies `index.json` and `skills/` into `docs/` and generates the harness snapshot `docs/src/data/harness-results.json` before `pnpm build`.
 
-## Skills and AGENTS.md Generator
+## Skills
 
-- When adding a new skill, include the same change in the AGENTS.md generator: in `docs/src/pages/agent-md-generator.astro`, add the skill name (`name` from `index.json`) to `domainMap` under the matching work domain, or add a new domain with checkbox if needed. This ensures the skill appears in generated AGENTS.md output when that domain is selected in the generator.
 - For release notes, use `feat(skills):` or `feature(skills):` when a change primarily adds or updates skills in `skills/`, `index.json`, or `docs/index.json`. The `skills` scope maps to the **Skills** changelog section and matches **minor** semver bumps like any other feature (release-please only treats `feat` / `feature` as minor, not a separate `skills:` type).
 - Keep the catalog version in `index.json` aligned with release tags (`X.Y.Z`) and use pinned install commands such as `npx skills add vergissberlin/andrelademann.de.skills@X.Y.Z --skill <skill-name>`.
 - Skill folders must be organized in nested directories. Do not add new flat paths like `skills/<skill-name>/SKILL.md`.
-- Terraform skills must always be in:
-  - `skills/terraform/code-generation/<skill-name>/SKILL.md`
-  - `skills/terraform/module-generation/<skill-name>/SKILL.md`
-  - `skills/terraform/provider-development/<skill-name>/SKILL.md`
-- When adding a new Terraform domain folder under `skills/terraform/`, add or update a matching `.claude-plugin/plugin.json` for that domain, add/update the corresponding entry in `.claude-plugin/marketplace.json`, and review root `.claude-plugin/plugin.json` keywords/description.
-- Place non-Terraform skills in matching domain folders, for example:
-  - `skills/platform/<skill-name>/SKILL.md`
-  - `skills/frontend/<skill-name>/SKILL.md`
-  - `skills/data/<skill-name>/SKILL.md`
+- Place skills in matching domain folders, for example:
+  - `skills/blog/<skill-name>/SKILL.md`
 - Store a separate metadata file for each skill at `skills/<domain>/<skill-name>/metadata.json` with:
   - `title` (human-readable skill title)
   - `description` (short description in English)
@@ -57,7 +49,7 @@ This document defines the guardrails for agent work in this repository.
 
 - Official brand tokens live in `brand/` (`colors.css`, `colors.json`, `tailwind.config.js`, `swatches/*.svg`). The docs app imports `brand/colors.css` from `docs/src/styles/tailwind.css` and exposes Tailwind v4 utilities as `kieks-*` (see `@theme` there).
 - Typography: **Hanken Grotesk** (headings, nav, buttons) and **Source Sans 3** (body) load from Google Fonts in `docs/src/layouts/BaseLayout.astro`; `--font-heading` / `--font-sans` and optional self-host layout are documented in `brand/fonts/README.md`.
-- Navbar logos live in `docs/public/brand/` as `andre-lademann-horizontal-aqua-light.svg` and `andre-lademann-horizontal-aqua-dark.svg`.
+- The navbar portrait lives at `docs/public/brand/andre-lademann.webp`; keep its square crop and accessible text lockup when updating the site identity.
 - For UI changes under `docs/src/`, use Atomic Design composition: `atoms -> molecules -> organisms -> templates -> pages`.
 - Do not duplicate page-local markup when an existing atom or molecule can be reused.
 - When adding or changing component props, update the related TypeScript prop definitions and the relevant docs text in the same change.

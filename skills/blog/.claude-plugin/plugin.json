@@ -2,8 +2,8 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "andrelademann-blog-skills",
   "displayName": "André Lademann Blog Skills",
-  "version": "2.0.0",
-  "description": "André Lademann Skill catalog for blog writing and editorial image workflows.",
+  "version": "1.0.0",
+  "description": "Blog-writing and editorial-image skills for André Lademann's engineering blog.",
   "author": {
     "name": "André Lademann",
     "url": "https://github.com/vergissberlin"
@@ -12,18 +12,12 @@
   "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
   "license": "GPL-3.0",
   "keywords": [
-    "andrelademann",
     "blog",
     "writing",
     "editorial",
     "astro",
     "images",
     "skills",
-    "agents",
-    "multi-tool",
-    "chatgpt",
-    "copilot",
-    "cursor",
-    "vscode"
+    "agents"
   ]
 }

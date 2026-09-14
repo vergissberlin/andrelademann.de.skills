@@ -9,7 +9,7 @@ subtitle: Guidelines for discoverable, safe, and maintainable Agent Skills.
 ## Naming
 
 - Use `kebab-case` for skill folders.
-- Keep skill names close to the real use case (for example `iac-infrastructure-as-code`).
+- Keep skill names close to the real use case (for example `andrelademann-blog-post-writer`).
 - Use practical trigger words in descriptions.
 
 ## Discoverability
@@ -17,7 +17,6 @@ subtitle: Guidelines for discoverable, safe, and maintainable Agent Skills.
 - Start each `SKILL.md` with precise frontmatter (`name`, `description`, `version`).
 - Describe clearly when the skill should be invoked.
 - Add realistic example inputs to improve routing quality.
-- When you add a skill to the catalog, also map it in the AGENTS.md generator: update `domainMap` in `docs/src/pages/agent-md-generator.astro` so the skill is tied to the right working domain (or add a domain). The catalog list comes from `index.json`; domain selection drives which install commands appear in generated AGENTS.md files.
 - Create one Open Graph preview image per skill at `docs/public/og/skills/<skill-name>.png` (where `<skill-name>` matches `name` in `index.json`).
 - Keep `docs/public/og/default.png` as the fallback preview for catalog and utility pages.
 - Follow `svg-logo-designer` principles for OG compositions: clear visual hierarchy, high contrast, readable labels, and consistent brand style.

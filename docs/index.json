@@ -1,31 +1,16 @@
 {
-  "name": "andrelademann-agent-skills",
-  "version": "1.3.0",
+  "name": "andrelademann-blog-skills",
+  "version": "2.1.1",
   "skills": [
     {
-      "name": "iac-infrastructure-as-code",
-      "path": "skills/platform/iac-infrastructure-as-code/SKILL.md",
-      "description": "IaC review for security, cost, and risk assessment"
+      "name": "andrelademann-blog-header-image",
+      "path": "skills/blog/andrelademann-blog-header-image/SKILL.md",
+      "description": "Generate and integrate photorealistic editorial header images for blog posts."
     },
     {
-      "name": "skill-creator",
-      "path": "skills/meta/skill-creator/SKILL.md",
-      "description": "Guide for creating effective skills for AI coding agents working with Azure SDKs and Microsoft Foundry services. Use when creating new skills or updating existing skills."
-    },
-    {
-      "name": "skill-prompt-security-audit",
-      "path": "skills/meta/skill-prompt-security-audit/SKILL.md",
-      "description": "Audit SKILL.md files for adversarial prompt patterns, unsafe secret handling instructions, and security-relevant false positives."
-    },
-    {
-      "name": "terraform-style-guide",
-      "path": "skills/terraform/code-generation/terraform-style-guide/SKILL.md",
-      "description": "Generate and review Terraform code using HashiCorp style conventions, structure, and security defaults."
-    },
-    {
-      "name": "mcp-builder",
-      "path": "skills/platform/mcp-builder/SKILL.md",
-      "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools."
+      "name": "andrelademann-blog-post-writer",
+      "path": "skills/blog/andrelademann-blog-post-writer/SKILL.md",
+      "description": "Plan or directly create a complete blog post and its generated visual package."
     }
   ]
 }

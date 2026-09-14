@@ -37,9 +37,6 @@ persistenter, projektspezifischer Kontext, der nicht in jeder Session neu erklä
 - Optional ausbaubar: Ein expliziter Abschnitt mit häufigen Standard-Commands könnte Onboarding beschleunigen.
 - Optional ausbaubar: Eine kompakte MCP-/Tool-Sektion kann sinnvoll sein, wenn feste Team-Workflows bestehen.
 
-> Hinweis: Im Docs-Bereich ergänzt die Seite `docs/src/pages/agent-md-generator.astro`
-> diese Leitlinien bereits um praktische "Must have / Should have / Avoid"-Empfehlungen.
-
 ## Claude-Code-spezifische Hinweise
 
 Der verlinkte Artikel enthält zusätzliche Features, die primär Claude Code betreffen, z. B. `/init`,
