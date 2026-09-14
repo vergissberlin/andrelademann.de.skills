@@ -1,5 +1,42 @@
 # Changelog
 
+## [2.1.1](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.1.0...2.1.1) (2026-09-14)
+
+
+### Documentation
+
+* **best-practices.md:** remove redundant guideline about mapping skills in AGENTS.md generator to streamline documentation and avoid duplication ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **copilot-instructions.md:** update instructions to remove reference to AGENTS.md generator ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* remove skill-creator page from documentation ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **skills.mdc:** update instructions to remove reference to AGENTS.md generator ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* update contributing guidelines to reflect removal of AGENTS.md generator and Netlify functions ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **warum-agents-md.md:** remove outdated reference to agent-md-generator page ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+
+
+### Miscellaneous Chores
+
+* **docs:** delete Netlify functions and configuration for skill creator API as it's no longer needed ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **docs:** remove agent-md-generator.astro file ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **env.d.ts:** remove jszip module declaration as it is no longer used ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **package.json:** remove unused dependencies @astrojs/netlify and jszip to reduce package size ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+
+
+### Code Refactoring
+
+* **docs:** remove AGENTS.md generator references and related instructions for skill linking ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* remove agentMd.ts as it is no longer needed ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* remove unused functions and event listeners for markdown generation ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* remove unused skill-creator-finalize function to clean up codebase ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **script:** remove unused and redundant code to improve maintainability and readability ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **SiteNavbar.astro:** update navbar to remove unused links and simplify logo ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+
+
+### Tests
+
+* **agent-md.test.ts:** delete obsolete unit tests for agent-md functionality ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **docs.spec.ts:** remove outdated e2e tests for agent-md generator and skill creator chat ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **skill-creator-chat.test.ts:** remove deprecated unit tests for skill creator chat handler ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+
 ## [2.1.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.0.0...2.1.0) (2026-09-14)
 
 
