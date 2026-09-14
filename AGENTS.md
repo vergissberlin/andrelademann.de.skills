@@ -18,9 +18,10 @@ This document defines the guardrails for agent work in this repository.
 
 ## GitHub Pages and releases
 
+- When Release Please creates a release, `.github/workflows/release-please.yml` calls both the Pages and wiki reusable workflows directly with the new tag. Keep these calls in the release workflow rather than relying on events created by `GITHUB_TOKEN`, because GitHub suppresses most recursive workflow events from that token.
 - The docs site is deployed by `.github/workflows/pages.yml` (Astro build under `docs/`; the job does **not** use the `github-pages` *environment* so that tag-based `release` events are not blocked by environment deployment rules; deploy uses `pages: write` and `id-token: write` on `GITHUB_TOKEN` only).
 - If you reintroduce `environment: github-pages` on the deploy job, configure the environment so **tags are allowed to deploy** (e.g. Repository → **Settings** → **Environments** → **github-pages** → **Deployment branches and tags** → add a tag pattern such as `*`, or a semver pattern). Otherwise only `workflow_dispatch` from the default branch may work, and tag-driven runs fail with e.g. `Tag "X.Y.Z" is not allowed to deploy to github-pages due to environment protection rules`.
-- Publishing a **GitHub Release** (not only creating a draft) runs that workflow: `on: release: types: [published]`, so a release-please tag release and a manually published release both trigger deploy.
+- Publishing a **GitHub Release** manually (not only creating a draft) runs the Pages workflow through `on: release: types: [published]`; Release Please invokes it directly as a reusable workflow instead.
 - For ad-hoc deploys without a release, use **workflow dispatch** on the same workflow in the GitHub Actions UI.
 - The deploy build copies `index.json` and `skills/` into `docs/` and generates the harness snapshot `docs/src/data/harness-results.json` before `pnpm build`.
 
@@ -30,15 +31,8 @@ This document defines the guardrails for agent work in this repository.
 - For release notes, use `feat(skills):` or `feature(skills):` when a change primarily adds or updates skills in `skills/`, `index.json`, or `docs/index.json`. The `skills` scope maps to the **Skills** changelog section and matches **minor** semver bumps like any other feature (release-please only treats `feat` / `feature` as minor, not a separate `skills:` type).
 - Keep the catalog version in `index.json` aligned with release tags (`X.Y.Z`) and use pinned install commands such as `npx skills add vergissberlin/andrelademann.de.skills@X.Y.Z --skill <skill-name>`.
 - Skill folders must be organized in nested directories. Do not add new flat paths like `skills/<skill-name>/SKILL.md`.
-- Terraform skills must always be in:
-  - `skills/terraform/code-generation/<skill-name>/SKILL.md`
-  - `skills/terraform/module-generation/<skill-name>/SKILL.md`
-  - `skills/terraform/provider-development/<skill-name>/SKILL.md`
-- When adding a new Terraform domain folder under `skills/terraform/`, add or update a matching `.claude-plugin/plugin.json` for that domain, add/update the corresponding entry in `.claude-plugin/marketplace.json`, and review root `.claude-plugin/plugin.json` keywords/description.
-- Place non-Terraform skills in matching domain folders, for example:
-  - `skills/platform/<skill-name>/SKILL.md`
-  - `skills/frontend/<skill-name>/SKILL.md`
-  - `skills/data/<skill-name>/SKILL.md`
+- Place skills in matching domain folders, for example:
+  - `skills/blog/<skill-name>/SKILL.md`
 - Store a separate metadata file for each skill at `skills/<domain>/<skill-name>/metadata.json` with:
   - `title` (human-readable skill title)
   - `description` (short description in English)

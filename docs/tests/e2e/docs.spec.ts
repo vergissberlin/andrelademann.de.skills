@@ -32,7 +32,7 @@ test('index search and filter interactions keep cards visible', async ({ page })
   const cards = page.locator('#skills-grid .card');
   await expect(cards.first()).toBeVisible();
 
-  await page.fill('#search-input', 'terraform');
+  await page.fill('#search-input', 'blog');
   const filteredCountText = await page.locator('#visible-count').textContent();
   expect(Number(filteredCountText ?? '0')).toBeGreaterThan(0);
   await expect(page.locator('#skills-grid .card:visible').first()).toBeVisible();
@@ -71,7 +71,7 @@ test('agent-md generator updates preview and copy button works', async ({ page }
   await expect(sizeHint).toContainText('Consider trimming duplicated or obvious rules.');
 
   await expect(preview).toHaveValue(/AGENTS\.md for Docs QA/);
-  await expect(preview).toHaveValue(/iac-infrastructure-as-code/);
+  await expect(preview).toHaveValue(/andrelademann-blog-post-writer/);
 
   const copyButton = page.locator('#copy-agents');
   await copyButton.click();

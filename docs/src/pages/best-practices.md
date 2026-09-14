@@ -9,7 +9,7 @@ subtitle: Guidelines for discoverable, safe, and maintainable Agent Skills.
 ## Naming
 
 - Use `kebab-case` for skill folders.
-- Keep skill names close to the real use case (for example `iac-infrastructure-as-code`).
+- Keep skill names close to the real use case (for example `andrelademann-blog-post-writer`).
 - Use practical trigger words in descriptions.
 
 ## Discoverability
