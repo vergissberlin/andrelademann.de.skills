@@ -1,0 +1,101 @@
+name: Missing skill
+description: Suggest a skill that should be added to the catalog
+title: "[Skill]: "
+labels:
+  - enhancement
+body:
+  - type: input
+    id: skill-name
+    attributes:
+      label: Proposed skill name
+      description: Use a short, descriptive display name. A final invoke ID can be chosen during implementation.
+      placeholder: e.g. Terraform Module Reviewer
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem, users, and environment
+      description: What recurring problem should the skill solve, who encounters it, and in which agents, platforms, or project types should the skill work?
+      placeholder: Describe the situation, target users, current pain points, and desired improvement.
+    validations:
+      required: true
+
+  - type: textarea
+    id: triggers
+    attributes:
+      label: Activation examples
+      description: Which user requests or situations should activate the skill? Include two or three representative prompts if possible.
+      placeholder: |
+        - "Review this Terraform module before I publish it."
+        - "Check this module for security and maintainability issues."
+    validations:
+      required: true
+
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Expected workflow
+      description: Describe the main steps the skill should follow, including decisions or questions it should ask.
+      placeholder: |
+        1. Inspect the module and its documentation.
+        2. Ask for missing target-platform details.
+        3. Report prioritized findings and recommended fixes.
+    validations:
+      required: true
+
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Required inputs
+      description: What information, files, links, credentials, or context does the skill need? Note which inputs are optional.
+      placeholder: e.g. Repository files (required), target Terraform version (optional)
+    validations:
+      required: true
+
+  - type: textarea
+    id: outputs
+    attributes:
+      label: Expected output and success criteria
+      description: What should the skill produce, in which format, and how can we tell that the result is correct and useful?
+      placeholder: Describe deliverables, structure, quality requirements, and concrete acceptance criteria.
+    validations:
+      required: true
+
+  - type: textarea
+    id: tools
+    attributes:
+      label: Tools, integrations, and dependencies
+      description: List any APIs, CLIs, MCP servers, libraries, external services, or companion skills the workflow should use.
+      placeholder: e.g. terraform CLI, GitHub API, or no external tools
+    validations:
+      required: false
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints and edge cases
+      description: Note security, privacy, compliance, accessibility, language, performance, or compatibility requirements and important failure cases.
+      placeholder: e.g. Must not send proprietary source code to external services
+    validations:
+      required: false
+
+  - type: textarea
+    id: references
+    attributes:
+      label: References and additional context
+      description: Link to specifications, documentation, examples, similar skills, or workflows, and add anything else that would help us design, test, or maintain the skill.
+      placeholder: Relevant links, screenshots, sample files, non-goals, or implementation ideas
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Submission checklist
+      options:
+        - label: I searched the catalog and existing issues for a similar skill.
+          required: true
+        - label: I have not included secrets, credentials, or confidential data.
+          required: true
