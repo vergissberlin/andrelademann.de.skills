@@ -1,16 +1,18 @@
 {
-  "name": "andrelademann-skills",
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "vergissberlin",
   "owner": {
     "name": "André Lademann",
     "url": "https://github.com/vergissberlin"
   },
   "metadata": {
-    "description": "André Lademann marketplace for platform, frontend, data, meta, and Terraform workflow plugins.",
+    "description": "Vergissberlin marketplace for André Lademann skills across Claude Code and documented integrations for ChatGPT, GitHub Copilot, Cursor, and VS Code.",
     "version": "1.11.0"
   },
   "plugins": [
     {
       "name": "andrelademann-frontend-skills",
+      "displayName": "André Lademann Frontend Skills",
       "source": "./skills/frontend",
       "description": "Frontend skills for Next.js App Router performance diagnostics and scalable Tailwind CSS design system patterns.",
       "version": "1.0.0",
@@ -26,12 +28,16 @@
         "nextjs",
         "tailwind",
         "app-router",
-        "design-tokens"
+        "design-tokens",
+        "skills",
+        "agents",
+        "multi-tool"
       ],
       "category": "frontend"
     },
     {
       "name": "andrelademann-platform-skills",
+      "displayName": "André Lademann Platform Skills",
       "source": "./skills/platform",
       "description": "Platform skills for infrastructure-as-code risk reviews and observability-driven analysis of edge latency and reliability incidents.",
       "version": "1.0.0",
@@ -48,12 +54,16 @@
         "iac",
         "observability",
         "edge",
-        "mcp"
+        "mcp",
+        "skills",
+        "agents",
+        "multi-tool"
       ],
       "category": "platform"
     },
     {
       "name": "andrelademann-data-skills",
+      "displayName": "André Lademann Data Skills",
       "source": "./skills/data",
       "description": "Data skills for streaming pipeline stabilization, big data platform performance and cost optimization, and AI SDK tooling guardrails.",
       "version": "1.0.0",
@@ -69,12 +79,16 @@
         "ai",
         "streaming",
         "big-data",
-        "guardrails"
+        "guardrails",
+        "skills",
+        "agents",
+        "multi-tool"
       ],
       "category": "data"
     },
     {
       "name": "andrelademann-meta-skills",
+      "displayName": "André Lademann Meta Skills",
       "source": "./skills/meta",
       "description": "Meta skills for creating André-Lademann-compatible skills and auditing SKILL.md prompts for adversarial and secret-handling risks.",
       "version": "1.0.0",
@@ -90,12 +104,16 @@
         "skill-authoring",
         "catalog",
         "prompt-security",
-        "skill-md"
+        "skill-md",
+        "skills",
+        "agents",
+        "multi-tool"
       ],
       "category": "meta"
     },
     {
       "name": "andrelademann-terraform-code-generation",
+      "displayName": "André Lademann Terraform Code Generation",
       "source": "./skills/terraform/code-generation",
       "description": "Terraform code generation skills focused on style, testing, imports, and Azure module quality requirements.",
       "version": "1.0.0",
@@ -111,12 +129,16 @@
         "code-generation",
         "testing",
         "azure-verified-modules",
-        "import"
+        "import",
+        "skills",
+        "agents",
+        "multi-tool"
       ],
       "category": "terraform"
     },
     {
       "name": "andrelademann-terraform-module-generation",
+      "displayName": "André Lademann Terraform Module Generation",
       "source": "./skills/terraform/module-generation",
       "description": "Terraform module generation skills for refactoring reusable modules and operating Terraform Stacks across environments.",
       "version": "1.0.0",
@@ -132,12 +154,16 @@
         "modules",
         "stacks",
         "refactoring",
-        "infrastructure-as-code"
+        "infrastructure-as-code",
+        "skills",
+        "agents",
+        "multi-tool"
       ],
       "category": "terraform"
     },
     {
       "name": "andrelademann-terraform-provider-development",
+      "displayName": "André Lademann Terraform Provider Development",
       "source": "./skills/terraform/provider-development",
       "description": "Terraform provider development skills for building resources, actions, and acceptance tests with the Plugin Framework.",
       "version": "1.0.0",
@@ -153,7 +179,10 @@
         "provider",
         "plugin-framework",
         "resources",
-        "acceptance-testing"
+        "acceptance-testing",
+        "skills",
+        "agents",
+        "multi-tool"
       ],
       "category": "terraform"
     }

@@ -1,5 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "andrelademann-agent-skills",
+  "displayName": "André Lademann Agent Skills",
   "version": "1.0.0",
   "description": "André Lademann Skill catalog for platform, frontend, data, and Terraform workflows.",
   "author": {
@@ -15,6 +17,13 @@
     "terraform",
     "frontend",
     "platform",
-    "data"
+    "data",
+    "skills",
+    "agents",
+    "multi-tool",
+    "chatgpt",
+    "copilot",
+    "cursor",
+    "vscode"
   ]
 }
