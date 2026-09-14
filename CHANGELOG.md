@@ -1,5 +1,61 @@
 # Changelog
 
+## [2.2.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.1.1...2.2.0) (2026-09-14)
+
+
+### Skills
+
+* **skills:** consolidate guided blog writing workflow ([2c729ce](https://github.com/vergissberlin/andrelademann.de.skills/commit/2c729ce5012c2060a70b9806b88ddd709a5e2fc5))
+* **skills:** merge guided blog writer into single blog-post-writer skill ([5c62e18](https://github.com/vergissberlin/andrelademann.de.skills/commit/5c62e18e0a037f46254e30871676ed7e3b6a0ca5))
+* **skills:** merge guided blog writer workflow ([3df3c3c](https://github.com/vergissberlin/andrelademann.de.skills/commit/3df3c3c0d8bf66f0adbf05b8312aff2de30b8366))
+* **skills:** require header image skill for blog posts ([224098a](https://github.com/vergissberlin/andrelademann.de.skills/commit/224098a2a66edc67a1a3dad62bd0c8b30888d23c))
+* **skills:** require header images for blog posts ([ef639c2](https://github.com/vergissberlin/andrelademann.de.skills/commit/ef639c2a01406b36980b8c227b134335d0fae6e7))
+
+
+### Bug Fixes
+
+* **ci:** preserve wiki git metadata during sync ([314c15d](https://github.com/vergissberlin/andrelademann.de.skills/commit/314c15dbffd8993b69416f2b19b9443060e88dcd))
+* **ci:** resolve documentation workflow conflicts ([5e87d22](https://github.com/vergissberlin/andrelademann.de.skills/commit/5e87d227d94b8daa36c6a1b75d2608d049f8891a))
+* **skills:** align skill versions with releases ([2beab5c](https://github.com/vergissberlin/andrelademann.de.skills/commit/2beab5c9a339df711e4e7ac5f3ac12f53926418a))
+* **skills:** finish merge conflict resolution for blog writer ([2b098f1](https://github.com/vergissberlin/andrelademann.de.skills/commit/2b098f103ee1f3f338b9306e94dc442ade52d4ed))
+
+## [2.1.1](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.1.0...2.1.1) (2026-09-14)
+
+
+### Documentation
+
+* **best-practices.md:** remove redundant guideline about mapping skills in AGENTS.md generator to streamline documentation and avoid duplication ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **copilot-instructions.md:** update instructions to remove reference to AGENTS.md generator ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* remove skill-creator page from documentation ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **skills.mdc:** update instructions to remove reference to AGENTS.md generator ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* update contributing guidelines to reflect removal of AGENTS.md generator and Netlify functions ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **warum-agents-md.md:** remove outdated reference to agent-md-generator page ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+
+
+### Miscellaneous Chores
+
+* **docs:** delete Netlify functions and configuration for skill creator API as it's no longer needed ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **docs:** remove agent-md-generator.astro file ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **env.d.ts:** remove jszip module declaration as it is no longer used ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **package.json:** remove unused dependencies @astrojs/netlify and jszip to reduce package size ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+
+
+### Code Refactoring
+
+* **docs:** remove AGENTS.md generator references and related instructions for skill linking ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* remove agentMd.ts as it is no longer needed ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* remove unused functions and event listeners for markdown generation ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* remove unused skill-creator-finalize function to clean up codebase ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **script:** remove unused and redundant code to improve maintainability and readability ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **SiteNavbar.astro:** update navbar to remove unused links and simplify logo ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+
+
+### Tests
+
+* **agent-md.test.ts:** delete obsolete unit tests for agent-md functionality ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **docs.spec.ts:** remove outdated e2e tests for agent-md generator and skill creator chat ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+* **skill-creator-chat.test.ts:** remove deprecated unit tests for skill creator chat handler ([6a15ad5](https://github.com/vergissberlin/andrelademann.de.skills/commit/6a15ad5a484ff0e584fc55a1a576eed21e41ace9))
+
 ## [2.1.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.0.0...2.1.0) (2026-09-14)
 
 

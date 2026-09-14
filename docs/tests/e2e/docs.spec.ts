@@ -41,135 +41,15 @@ test('index search and filter interactions keep cards visible', async ({ page })
   await expect(page.locator('#visible-count')).not.toHaveText('0');
 });
 
-test('agent-md generator updates preview and copy button works', async ({ page }) => {
-  await page.addInitScript(() => {
-    // Mock clipboard for deterministic CI/browser behavior.
-    Object.defineProperty(navigator, 'clipboard', {
-      value: { writeText: () => Promise.resolve() },
-      configurable: true
-    });
-  });
-
-  await page.goto('/andrelademann.de.skills/agent-md-generator/');
-
-  await page.fill('#project-name', 'Docs QA');
-  await page.check('input[name="domain"][value="infrastructure"]');
-  await page.check('input[name="preset"][value="security"]');
-
-  const preview = page.locator('#agents-preview');
-  const sizeStatus = page.locator('#agents-size-status');
-  const sizeMetrics = page.locator('#agents-size-metrics');
-  const sizeHint = page.locator('#agents-size-hint');
-
-  await expect(sizeStatus).toBeVisible();
-  await expect(sizeMetrics).toContainText('KB');
-  await expect(sizeHint).toBeVisible();
-
-  const longRules = Array.from({ length: 200 }, (_, index) => `Rule ${index + 1}: Keep instructions precise and avoid duplication.`).join('\n');
-  await page.fill('#custom-standards', longRules);
-  await expect(sizeStatus).toContainText('Needs review');
-  await expect(sizeHint).toContainText('Consider trimming duplicated or obvious rules.');
-
-  await expect(preview).toHaveValue(/AGENTS\.md for Docs QA/);
-  await expect(preview).toHaveValue(/andrelademann-blog-post-writer/);
-
-  const copyButton = page.locator('#copy-agents');
-  await copyButton.click();
-  await expect(copyButton).toContainText('Copied!');
-});
-
-test('skill creator chat and zip flow works with mocked API', async ({ page }) => {
-  let chatCallCount = 0;
-  await page.route('**/api/skill-creator/chat', async (route) => {
-    chatCallCount += 1;
-    const body = route.request().postDataJSON() as {
-      messages?: Array<{ role?: string; content?: string }>;
-    };
-    const lastMessage = body.messages?.[body.messages.length - 1]?.content ?? '';
-
-    if (chatCallCount === 1) {
-      await route.fulfill({
-        status: 200,
-        contentType: 'application/json',
-        body: JSON.stringify({
-          message: 'Great scope. Please answer these to finalize requirements.',
-          questions: [
-            {
-              id: 'platform',
-              label: 'Which platform should this skill target?',
-              multiSelect: false,
-              options: ['React', 'Vanilla HTML', 'Vue']
-            },
-            {
-              id: 'fields',
-              label: 'Which form fields should be included?',
-              multiSelect: true,
-              options: ['Text input', 'Dropdown', 'Checkbox']
-            }
-          ]
-        })
-      });
-      return;
-    }
-
-    if (!lastMessage.includes('Clarifications:')) {
-      throw new Error(`Expected clarifications payload, got: ${lastMessage}`);
-    }
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({
-        message: 'Perfect, clarifications received. You can now create the ZIP.'
-      })
-    });
-  });
-
-  await page.route('**/api/skill-creator/finalize', async (route) => {
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/json',
-      body: JSON.stringify({
-        skillFolderName: 'playwright-ci-triage',
-        files: {
-          'SKILL.md': '---\nname: playwright-ci-triage\ndescription: Diagnose flaky tests\n---\n# Playwright CI Triage',
-          'metadata.json':
-            '{"title":"Playwright CI Triage","description":"Diagnose flaky CI tests","purpose":"Use when CI tests are flaky.","tags":["playwright","ci"],"source":"https://example.com","version":"1.0.0"}'
-        }
-      })
-    });
-  });
-
-  await page.goto('/andrelademann.de.skills/skill-creator/');
-
-  await page.fill('#chat-input', 'Create a skill for flaky Playwright CI failures.');
-  await page.click('#chat-send');
-
-  await expect(page.locator('#chat-messages')).toContainText('Please answer these');
-  await expect(page.locator('#clarification-questions')).toBeVisible();
-  await page.getByRole('button', { name: 'React' }).click();
-  await page.getByRole('checkbox', { name: 'Text input' }).check();
-  await page.getByRole('checkbox', { name: 'Dropdown' }).check();
-  await page.getByRole('button', { name: 'Send selected answers' }).click();
-
-  await expect(page.locator('#chat-messages')).toContainText('clarifications received');
-  await expect(page.locator('#chat-status')).toContainText('Reply ready');
-
-  await page.click('#chat-finalize');
-  await expect(page.locator('#chat-status')).toContainText('ZIP is ready');
-  await expect(page.locator('#download-link')).toBeVisible();
-  await expect(page.locator('#download-link')).toHaveAttribute('download', 'playwright-ci-triage.zip');
-  await expect(page.locator('#package-preview')).toContainText('playwright-ci-triage');
-});
-
 test('footer and favicon use the André Lademann portrait', async ({ page }) => {
   await page.goto('/andrelademann.de.skills/');
 
   const favicon = page.locator('link[rel="icon"]');
-  await expect(favicon).toHaveAttribute('href', /brand\/andre-lademann-portrait\.png$/);
+  await expect(favicon).toHaveAttribute('href', /brand\/andre-lademann-favicon\.png$/);
 
   const portrait = page.locator('footer img[alt="André Lademann"]');
   await expect(portrait).toBeVisible();
-  await expect(portrait).toHaveAttribute('src', /brand\/andre-lademann-portrait\.png$/);
+  await expect(portrait).toHaveAttribute('src', /brand\/andre-lademann\.webp$/);
 });
 
 test('theme toggle applies dark class manually', async ({ page }) => {

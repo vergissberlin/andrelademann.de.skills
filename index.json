@@ -1,6 +1,6 @@
 {
   "name": "andrelademann-blog-skills",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "skills": [
     {
       "name": "andrelademann-blog-header-image",
@@ -8,14 +8,9 @@
       "description": "Generate and integrate photorealistic editorial header images for blog posts."
     },
     {
-      "name": "andrelademann-blog-post-writer-guided",
-      "path": "skills/blog/andrelademann-blog-post-writer-guided/SKILL.md",
-      "description": "Guide a focused editorial brief and create a complete blog post with its generated header image."
-    },
-    {
       "name": "andrelademann-blog-post-writer",
       "path": "skills/blog/andrelademann-blog-post-writer/SKILL.md",
-      "description": "Create a complete British-English blog post and its generated visual package."
+      "description": "Plan or directly create a complete blog post and its generated visual package."
     }
   ]
 }

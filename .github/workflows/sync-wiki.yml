@@ -39,7 +39,8 @@ jobs:
 
       - name: Sync wiki content
         run: |
-          rsync -av --delete wiki/ /tmp/skills-wiki/
+          # Keep the cloned repository metadata while deleting stale wiki pages.
+          rsync -av --delete --exclude='.git/' wiki/ /tmp/skills-wiki/
 
       - name: Commit and push changes
         run: |

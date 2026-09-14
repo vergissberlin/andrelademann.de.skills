@@ -50,10 +50,6 @@ Für einen Custom GPT:
 
 ChatGPT hat im Custom GPT keinen Live-Repo-Zugriff; Knowledge-Upload ist daher der vorgesehene Weg.
 
-### Tool-übergreifender Weg
-
-Der vorhandene [AGENTS.md-Generator](https://vergissberlin.github.io/andrelademann.de.skills/agent-md-generator/) erstellt aus ausgewählten Domänen eine kompakte `AGENTS.md`. Viele Coding-Agents, darunter Copilot und Cursor, lesen diese Datei als Kontextquelle.
-
 Alle Integrationsvorlagen sind unter [`integrations/`](integrations/) gesammelt. Sie sind Doku- und Config-Vorlagen, keine eigene Laufzeitkomponente.
 
 ## Skills
