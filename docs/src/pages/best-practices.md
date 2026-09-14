@@ -8,8 +8,9 @@ subtitle: Guidelines for discoverable, safe, and maintainable Agent Skills.
 
 ## Naming
 
-- Use `kebab-case` for skill folders.
-- Keep skill names close to the real use case (for example `andrelademann-blog-post-writer`).
+- Use `kebab-case` for skill folders and invoke ids (for example `andrelademann-blog-post-writer`).
+- Keep the human-readable title short and free of an `André Lademann` prefix (for example `Blog Post Writer`).
+- Show catalog origin in metadata `author`, the `source` URL, and a provenance line in `SKILL.md`.
 - Use practical trigger words in descriptions.
 
 ## Discoverability

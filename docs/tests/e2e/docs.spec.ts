@@ -31,6 +31,8 @@ test('index search and filter interactions keep cards visible', async ({ page })
 
   const cards = page.locator('#skills-grid .card');
   await expect(cards.first()).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Blog Post Writer', level: 2 })).toBeVisible();
+  await expect(page.getByText('André Lademann Skills').first()).toBeVisible();
 
   await page.fill('#search-input', 'blog');
   const filteredCountText = await page.locator('#visible-count').textContent();
@@ -76,4 +78,14 @@ test('system theme follows prefers-color-scheme', async ({ page }) => {
   await themeToggle.click();
   await themeToggle.click();
   await expect(page.locator('html')).toHaveClass(/dark/);
+});
+
+test('skill detail uses a short title and catalog origin', async ({ page }) => {
+  await page.goto('/andrelademann.de.skills/skills/andrelademann-blog-post-writer/');
+
+  const banner = page.getByRole('banner');
+  await expect(banner.getByText('André Lademann Skills')).toBeVisible();
+  await expect(banner.getByRole('heading', { level: 1 })).toHaveText('Blog Post Writer');
+  await expect(page.getByText('Author')).toBeVisible();
+  await expect(page.getByText('André Lademann', { exact: true }).first()).toBeVisible();
 });

@@ -21,6 +21,7 @@ type Skill = { name: string; path: string; description: string };
 type Catalog = { version: string; skills: Skill[] };
 type SkillMetadata = {
   title: string;
+  author: string;
   description: string;
   purpose: string;
   tags: string[];
@@ -50,6 +51,7 @@ export async function getStaticPaths() {
       const metadataRaw = await fs.readFile(metadataPath, 'utf-8');
       const parsed = JSON.parse(metadataRaw) as Partial<{
         title: string;
+        author: string;
         description: string;
         purpose: string;
         tags: string[];
@@ -58,6 +60,7 @@ export async function getStaticPaths() {
       }>;
       if (
         typeof parsed.title === 'string'
+        && typeof parsed.author === 'string'
         && typeof parsed.description === 'string'
         && typeof parsed.purpose === 'string'
         && Array.isArray(parsed.tags)
@@ -67,6 +70,7 @@ export async function getStaticPaths() {
       ) {
         skillMetadata = {
           title: parsed.title,
+          author: parsed.author,
           description: parsed.description,
           purpose: parsed.purpose,
           tags: parsed.tags,
@@ -119,6 +123,7 @@ const lastUpdated = commitGroups[0]?.commits[0]?.committedAt?.toISOString() ?? n
   title={`${pageTitle} | André Lademann Skills`}
   description={pageDescription}
   heading={pageTitle}
+  kicker={skillMetadata?.author ? `${skillMetadata.author} Skills` : 'André Lademann Skills'}
   subtitle={pageDescription}
   catalogVersion={catalogVersion}
   canonicalUrl={`${baseUrl}skills/${skill.name}/`}

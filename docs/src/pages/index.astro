@@ -8,6 +8,7 @@ import SkillsGrid from '../components/organisms/SkillsGrid.astro';
 type Skill = { name: string; path: string; description: string };
 type SkillMetadata = {
   title?: string;
+  author?: string;
   description?: string;
   source?: string;
 };
@@ -35,6 +36,7 @@ const withScope = await Promise.all(skills.map(async (skill) => {
     ...skill,
     scope,
     cardTitle: metadata.title?.trim() || skill.name,
+    cardAuthor: metadata.author?.trim() || 'André Lademann',
     cardDescription: metadata.description?.trim() || skill.description,
   };
 }));
@@ -76,11 +78,13 @@ const scopeCounts = Object.fromEntries(scopes.map((scope) => [scope, withScope.f
     cards.forEach((card) => {
       const scope = card.dataset.scope ?? '';
       const name = card.dataset.name ?? '';
+      const author = card.dataset.author ?? '';
       const description = card.dataset.description ?? '';
       const skillPath = card.dataset.path ?? '';
       const scopeMatch = activeScope === 'all' || scope === activeScope;
       const searchMatch = !searchQuery || [
         name,
+        author,
         description,
         skillPath,
         scope.toLowerCase()

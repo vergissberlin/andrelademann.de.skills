@@ -1,5 +1,6 @@
 {
-  "title": "André Lademann Blog Header Image",
+  "title": "Blog Header Image",
+  "author": "André Lademann",
   "description": "Generate and safely integrate photorealistic editorial header images for blog posts.",
   "purpose": "Use when creating or replacing a blog post hero or social image.",
   "tags": [

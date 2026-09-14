@@ -2,6 +2,7 @@
 interface Props {
   skillMetadata: {
     title: string;
+    author: string;
     description: string;
     purpose: string;
     tags: string[];
@@ -48,6 +49,10 @@ function formatLastUpdated(value: string | null): string {
         </div>
 
         <dl class="space-y-3">
+          <div>
+            <dt class="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500 dark:text-slate-400">Author</dt>
+            <dd class="mt-1 text-slate-900 dark:text-slate-100">{skillMetadata.author}</dd>
+          </div>
           <div>
             <dt class="text-xs font-semibold uppercase tracking-[0.08em] text-slate-500 dark:text-slate-400">Version</dt>
             <dd class="mt-1 text-slate-900 dark:text-slate-100">v{skillMetadata.version}</dd>

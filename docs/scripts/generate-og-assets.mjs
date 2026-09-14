@@ -32,10 +32,31 @@ function configureCanvasQuality(ctx) {
 
 function formatSkillLabel(skillName) {
   return skillName
+    .replace(/^andrelademann-/, '')
     .split('-')
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ');
+}
+
+async function readSkillTitle(skill) {
+  const candidates = [
+    path.join(projectRoot, '..', path.dirname(skill.path), 'metadata.json'),
+    path.join(projectRoot, path.dirname(skill.path), 'metadata.json')
+  ];
+
+  for (const candidate of candidates) {
+    try {
+      const parsed = JSON.parse(await fs.readFile(candidate, 'utf8'));
+      if (typeof parsed.title === 'string' && parsed.title.trim()) {
+        return parsed.title.trim();
+      }
+    } catch {
+      // Try the next candidate (repo root vs copied docs/skills layout).
+    }
+  }
+
+  return formatSkillLabel(skill.name);
 }
 
 function wrapText(ctx, text, maxWidth) {
@@ -137,7 +158,7 @@ async function main() {
   await renderOgImage(path.join(outputRoot, 'default.png'), 'André Lademann Skills', getIconName('default'));
 
   for (const skill of skills) {
-    const title = formatSkillLabel(skill.name);
+    const title = await readSkillTitle(skill);
     const outputPath = path.join(outputSkills, `${skill.name}.png`);
     await renderOgImage(outputPath, title, getIconName(skill.name));
   }

@@ -5,7 +5,9 @@ version: 2.3.0 # x-release-please-version
 scope: blog
 ---
 
-# André Lademann Blog Header Image
+# Blog Header Image
+
+This skill belongs to the [André Lademann Skills](https://github.com/vergissberlin/andrelademann.de.skills) catalog. Invoke it as `andrelademann-blog-header-image`.
 
 Generate the actual header image for a blog post, not merely a prompt. This skill creates the single visual used as both the post's `heroImage` and `ogImage` on [blog.andrelademann.de](https://blog.andrelademann.de/).
 
