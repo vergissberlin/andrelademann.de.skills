@@ -1,7 +1,7 @@
 ---
 name: andrelademann-blog-post-writer
 description: Plan and create a complete post with a generated header image for André Lademann's blog at blog.andrelademann.de. Use for guided writing when editorial choices remain open, or for direct article creation when the topic and audience are already clear.
-version: 2.4.1 # x-release-please-version
+version: 2.5.0 # x-release-please-version
 scope: blog
 ---
 
