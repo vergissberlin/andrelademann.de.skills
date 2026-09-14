@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.3.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.2.0...2.3.0) (2026-09-14)
+
+
+### Skills
+
+* **skills:** add andrelademann-blog-promote in the blog group ([#16](https://github.com/vergissberlin/andrelademann.de.skills/issues/16)) ([b5b62e4](https://github.com/vergissberlin/andrelademann.de.skills/commit/b5b62e420f1d558dd052fcfd38afae55c8468aa4))
+
+
+### Features
+
+* **docs:** use André Lademann portrait for favicon and footer ([#14](https://github.com/vergissberlin/andrelademann.de.skills/issues/14)) ([f114b0b](https://github.com/vergissberlin/andrelademann.de.skills/commit/f114b0b3e2dce21d3e20c84b1b11c69c8f036497))
+
 ## [2.2.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.1.1...2.2.0) (2026-09-14)
 
 
