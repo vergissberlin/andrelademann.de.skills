@@ -19,8 +19,3 @@ declare module '@tabler/icons/outline/devices-pc.svg?raw' {
   const content: string;
   export default content;
 }
-
-declare module 'jszip' {
-  const JSZip: any;
-  export default JSZip;
-}

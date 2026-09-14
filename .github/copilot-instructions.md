@@ -16,4 +16,4 @@ Available catalog skills:
 - `andrelademann-blog-post-writer-guided` → `skills/blog/andrelademann-blog-post-writer-guided/SKILL.md`
 - `andrelademann-blog-post-writer` → `skills/blog/andrelademann-blog-post-writer/SKILL.md`
 
-When adding or changing a skill, keep `index.json`, `docs/index.json`, metadata, the AGENTS.md generator, `.claude-plugin/marketplace.json`, and the integration examples consistent.
+When adding or changing a skill, keep `index.json`, `docs/index.json`, metadata, `.claude-plugin/marketplace.json`, and the integration examples consistent.
