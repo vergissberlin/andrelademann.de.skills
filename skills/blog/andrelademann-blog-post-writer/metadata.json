@@ -1,8 +1,12 @@
 {
   "title": "André Lademann Blog Post Writer",
-  "description": "Create a complete British-English blog post and its generated visual package.",
-  "purpose": "Use when the article topic and intended audience are already clear.",
-  "tags": ["blog", "writing", "astro", "content"],
+  "description": "Plan or directly create a complete blog post and its generated visual package.",
+  "purpose": "Use for guided editorial planning or direct article creation for André Lademann's blog.",
+  "tags": ["blog", "writing", "editorial", "guided-workflow", "astro", "content"],
   "source": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/blog/andrelademann-blog-post-writer",
+<<<<<<< HEAD
   "version": "1.0.1"
+=======
+  "version": "1.1.0"
+>>>>>>> origin/main
 }
