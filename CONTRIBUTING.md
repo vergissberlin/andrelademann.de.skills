@@ -32,7 +32,7 @@ pnpm install
 pnpm dev
 ```
 
-Die Katalogversion in `index.json` entspricht dem Release-Tag `X.Y.Z`. Installationsbefehle sollen auf diesen Tag zeigen, zum Beispiel `npx skills add vergissberlin/andrelademann.de.skills@2.0.0 --skill <skill-name>`.
+Die Katalogversion in `index.json` und die Version jedes Skills in `SKILL.md` sowie `metadata.json` entsprechen dem Release-Tag `X.Y.Z`. Neue Skills müssen mit beiden versionsführenden Dateien in `release-please-config.json` eingetragen werden, damit Release Please alle Versionsnummern gemeinsam aktualisiert. Installationsbefehle sollen auf diesen Tag zeigen, zum Beispiel `npx skills add vergissberlin/andrelademann.de.skills@2.0.0 --skill <skill-name>`.
 
 ## Build
 
