@@ -12,3 +12,13 @@ export function buildSkillsRepositoryRef(catalogVersion: string): string {
 export function buildSkillInstallCommand(catalogVersion: string, skillName: string): string {
   return `npx skills add ${buildSkillsRepositoryRef(catalogVersion)} --skill ${skillName}`;
 }
+
+export type SkillInstallAgent = 'cursor' | 'github-copilot';
+
+export function buildAgentSkillInstallCommand(
+  catalogVersion: string,
+  skillName: string,
+  agent: SkillInstallAgent,
+): string {
+  return `${buildSkillInstallCommand(catalogVersion, skillName)} --agent ${agent} --yes`;
+}

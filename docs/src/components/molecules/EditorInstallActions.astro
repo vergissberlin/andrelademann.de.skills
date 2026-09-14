@@ -1,0 +1,55 @@
+---
+import IconButton from '../atoms/IconButton.astro';
+import type { SkillInstallAgent } from '../../lib/skillInstall';
+
+interface Action {
+  agent: SkillInstallAgent;
+  label: string;
+  command: string;
+}
+
+interface Props {
+  actions: Action[];
+}
+
+const { actions } = Astro.props;
+---
+
+<div class="mt-4 border-t border-white/15 pt-4">
+  <div class="mb-3 flex flex-wrap items-baseline justify-between gap-2">
+    <p class="text-sm font-semibold text-white">Add directly to your editor</p>
+    <p class="text-[11px] text-slate-300">Copies a ready-to-run install command</p>
+  </div>
+  <div class="grid gap-2 sm:grid-cols-2">
+    {actions.map((action) => (
+      <IconButton
+        class="editor-install-button inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-white/25 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:border-kieks-aqua hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-kieks-aqua/70"
+        ariaLabel={`${action.label}: copy install command`}
+        dataCommand={action.command}
+      >
+        {action.agent === 'github-copilot' ? (
+          <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 3.5 6.5 13H13l-1 7.5 9.5-11H15l1-6Z" /></svg>
+        ) : (
+          <svg class="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m5 3 12.5 9L11 13.5 8.5 20 5 3Z" /><path d="m11 13.5 5 5" /></svg>
+        )}
+        <span>{action.label}</span>
+      </IconButton>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('.editor-install-button').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const command = button.dataset.command;
+      if (!command) return;
+      await navigator.clipboard.writeText(command);
+      const label = button.querySelector('span');
+      const originalLabel = label?.textContent ?? '';
+      if (label) label.textContent = 'Command copied!';
+      window.setTimeout(() => {
+        if (label) label.textContent = originalLabel;
+      }, 2000);
+    });
+  });
+</script>
