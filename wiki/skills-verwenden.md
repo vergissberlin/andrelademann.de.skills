@@ -4,7 +4,7 @@
 Skills geben Agenten eine klare, wiederverwendbare Anleitung für wiederkehrende Aufgaben.
 
 ## Vorgehen
-1. Passenden Skill anhand von Name und Beschreibung auswählen.
+1. Passenden Skill anhand von Titel und Beschreibung auswählen. Der Anzeigename ist kurz (zum Beispiel `Blog Post Writer`); die Invoke-ID bleibt `andrelademann-blog-post-writer` und verweist auf den André Lademann Skills-Katalog.
 2. `SKILL.md` des Skills laden.
 3. Nur bei Bedarf zusätzliche Artefakte laden (`references/`, `assets/`, `scripts/`).
 4. Ergebnisse prüfen und auf den konkreten Kontext anpassen.

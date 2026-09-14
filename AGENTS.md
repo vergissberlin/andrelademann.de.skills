@@ -36,12 +36,14 @@ This document defines the guardrails for agent work in this repository.
 - Place skills in matching domain folders, for example:
   - `skills/blog/<skill-name>/SKILL.md`
 - Store a separate metadata file for each skill at `skills/<domain>/<skill-name>/metadata.json` with:
-  - `title` (human-readable skill title)
+  - `title` (human-readable skill title without an `André Lademann` prefix, e.g. `Blog Post Writer`)
+  - `author` (catalog owner, `André Lademann`)
   - `description` (short description in English)
   - `purpose` (short "use when" style purpose statement in English)
   - `tags` (array of concise topic tags, e.g. `["terraform", "testing"]`)
   - `source` (canonical upstream/source URL when applicable)
   - `version` (skill version string; align with SKILL.md frontmatter `version`)
+- Skill display titles (`metadata.json` `title` and the `SKILL.md` H1) must not repeat the catalog owner. Keep origin visible through `author`, the `source` URL, catalog chrome, and a short provenance line in `SKILL.md` that names the André Lademann Skills catalog and the invoke id (`andrelademann-<skill>`).
 - For new/moved/renamed skills, always keep `index.json` and `docs/index.json` (`path`) consistent.
 - Every skill listed in `docs/index.json` must have an Open Graph preview at `docs/public/og/skills/<skill-name>.png`. In addition, `docs/public/og/default.png` is required for catalog and tool pages.
 - OG design should follow the principles from `svg-logo-designer`: clear hierarchy, high contrast, readable skill name, and a consistent André Lademann look.

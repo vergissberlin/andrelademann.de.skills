@@ -57,6 +57,8 @@ for (const skill of catalog.skills ?? []) {
   }
 
   const hasTitle = isNonEmptyString(metadata.title);
+  const hasOwnerPrefixInTitle = hasTitle && /^andré lademann\b/i.test(metadata.title.trim());
+  const hasAuthor = isNonEmptyString(metadata.author);
   const hasDescription = isNonEmptyString(metadata.description);
   const hasPurpose = isNonEmptyString(metadata.purpose);
   const hasTags = isNonEmptyStringArray(metadata.tags);
@@ -70,9 +72,11 @@ for (const skill of catalog.skills ?? []) {
     hasVersion = true;
   }
 
-  if (!hasTitle || !hasDescription || !hasPurpose || !hasTags || !hasSource || !hasVersion) {
+  if (!hasTitle || hasOwnerPrefixInTitle || !hasAuthor || !hasDescription || !hasPurpose || !hasTags || !hasSource || !hasVersion) {
     const missingFields = [];
     if (!hasTitle) missingFields.push("title");
+    if (hasOwnerPrefixInTitle) missingFields.push("title must not start with 'André Lademann'");
+    if (!hasAuthor) missingFields.push("author");
     if (!hasDescription) missingFields.push("description");
     if (!hasPurpose) missingFields.push("purpose");
     if (!hasTags) missingFields.push("tags");

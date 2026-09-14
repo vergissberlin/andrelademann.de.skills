@@ -5,7 +5,9 @@ version: 2.3.0 # x-release-please-version
 scope: blog
 ---
 
-# André Lademann Blog Post Writer
+# Blog Post Writer
+
+This skill belongs to the [André Lademann Skills](https://github.com/vergissberlin/andrelademann.de.skills) catalog. Invoke it as `andrelademann-blog-post-writer`.
 
 Create a complete Markdown or MDX article and its finished visual package for André Lademann's personal blog, [blog.andrelademann.de](https://blog.andrelademann.de/). The blog covers cloud architecture, software development, AI and agent tooling, developer experience, careers, and personal engineering observations. It sounds like André sharing a considered opinion with fellow practitioners, never like corporate content marketing.
 

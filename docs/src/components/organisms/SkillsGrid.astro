@@ -7,6 +7,7 @@ type Skill = {
   name: string;
   description: string;
   cardTitle: string;
+  cardAuthor: string;
   cardDescription: string;
   path: string;
   scope: string;
@@ -27,12 +28,14 @@ const { skills, baseUrl, catalogVersion } = Astro.props;
       class="card flex flex-col rounded-xs border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(8,44,85,0.12)] dark:border-slate-700 dark:bg-slate-900 dark:hover:shadow-[0_12px_30px_rgba(2,6,23,0.55)]"
       data-scope={skill.scope}
       data-name={skill.name.toLowerCase()}
+      data-author={skill.cardAuthor.toLowerCase()}
       data-description={skill.cardDescription.toLowerCase()}
       data-path={skill.path.toLowerCase()}
     >
       <a class="card-body block flex-1 px-4 pb-2 pt-4 no-underline" href={`${baseUrl}skills/${skill.name}/`}>
         <Badge text={skill.scope} />
         <h2 class="mb-1.5 mt-2 text-base font-semibold text-slate-900 dark:text-slate-200">{skill.cardTitle}</h2>
+        <p class="mb-1 text-xs font-medium text-kieks-navy dark:text-kieks-aqua">{skill.cardAuthor} Skills</p>
         <p class="mb-2 text-sm text-slate-500 dark:text-slate-400">{skill.cardDescription}</p>
         <small
           class="text-xs text-slate-500 dark:text-slate-400"

@@ -7,6 +7,8 @@ interface Props {
   title: string;
   description?: string;
   heading: string;
+  /** Optional eyebrow passed to `SiteHeader` (catalog origin on skill pages). */
+  kicker?: string;
   subtitle?: string;
   footerPrefix?: string;
   footerLinks: { href: string; label: string }[];
@@ -20,6 +22,7 @@ const {
   title,
   description,
   heading,
+  kicker,
   subtitle,
   footerPrefix,
   footerLinks,
@@ -30,7 +33,7 @@ const {
 ---
 
 <BaseLayout title={title} description={description} canonicalUrl={canonicalUrl} ogImage={ogImage}>
-  <SiteHeader title={heading} subtitle={subtitle} showMobileToggle={false}>
+  <SiteHeader title={heading} kicker={kicker} subtitle={subtitle} showMobileToggle={false}>
     <slot name="header-extra" />
   </SiteHeader>
 

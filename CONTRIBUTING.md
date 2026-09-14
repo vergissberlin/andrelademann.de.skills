@@ -45,10 +45,11 @@ pnpm build
 ## Skills hinzufügen
 
 1. Ordner unter einer Domäne anlegen, z. B. `skills/blog/<skill-name>/`
-2. `SKILL.md` mit Frontmatter erstellen
-3. Skill in `index.json` ergänzen
-4. Open-Graph-Asset anlegen: `docs/public/og/skills/<skill-name>.png` (1200×630)
-5. Sicherstellen, dass `docs/public/og/default.png` vorhanden ist (Fallback für Nicht-Skill-Seiten)
+2. `SKILL.md` mit Frontmatter und kurzem Titel ohne `André Lademann`-Präfix erstellen
+3. `metadata.json` mit `title`, `author`, `description`, `purpose`, `tags`, `source` und `version` ergänzen
+4. Skill in `index.json` ergänzen
+5. Open-Graph-Asset anlegen: `docs/public/og/skills/<skill-name>.png` (1200×630)
+6. Sicherstellen, dass `docs/public/og/default.png` vorhanden ist (Fallback für Nicht-Skill-Seiten)
 
 ## Integrationen pflegen
 
