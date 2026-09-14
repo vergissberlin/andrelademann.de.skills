@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Trends Topic Scout"
+  short_description: "Find current topics that fit André Lademann's themes"
+  default_prompt: "Search current Google Trends topics that fit my thematic profile and rank the strongest content angles."
