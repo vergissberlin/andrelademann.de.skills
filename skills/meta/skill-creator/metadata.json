@@ -1,0 +1,8 @@
+{
+  "title": "Skill Creator",
+  "description": "Guide for creating effective skills for AI coding agents working with Azure SDKs and Microsoft Foundry services. Use when creating new skills or updating existing skills.",
+  "purpose": "Use when authoring or refining SKILL.md files with consistent structure, prompts, and practical agent guidance.",
+  "tags": ["skills", "authoring", "agent-workflows", "azure"],
+  "source": "https://github.com/vergissberlin/andrelademann.de.skills/blob/main/skills/meta/skill-creator/SKILL.md",
+  "version": "1.0.0"
+}

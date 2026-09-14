@@ -1,0 +1,8 @@
+.pnpm-store/
+node_modules/
+dist/
+.astro/
+test-results/
+src/data/harness-results.json
+# Local Netlify folder
+.netlify

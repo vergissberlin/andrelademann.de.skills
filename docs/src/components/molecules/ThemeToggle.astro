@@ -1,0 +1,92 @@
+---
+import fs from 'node:fs';
+import path from 'node:path';
+
+const readTablerIcon = (fileName: string) =>
+  fs.readFileSync(path.join(process.cwd(), 'node_modules/@tabler/icons/icons/outline', fileName), 'utf-8');
+
+const iconSun = readTablerIcon('sun.svg');
+const iconMoon = readTablerIcon('moon.svg');
+const iconSystem = readTablerIcon('devices-pc.svg');
+
+const iconByTheme = {
+  light: iconSun,
+  dark: iconMoon,
+  system: iconSystem
+};
+---
+
+<div class="theme-toggle inline-flex items-center p-0">
+  <button
+    id="theme-toggle-button"
+    type="button"
+    class="inline-flex h-8 w-8 items-center justify-center rounded-xs text-slate-600 transition hover:bg-slate-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800 dark:hover:text-slate-200"
+    aria-label="Theme: system. Click to switch theme"
+    title="Switch theme"
+  >
+    <span class="theme-icon" aria-hidden="true"></span>
+  </button>
+</div>
+
+<script is:inline define:vars={{ iconByTheme }}>
+  const themeKey = 'andrelademann-skills-theme';
+  const root = document.documentElement;
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+  const modeOrder = ['light', 'dark', 'system'];
+  const toggleButtons = Array.from(document.querySelectorAll('#theme-toggle-button'));
+
+  function getStoredTheme() {
+    const value = localStorage.getItem(themeKey);
+    return value === 'light' || value === 'dark' || value === 'system' ? value : 'system';
+  }
+
+  function getResolvedDark(theme) {
+    return theme === 'dark' || (theme === 'system' && media.matches);
+  }
+
+  function getNextTheme(currentTheme) {
+    const index = modeOrder.indexOf(currentTheme);
+    return modeOrder[(index + 1) % modeOrder.length];
+  }
+
+  function applyTheme(theme) {
+    root.classList.toggle('dark', getResolvedDark(theme));
+    toggleButtons.forEach((button) => {
+      const icon = button.querySelector('.theme-icon');
+      if (icon) {
+        const rawIcon = iconByTheme[theme] ?? iconByTheme.system;
+        icon.innerHTML = rawIcon.replace('<svg', '<svg class="h-4 w-4" aria-hidden="true"');
+      }
+      button.setAttribute('aria-label', `Theme: ${theme}. Click to switch theme`);
+      button.classList.toggle('bg-kieks-aqua-100', false);
+      button.classList.toggle('text-kieks-navy', false);
+      button.classList.toggle('dark:bg-kieks-navy/50', false);
+      button.classList.toggle('dark:text-kieks-aqua', false);
+    });
+  }
+
+  function setTheme(theme) {
+    localStorage.setItem(themeKey, theme);
+    applyTheme(theme);
+  }
+
+  function bindButton(button) {
+    button.addEventListener('click', () => {
+      const nextTheme = getNextTheme(getStoredTheme());
+      setTheme(nextTheme);
+    });
+  }
+
+  toggleButtons.forEach(bindButton);
+  applyTheme(getStoredTheme());
+
+  media.addEventListener('change', () => {
+    if (getStoredTheme() !== 'system') return;
+    applyTheme('system');
+  });
+
+  window.addEventListener('storage', (event) => {
+    if (event.key !== themeKey) return;
+    applyTheme(getStoredTheme());
+  });
+</script>

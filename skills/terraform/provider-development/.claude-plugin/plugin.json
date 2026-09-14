@@ -1,0 +1,19 @@
+{
+  "name": "andrelademann-terraform-provider-development",
+  "version": "1.0.0",
+  "description": "Terraform provider development skills for building resources, actions, and acceptance tests with the Plugin Framework.",
+  "author": {
+    "name": "André Lademann",
+    "url": "https://github.com/vergissberlin"
+  },
+  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/terraform/provider-development",
+  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "license": "GPL-3.0",
+  "keywords": [
+    "terraform",
+    "provider",
+    "plugin-framework",
+    "resources",
+    "acceptance-testing"
+  ]
+}

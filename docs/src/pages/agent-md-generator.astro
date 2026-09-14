@@ -1,0 +1,361 @@
+---
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import ToolPageTemplate from '../components/templates/ToolPageTemplate.astro';
+import { buildSkillInstallCommand } from '../lib/skillInstall';
+
+type Skill = { name: string; path: string; description: string };
+
+const indexPath = path.join(process.cwd(), 'index.json');
+const content = await fs.readFile(indexPath, 'utf-8');
+const { skills, version } = JSON.parse(content) as { skills: Skill[]; version: string };
+const baseUrl = (import.meta as ImportMeta & { env: { BASE_URL: string } }).env.BASE_URL;
+
+const domainMap = [
+  { id: 'infrastructure', label: 'Infrastructure / IaC', skills: ['iac-infrastructure-as-code'] },
+  { id: 'mcp', label: 'MCP servers', skills: ['mcp-builder'] },
+  {
+    id: 'terraform',
+    label: 'Terraform (HashiCorp)',
+    skills: [
+      'terraform-style-guide'
+    ]
+  },
+  { id: 'skill-authoring', label: 'Skill authoring', skills: ['skill-creator', 'skill-prompt-security-audit'] }
+];
+
+const codingPresetMap = [
+  {
+    id: 'naming',
+    label: 'Naming',
+    lines: ['Use kebab-case for skill folders and keep names close to the real use case.']
+  },
+  {
+    id: 'discoverability',
+    label: 'Discoverability',
+    lines: [
+      'Start every SKILL.md with frontmatter (name, description, version).',
+      'Describe clearly when the skill should be used.',
+      'Add realistic trigger examples to improve routing quality.'
+    ]
+  },
+  {
+    id: 'versioning',
+    label: 'Versioning',
+    lines: [
+      'Use semantic versioning in the skill frontmatter.',
+      'Mark breaking changes explicitly.'
+    ]
+  },
+  {
+    id: 'security',
+    label: 'Security and safe execution',
+    lines: [
+      'Do not use destructive defaults.',
+      'Analyze first, then propose changes.',
+      'Never expose or persist secrets.'
+    ]
+  },
+  {
+    id: 'disclosure',
+    label: 'Progressive disclosure',
+    lines: [
+      'Load only the required skill metadata first.',
+      'Load full SKILL.md content on demand.',
+      'Load referenced assets only when needed for execution.'
+    ]
+  }
+];
+
+const skillCatalog = skills.map((skill) => ({
+  ...skill,
+  docUrl: `${baseUrl}skills/${skill.name}/`,
+  installCommand: buildSkillInstallCommand(version, skill.name)
+}));
+---
+
+<ToolPageTemplate
+  title="AGENTS.md Generator | André Lademann Skills"
+  description="Generate an AGENTS.md with André Lademann Skills and coding standards."
+  heading="AGENTS.md Generator"
+  subtitle="Generate an AGENTS.md file that enforces André Lademann Skill installation by domain and includes coding standards your team can follow."
+  baseUrl={baseUrl}
+  canonicalUrl={`${baseUrl}agent-md-generator/`}
+  ogImage={`${baseUrl}og/default.png`}
+>
+    <section class="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-4">
+      <article class="rounded-xs border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
+        <h2 class="mb-2 text-2xl font-semibold text-slate-900 dark:text-slate-200">Generator Inputs</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400">
+          Select the domains your team works on. The generated AGENTS.md will require installing the matching André Lademann Skills before execution.
+        </p>
+
+        <label class="mb-1 mt-4 block text-sm font-semibold text-slate-700 dark:text-slate-400" for="project-name">Project name (optional)</label>
+        <input id="project-name" class="w-full rounded-xs border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-800 outline-none transition focus:border-kieks-aqua focus:ring-4 focus:ring-kieks-aqua/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:focus:border-kieks-aqua dark:focus:ring-kieks-navy/40" type="text" placeholder="e.g. André Lademann Platform" />
+
+        <fieldset class="mt-4 rounded-xs border border-slate-200 p-3 dark:border-slate-700">
+          <legend class="px-1 text-sm font-semibold text-slate-500 dark:text-slate-400">Working domains</legend>
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-2">
+            {domainMap.map((domain) => (
+              <label class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-400">
+                <input type="checkbox" name="domain" value={domain.id} />
+                <span>{domain.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <fieldset class="mt-4 rounded-xs border border-slate-200 p-3 dark:border-slate-700">
+          <legend class="px-1 text-sm font-semibold text-slate-500 dark:text-slate-400">Coding standards presets</legend>
+          <div class="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-2">
+            {codingPresetMap.map((preset) => (
+              <label class="flex items-start gap-2 text-sm text-slate-700 dark:text-slate-400">
+                <input type="checkbox" name="preset" value={preset.id} />
+                <span>{preset.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <label class="mb-1 mt-4 block text-sm font-semibold text-slate-700 dark:text-slate-400" for="custom-standards">Custom coding standards (one line per rule)</label>
+        <textarea
+          id="custom-standards"
+          class="min-h-[120px] w-full resize-y rounded-xs border border-slate-200 bg-white p-3 text-sm text-slate-800 outline-none transition focus:border-kieks-aqua focus:ring-4 focus:ring-kieks-aqua/20 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:focus:border-kieks-aqua dark:focus:ring-kieks-navy/40"
+          placeholder="Prefer small focused diffs&#10;Keep tests close to changed behavior&#10;Match existing naming and abstractions"
+        />
+      </article>
+
+      <article class="rounded-xs border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
+        <h2 class="mb-2 text-2xl font-semibold text-slate-900 dark:text-slate-200">Generated AGENTS.md</h2>
+        <div class="mb-3 space-y-2 rounded-xs border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-800">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <p class="text-sm font-medium text-slate-700 dark:text-slate-400">
+              Size status:
+              <span id="agents-size-status" class="rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300">Good</span>
+            </p>
+            <p id="agents-size-metrics" class="text-xs text-slate-500 dark:text-slate-400">0.0 KB - 0 lines - ~0 tokens</p>
+          </div>
+          <div class="h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700" role="progressbar" aria-label="AGENTS size usage" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+            <div id="agents-size-progress" class="h-full w-0 rounded-full bg-emerald-500 transition-all"></div>
+          </div>
+          <p id="agents-size-hint" class="text-xs text-slate-500 dark:text-slate-400">Looks concise. Keep root instructions focused.</p>
+        </div>
+        <textarea id="agents-preview" class="min-h-[460px] w-full resize-y rounded-xs border border-slate-200 bg-white p-3 font-mono text-[13px] leading-6 text-slate-800 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200" readonly></textarea>
+        <div class="mt-4 flex flex-wrap gap-3">
+          <button id="copy-agents" class="inline-flex min-h-11 items-center justify-center rounded-xs border border-transparent bg-slate-900 px-4 py-2 text-sm font-semibold text-white dark:bg-kieks-fuchsia">Copy AGENTS.md</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="mt-4 rounded-xs border border-slate-200 bg-white p-6 dark:border-slate-700 dark:bg-slate-900">
+      <h2 class="mb-2 text-2xl font-semibold text-slate-900 dark:text-slate-200">AGENTS.md recommendations</h2>
+      <p class="text-sm text-slate-500 dark:text-slate-400">Use compact, actionable instructions. Put only what agents cannot infer from code.</p>
+      <div class="mt-4 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3 text-sm">
+        <article class="rounded-xs border border-emerald-200 bg-emerald-50 p-3 dark:border-emerald-800/80 dark:bg-emerald-950/50">
+          <h3 class="font-semibold text-emerald-900 dark:text-emerald-100">Must have</h3>
+          <ul class="mt-2 space-y-1 text-emerald-800 dark:text-emerald-200/90">
+            <li>- Repo purpose in 1-2 sentences</li>
+            <li>- Package manager (`pnpm`)</li>
+            <li>- Executable lint/test/typecheck/build commands</li>
+            <li>- Security and secret handling rules</li>
+          </ul>
+        </article>
+        <article class="rounded-xs border border-kieks-aqua-200 bg-kieks-aqua-50 p-3 dark:border-kieks-aqua/35 dark:bg-kieks-navy/55">
+          <h3 class="font-semibold text-kieks-navy dark:text-kieks-aqua">Should have</h3>
+          <ul class="mt-2 space-y-1 text-kieks-navy dark:text-kieks-aqua/90">
+            <li>- Clear Do/Don't lists</li>
+            <li>- File-scoped validation commands where possible</li>
+            <li>- Paths to architecture/design system docs</li>
+          </ul>
+        </article>
+        <article class="rounded-xs border border-amber-200 bg-amber-50 p-3 dark:border-amber-800/80 dark:bg-amber-950/50">
+          <h3 class="font-semibold text-amber-900 dark:text-amber-100">Avoid</h3>
+          <ul class="mt-2 space-y-1 text-amber-800 dark:text-amber-200/90">
+            <li>- Repeating long style guides</li>
+            <li>- Boilerplate that CI/lint already enforce</li>
+            <li>- Duplicated documentation blocks</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+</ToolPageTemplate>
+
+<script is:inline define:vars={{ domainMap, codingPresetMap, skillCatalog, baseUrl }}>
+  // @ts-nocheck
+  const data = { domainMap, codingPresetMap, skillCatalog, baseUrl };
+
+  const projectNameInput = document.getElementById('project-name');
+  const customStandardsInput = document.getElementById('custom-standards');
+  const domainInputs = document.querySelectorAll('input[name="domain"]');
+  const presetInputs = document.querySelectorAll('input[name="preset"]');
+  const preview = document.getElementById('agents-preview');
+  const copyBtn = document.getElementById('copy-agents');
+  const sizeStatus = document.getElementById('agents-size-status');
+  const sizeMetrics = document.getElementById('agents-size-metrics');
+  const sizeProgress = document.getElementById('agents-size-progress');
+  const sizeHint = document.getElementById('agents-size-hint');
+  const progressBar = document.querySelector('[role="progressbar"]');
+  const skillByName = new Map(data.skillCatalog.map((skill) => [skill.name, skill]));
+  const SIZE_THRESHOLDS = {
+    goodMaxBytes: 8 * 1024,
+    warningMaxBytes: 16 * 1024
+  };
+
+  const selectedValues = (inputs) => Array.from(inputs).filter((input) => input.checked).map((input) => input.value);
+
+  function uniqueSkillsFromDomains(domains) {
+    const skillNames = new Set();
+    for (const domainId of domains) {
+      const domain = data.domainMap.find((item) => item.id === domainId);
+      if (!domain) continue;
+      for (const skillName of domain.skills) skillNames.add(skillName);
+    }
+    return Array.from(skillNames).map((name) => skillByName.get(name)).filter(Boolean);
+  }
+
+  function codingStandardsFromPresets(presets) {
+    const lines = [];
+    for (const presetId of presets) {
+      const preset = data.codingPresetMap.find((item) => item.id === presetId);
+      if (!preset) continue;
+      for (const line of preset.lines) lines.push(`- ${line}`);
+    }
+    return lines;
+  }
+
+  function customStandardsLines() {
+    const value = customStandardsInput.value.trim();
+    if (!value) return [];
+    return value.split('\n').map((line) => line.trim()).filter(Boolean).map((line) => `- ${line}`);
+  }
+
+  function buildSkillsSection(skills) {
+    if (!skills.length) {
+      return [
+        '## Agent Skills (required)',
+        '',
+        'Before starting work in any domain, install the matching André Lademann Skills from the catalog.',
+        '',
+        `- Browse the catalog: [André Lademann Skills](${data.baseUrl})`,
+        '- Install at least the skills matching your requested task domain.',
+        ''
+      ].join('\n');
+    }
+    const lines = [
+      '## Agent Skills (required)',
+      '',
+      'Before starting work in the selected domains, install the matching André Lademann Skills from the André Lademann catalog.',
+      ''
+    ];
+    for (const skill of skills) {
+      lines.push(`- ${skill.name}: [docs](${skill.docUrl})`);
+      lines.push(`  - \`${skill.installCommand}\``);
+    }
+    lines.push('');
+    return lines.join('\n');
+  }
+
+  function buildMarkdown() {
+    const projectName = projectNameInput.value.trim();
+    const skills = uniqueSkillsFromDomains(selectedValues(domainInputs));
+    const standardsLines = [...codingStandardsFromPresets(selectedValues(presetInputs)), ...customStandardsLines()];
+    const title = projectName ? `# AGENTS.md for ${projectName}` : '# AGENTS.md';
+    const sections = [
+      title,
+      '',
+      'This file defines how agents should work in this repository. It keeps execution consistent, safe, and aligned with André Lademann standards.',
+      '',
+      buildSkillsSection(skills),
+      '## Principles',
+      '',
+      '- Keep changes small, easy to review, and validated.',
+      '- Read and understand existing conventions before editing.',
+      '- Never expose, store, or log secrets.',
+      '- Reuse existing abstractions before introducing new ones.',
+      '',
+      '## Coding standards',
+      ''
+    ];
+    if (standardsLines.length) sections.push(...standardsLines);
+    else sections.push('- Define coding standards for this repository before implementation starts.');
+    sections.push('');
+    const text = sections.join('\n');
+    preview.value = text;
+    updateSizeIndicators(text);
+  }
+
+  function updateSizeIndicators(text) {
+    const bytes = new Blob([text]).size;
+    const lines = text.split('\n').length;
+    const approxTokens = Math.ceil(text.length / 4);
+    const kb = (bytes / 1024).toFixed(1);
+    const progress = Math.min((bytes / SIZE_THRESHOLDS.warningMaxBytes) * 100, 100);
+
+    let state = 'good';
+    if (bytes > SIZE_THRESHOLDS.warningMaxBytes) state = 'too-large';
+    else if (bytes > SIZE_THRESHOLDS.goodMaxBytes) state = 'warning';
+
+    const stateMap = {
+      good: {
+        label: 'Good',
+        badgeClass:
+          'rounded-full bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700 dark:bg-emerald-900/60 dark:text-emerald-300',
+        barClass: 'h-full rounded-full bg-emerald-500 transition-all',
+        hint: 'Looks concise. Keep root instructions focused.'
+      },
+      warning: {
+        label: 'Needs review',
+        badgeClass:
+          'rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-700 dark:bg-amber-900/60 dark:text-amber-300',
+        barClass: 'h-full rounded-full bg-amber-500 transition-all',
+        hint: 'Consider trimming duplicated or obvious rules.'
+      },
+      'too-large': {
+        label: 'Too large',
+        badgeClass:
+          'rounded-full bg-rose-100 px-2 py-0.5 text-xs font-semibold text-rose-700 dark:bg-rose-900/60 dark:text-rose-300',
+        barClass: 'h-full rounded-full bg-rose-500 transition-all',
+        hint: 'Split into root + domain-specific instructions.'
+      }
+    };
+
+    const view = stateMap[state];
+    if (sizeStatus) {
+      sizeStatus.textContent = view.label;
+      sizeStatus.className = view.badgeClass;
+    }
+    if (sizeMetrics) sizeMetrics.textContent = `${kb} KB - ${lines} lines - ~${approxTokens} tokens`;
+    if (sizeProgress) {
+      sizeProgress.style.width = `${progress}%`;
+      sizeProgress.className = view.barClass;
+    }
+    if (sizeHint) sizeHint.textContent = view.hint;
+    if (progressBar) progressBar.setAttribute('aria-valuenow', String(Math.round(progress)));
+  }
+
+  function showCopied() {
+    copyBtn.textContent = 'Copied!';
+    setTimeout(() => {
+      copyBtn.textContent = 'Copy AGENTS.md';
+    }, 2000);
+  }
+
+  projectNameInput.addEventListener('input', buildMarkdown);
+  customStandardsInput.addEventListener('input', buildMarkdown);
+  domainInputs.forEach((input) => input.addEventListener('change', buildMarkdown));
+  presetInputs.forEach((input) => input.addEventListener('change', buildMarkdown));
+  copyBtn.addEventListener('click', () => {
+    const text = preview.value;
+    if (navigator.clipboard) return navigator.clipboard.writeText(text).then(showCopied);
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    showCopied();
+  });
+  buildMarkdown();
+</script>

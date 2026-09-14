@@ -1,0 +1,23 @@
+---
+interface Props {
+  controlsId?: string;
+  class?: string;
+}
+
+const { controlsId = 'mobile-nav-links', class: className = 'mt-4 md:hidden' } = Astro.props;
+---
+
+<div class={className}>
+  <button
+    id="mobile-nav-toggle"
+    class="inline-flex h-11 w-11 flex-col items-center justify-center gap-1 rounded-xs border border-white/50 bg-white/10"
+    type="button"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+    aria-controls={controlsId}
+  >
+    <span class="h-0.5 w-5 rounded bg-white"></span>
+    <span class="h-0.5 w-5 rounded bg-white"></span>
+    <span class="h-0.5 w-5 rounded bg-white"></span>
+  </button>
+</div>

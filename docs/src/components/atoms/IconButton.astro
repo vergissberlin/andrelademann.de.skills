@@ -1,0 +1,27 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  ariaLabel: string;
+  type?: 'button' | 'submit' | 'reset';
+  dataCommand?: string;
+}
+
+const {
+  id,
+  class: className = '',
+  ariaLabel,
+  type = 'button',
+  dataCommand
+} = Astro.props;
+---
+
+<button
+  id={id}
+  class={className}
+  type={type}
+  aria-label={ariaLabel}
+  data-command={dataCommand}
+>
+  <slot />
+</button>

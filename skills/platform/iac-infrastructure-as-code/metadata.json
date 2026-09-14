@@ -1,0 +1,8 @@
+{
+  "title": "IaC Infrastructure as Code Review",
+  "description": "IaC review for security, cost, and risk assessment",
+  "purpose": "Use when reviewing infrastructure-as-code changes for security posture, cost exposure, and delivery risk before release.",
+  "tags": ["iac", "security", "cost-optimization", "risk-assessment"],
+  "source": "https://github.com/vergissberlin/andrelademann.de.skills/blob/main/skills/platform/iac-infrastructure-as-code/SKILL.md",
+  "version": "1.0.0"
+}

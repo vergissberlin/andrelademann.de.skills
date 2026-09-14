@@ -1,0 +1,39 @@
+{
+  "name": "andrelademann-skills-docs-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.33.0",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "og:generate": "node scripts/generate-og-assets.mjs",
+    "og:sync": "pnpm og:generate && pnpm check:og",
+    "check:og": "node scripts/verify-og-assets.mjs",
+    "check": "astro check && pnpm check:og",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "test": "pnpm test:unit && pnpm test:e2e"
+  },
+  "dependencies": {
+    "@astrojs/netlify": "^6.6.0",
+    "@napi-rs/canvas": "^0.1.99",
+    "@tabler/icons": "^3.41.1",
+    "astro": "^5.18.1",
+    "jszip": "^3.10.1",
+    "marked": "^12.0.2"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@playwright/test": "^1.59.1",
+    "@tailwindcss/vite": "^4.2.3",
+    "@types/node": "^25.6.0",
+    "@vite-pwa/astro": "^1.2.0",
+    "jsdom": "^29.0.2",
+    "playwright": "^1.59.1",
+    "tailwindcss": "^4.2.3",
+    "typescript": "^5.8.3",
+    "vitest": "^4.1.5"
+  }
+}

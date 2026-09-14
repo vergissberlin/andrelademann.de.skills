@@ -1,0 +1,75 @@
+---
+import { getCatalogVersion } from '../../lib/catalogVersion';
+
+interface LinkItem {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  prefix?: string;
+  links: LinkItem[];
+  /** When unset, `index.json` `version` is shown (release tag in published builds). */
+  catalogVersion?: string | null;
+  showCatalogVersion?: boolean;
+  footerClass?: string;
+  containerClass?: string;
+}
+
+const {
+  prefix,
+  links,
+  catalogVersion: catalogVersionProp,
+  showCatalogVersion = true,
+  footerClass = 'border-t border-slate-200 px-4 pb-8 pt-4 text-sm text-slate-500 dark:border-slate-800 dark:text-slate-400',
+  containerClass = 'mx-auto max-w-6xl'
+} = Astro.props;
+
+const catalogVersion: string | null = !showCatalogVersion
+  ? null
+  : catalogVersionProp !== undefined
+    ? catalogVersionProp
+    : getCatalogVersion();
+
+const baseUrl = import.meta.env.BASE_URL;
+const logoLight = `${baseUrl}brand/andre-lademann-horizontal-aqua-light.svg`;
+const logoDark = `${baseUrl}brand/andre-lademann-horizontal-aqua-dark.svg`;
+---
+
+<footer class={footerClass}>
+  <div class:list={[containerClass, 'flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between']}>
+    <a
+      href={baseUrl}
+      class="inline-flex w-fit rounded-xs focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-kieks-aqua"
+      aria-label="André Lademann Skills — home"
+    >
+      <img src={logoLight} alt="André Lademann" width="500" height="150" class="h-7 w-auto dark:hidden" loading="lazy" decoding="async" />
+      <img src={logoDark} alt="André Lademann" width="500" height="150" class="hidden h-7 w-auto dark:block" loading="lazy" decoding="async" />
+    </a>
+
+    <div class="text-left sm:text-right">
+      <div>
+        {prefix && <>{prefix} · </>}
+        {links.map((link, idx) => (
+          <>
+            {idx > 0 && <> · </>}
+            <a href={link.href}>{link.label}</a>
+          </>
+        ))}
+        {catalogVersion && (
+          <>
+            {' '}
+            ·{' '}
+            <span
+              class="font-mono tabular-nums text-slate-400 dark:text-slate-500"
+              title="Catalog version (matches the published release git tag)"
+            >
+              {catalogVersion}
+            </span>
+          </>
+        )}
+      </div>
+      <p class="mt-2 text-xs text-slate-400 dark:text-slate-500">Agent Skills by André Lademann</p>
+    </div>
+  </div>
+</footer>

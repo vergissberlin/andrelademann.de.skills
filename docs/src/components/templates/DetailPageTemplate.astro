@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteHeader from '../organisms/SiteHeader.astro';
+import FooterLinks from '../molecules/FooterLinks.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  heading: string;
+  subtitle?: string;
+  footerPrefix?: string;
+  footerLinks: { href: string; label: string }[];
+  /** Shown in the footer; same as the release git tag. Omit to read from `index.json` at build time. */
+  catalogVersion?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description,
+  heading,
+  subtitle,
+  footerPrefix,
+  footerLinks,
+  catalogVersion,
+  canonicalUrl,
+  ogImage
+} = Astro.props;
+---
+
+<BaseLayout title={title} description={description} canonicalUrl={canonicalUrl} ogImage={ogImage}>
+  <SiteHeader title={heading} subtitle={subtitle} showMobileToggle={false}>
+    <slot name="header-extra" />
+  </SiteHeader>
+
+  <main>
+    <div class="mx-auto max-w-6xl px-4 py-8 pb-12">
+      <slot />
+    </div>
+  </main>
+
+  <FooterLinks prefix={footerPrefix} links={footerLinks} catalogVersion={catalogVersion} />
+</BaseLayout>

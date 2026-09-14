@@ -1,0 +1,28 @@
+---
+interface Props {
+  inputId?: string;
+  placeholder?: string;
+  ariaLabel?: string;
+}
+
+const {
+  inputId = 'search-input',
+  placeholder = 'Search skills by name or description…',
+  ariaLabel = 'Search skills'
+} = Astro.props;
+---
+
+<div class="search-wrap">
+  <svg class="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-slate-500 dark:text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <circle cx="11" cy="11" r="8" />
+    <path d="M21 21l-4.35-4.35" />
+  </svg>
+  <input
+    id={inputId}
+    type="search"
+    placeholder={placeholder}
+    aria-label={ariaLabel}
+    autocomplete="off"
+    class="w-full rounded-xs border border-slate-200 bg-white py-2.5 pl-10 pr-4 text-sm text-slate-800 outline-none transition focus:border-kieks-aqua focus:ring-4 focus:ring-kieks-aqua/20 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:focus:border-kieks-aqua dark:focus:ring-kieks-navy/40"
+  />
+</div>

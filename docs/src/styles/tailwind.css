@@ -1,0 +1,60 @@
+@import "tailwindcss";
+@import "../../../brand/colors.css";
+
+@theme {
+  --color-kieks-aqua: var(--kieks-aqua);
+  --color-kieks-navy: var(--kieks-navy);
+  --color-kieks-fuchsia: var(--kieks-fuchsia);
+  --color-kieks-white: var(--kieks-white);
+  --color-kieks-dark-gray: var(--kieks-dark-gray);
+  --color-kieks-navy-deep: var(--kieks-navy-deep);
+  --color-kieks-aqua-50: var(--kieks-aqua-50);
+  --color-kieks-aqua-100: var(--kieks-aqua-100);
+  --color-kieks-aqua-200: var(--kieks-aqua-200);
+  --color-kieks-aqua-300: var(--kieks-aqua-300);
+
+  /* Hausschrift + body (Google Fonts, SIL OFL 1.1) */
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  color-scheme: light dark;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-heading);
+  }
+
+  nav,
+  label,
+  legend,
+  button,
+  [role='button'] {
+    font-family: var(--font-heading);
+  }
+
+  button:not(:disabled) {
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+}

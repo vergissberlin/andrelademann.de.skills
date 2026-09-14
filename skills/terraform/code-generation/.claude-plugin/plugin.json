@@ -1,0 +1,19 @@
+{
+  "name": "andrelademann-terraform-code-generation",
+  "version": "1.0.0",
+  "description": "Terraform code generation skills focused on style, testing, imports, and Azure module quality requirements.",
+  "author": {
+    "name": "André Lademann",
+    "url": "https://github.com/vergissberlin"
+  },
+  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/terraform/code-generation",
+  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "license": "GPL-3.0",
+  "keywords": [
+    "terraform",
+    "code-generation",
+    "testing",
+    "azure-verified-modules",
+    "import"
+  ]
+}

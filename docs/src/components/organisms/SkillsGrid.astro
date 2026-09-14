@@ -1,0 +1,82 @@
+---
+import Badge from '../atoms/Badge.astro';
+import IconButton from '../atoms/IconButton.astro';
+import { buildSkillInstallCommand } from '../../lib/skillInstall';
+
+type Skill = {
+  name: string;
+  description: string;
+  cardTitle: string;
+  cardDescription: string;
+  path: string;
+  scope: string;
+};
+
+interface Props {
+  skills: Skill[];
+  baseUrl: string;
+  catalogVersion: string;
+}
+
+const { skills, baseUrl, catalogVersion } = Astro.props;
+---
+
+<div class="grid grid-cols-[repeat(auto-fill,minmax(240px,1fr))] gap-4" id="skills-grid">
+  {skills.map((skill) => (
+    <div
+      class="card flex flex-col rounded-xs border border-slate-200 bg-white transition hover:-translate-y-0.5 hover:shadow-[0_8px_22px_rgba(8,44,85,0.12)] dark:border-slate-700 dark:bg-slate-900 dark:hover:shadow-[0_12px_30px_rgba(2,6,23,0.55)]"
+      data-scope={skill.scope}
+      data-name={skill.name.toLowerCase()}
+      data-description={skill.cardDescription.toLowerCase()}
+      data-path={skill.path.toLowerCase()}
+    >
+      <a class="card-body block flex-1 px-4 pb-2 pt-4 no-underline" href={`${baseUrl}skills/${skill.name}/`}>
+        <Badge text={skill.scope} />
+        <h2 class="mb-1.5 mt-2 text-base font-semibold text-slate-900 dark:text-slate-200">{skill.cardTitle}</h2>
+        <p class="mb-2 text-sm text-slate-500 dark:text-slate-400">{skill.cardDescription}</p>
+        <small
+          class="text-xs text-slate-500 dark:text-slate-400"
+          title="Catalog release version (git tag) — same as the @ pin in the install command"
+        >
+          v{catalogVersion}
+        </small>
+      </a>
+      <div class="card-footer mt-1 border-t border-slate-200 px-4 pb-3 pt-2 dark:border-slate-700">
+        <IconButton
+          class="btn-install inline-flex items-center gap-1.5 rounded-xs border border-kieks-aqua-300 bg-kieks-aqua-50 px-3 py-1.5 text-xs font-semibold text-kieks-navy transition hover:border-kieks-aqua hover:bg-kieks-aqua-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kieks-aqua dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-slate-600 dark:hover:bg-slate-700 dark:focus-visible:outline-slate-500"
+          ariaLabel={`Copy install command for ${skill.name}`}
+          dataCommand={buildSkillInstallCommand(catalogVersion, skill.name)}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="9" y="9" width="13" height="13" rx="2" />
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+          </svg>
+          <span>Install</span>
+        </IconButton>
+      </div>
+    </div>
+  ))}
+  <div class="flex flex-col rounded-xs border-2 border-dashed border-slate-300 bg-white p-4 dark:border-slate-700 dark:bg-slate-900">
+    <div class="flex-1">
+      <h2 class="mb-2 text-base font-semibold text-slate-800 dark:text-slate-200">Skill missing?</h2>
+      <p class="mb-3 text-sm text-slate-500 dark:text-slate-400">
+        Missing a skill in this catalog? Send a short note and we will review it.
+      </p>
+    </div>
+    <a
+      href="https://github.com/vergissberlin/andrelademann.de.skills/issues/new?title=Missing%20skill%20request&body=Please%20describe%20the%20missing%20skill%20and%20the%20context%20where%20you%20need%20it."
+      class="inline-flex min-h-8 items-center justify-center rounded-xs border border-slate-300 bg-slate-100 px-2.5 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-700"
+    >
+      Request skill
+    </a>
+  </div>
+</div>
+
+<div id="empty-state" class="hidden py-16 text-center text-slate-500 dark:text-slate-400" hidden>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true" class="mx-auto mb-4 h-12 w-12 opacity-35">
+    <circle cx="11" cy="11" r="8" />
+    <path d="M21 21l-4.35-4.35" />
+  </svg>
+  <p class="mb-5 text-base">No skills match your search.</p>
+  <button id="clear-filters" class="inline-flex items-center justify-center rounded-xs border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 dark:border-slate-700 dark:text-slate-300">Clear filters</button>
+</div>

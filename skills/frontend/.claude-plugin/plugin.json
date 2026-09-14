@@ -1,0 +1,19 @@
+{
+  "name": "andrelademann-frontend-skills",
+  "version": "1.0.0",
+  "description": "Frontend skills for Next.js App Router performance diagnostics and scalable Tailwind CSS design system patterns.",
+  "author": {
+    "name": "André Lademann",
+    "url": "https://github.com/vergissberlin"
+  },
+  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/frontend",
+  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "license": "GPL-3.0",
+  "keywords": [
+    "frontend",
+    "nextjs",
+    "tailwind",
+    "app-router",
+    "design-tokens"
+  ]
+}

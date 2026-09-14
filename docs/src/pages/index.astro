@@ -1,0 +1,132 @@
+---
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import CatalogPageTemplate from '../components/templates/CatalogPageTemplate.astro';
+import SkillsFilterBar from '../components/organisms/SkillsFilterBar.astro';
+import SkillsGrid from '../components/organisms/SkillsGrid.astro';
+
+type Skill = { name: string; path: string; description: string };
+type SkillMetadata = {
+  title?: string;
+  description?: string;
+  source?: string;
+};
+
+const indexPath = path.join(process.cwd(), 'index.json');
+const repoRoot = path.resolve(process.cwd(), '..');
+const content = await fs.readFile(indexPath, 'utf-8');
+const { skills, version: catalogVersion } = JSON.parse(content) as { skills: Skill[]; version: string };
+const baseUrl = (import.meta as ImportMeta & { env: { BASE_URL: string } }).env.BASE_URL;
+
+const withScope = await Promise.all(skills.map(async (skill) => {
+  const skillPath = path.join(repoRoot, skill.path);
+  const skillContent = await fs.readFile(skillPath, 'utf-8');
+  const metadataPath = path.join(path.dirname(skillPath), 'metadata.json');
+  const fm = skillContent.match(/^---\n([\s\S]*?)\n---/);
+  const scope = fm?.[1].match(/^scope:\s*(.+)$/m)?.[1]?.trim() ?? 'general';
+  let metadata: SkillMetadata = {};
+  try {
+    metadata = JSON.parse(await fs.readFile(metadataPath, 'utf-8')) as SkillMetadata;
+  } catch {
+    metadata = {};
+  }
+
+  return {
+    ...skill,
+    scope,
+    cardTitle: metadata.title?.trim() || skill.name,
+    cardDescription: metadata.description?.trim() || skill.description,
+  };
+}));
+
+// All unique scopes for filter tabs
+const scopes = [...new Set(withScope.map(s => s.scope))].sort();
+const scopeCounts = Object.fromEntries(scopes.map((scope) => [scope, withScope.filter((s) => s.scope === scope).length]));
+---
+
+<CatalogPageTemplate
+  title="Skills"
+  description="Agent Skills catalog"
+  heading="Agent Skills"
+  subtitle="Enterprise-ready, portable playbooks for AI coding agents — Cloud, IaC, Streaming & Big Data."
+  baseUrl={baseUrl}
+  catalogVersion={catalogVersion}
+  canonicalUrl={baseUrl}
+  ogImage={`${baseUrl}og/default.png`}
+>
+  <SkillsFilterBar scopes={scopes} totalCount={withScope.length} scopeCounts={scopeCounts} />
+  <SkillsGrid skills={withScope} baseUrl={baseUrl} catalogVersion={catalogVersion} />
+</CatalogPageTemplate>
+
+<script>
+  // @ts-nocheck
+  const searchInput = document.getElementById('search-input');
+  const grid = document.getElementById('skills-grid');
+  const emptyState = document.getElementById('empty-state');
+  const visibleCount = document.getElementById('visible-count');
+  const clearBtn = document.getElementById('clear-filters');
+  const tabs = document.querySelectorAll('.filter-tab');
+  const cards = grid?.querySelectorAll('.card') ?? [];
+  let activeScope = 'all';
+  let searchQuery = '';
+
+  function applyFilters() {
+    if (!grid || !emptyState || !visibleCount) return;
+    let shown = 0;
+    cards.forEach((card) => {
+      const scope = card.dataset.scope ?? '';
+      const name = card.dataset.name ?? '';
+      const description = card.dataset.description ?? '';
+      const skillPath = card.dataset.path ?? '';
+      const scopeMatch = activeScope === 'all' || scope === activeScope;
+      const searchMatch = !searchQuery || [
+        name,
+        description,
+        skillPath,
+        scope.toLowerCase()
+      ].some((value) => value.includes(searchQuery));
+      const visible = scopeMatch && searchMatch;
+      card.style.display = visible ? '' : 'none';
+      if (visible) shown++;
+    });
+    visibleCount.textContent = String(shown);
+    emptyState.hidden = shown > 0;
+    grid.style.display = shown > 0 ? '' : 'none';
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      activeScope = tab.dataset.scope ?? 'all';
+      tabs.forEach((t) => {
+        const active = t === tab;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', String(active));
+      });
+      applyFilters();
+    });
+  });
+
+  searchInput?.addEventListener('input', () => {
+    searchQuery = searchInput.value.toLowerCase().trim();
+    applyFilters();
+  });
+
+  clearBtn?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    searchQuery = '';
+    activeScope = 'all';
+    tabs.forEach((t) => {
+      const isAll = t.dataset.scope === 'all';
+      t.classList.toggle('active', isAll);
+      t.setAttribute('aria-selected', String(isAll));
+    });
+    applyFilters();
+  });
+
+  document.addEventListener('keydown', (event) => {
+    const isSearchShortcut = (event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k';
+    if (!isSearchShortcut || !searchInput) return;
+    event.preventDefault();
+    searchInput.focus();
+  });
+</script>

@@ -1,0 +1,70 @@
+# Test scenarios for iac-infrastructure-as-code skill evaluation
+
+config:
+  model: gpt-4
+  max_tokens: 1500
+  temperature: 0.3
+
+scenarios:
+  - name: terraform_security_cost_review
+    prompt: |
+      Review a Terraform diff with changes to VPC, IAM, and NAT gateways.
+      Identify security and cost risks and provide prioritized recommendations.
+    expected_patterns:
+      - "Context"
+      - "blast radius"
+      - "IAM"
+      - "Kosten"
+      - "priorisiert"
+    forbidden_patterns:
+      - "terraform apply --auto-approve"
+      - "force-destroy"
+    tags: [terraform, security, cost]
+    mock_response: |
+      Context: Terraform diff for VPC, IAM, and NAT gateways.
+      Analysis:
+      - blast radius: medium to high for network and IAM changes.
+      - IAM: check for over-permissioning risk.
+      - Cost: validate NAT gateway and egress impact.
+      Prioritized recommendations:
+      1) Harden IAM policies.
+      2) Validate in staging with guardrails.
+      3) Enable cost monitoring before rollout.
+
+  - name: cloudformation_state_limitations
+    prompt: |
+      Perform static analysis of a CloudFormation change set when
+      runtime state access is unavailable.
+    expected_patterns:
+      - "static analysis"
+      - "assumptions"
+      - "risk"
+      - "recommendation"
+    forbidden_patterns: []
+    tags: [cloudformation, static-analysis]
+    mock_response: |
+      Static analysis of the CloudFormation change set:
+      - assumptions: no runtime state and no drift data available.
+      - risk: hidden side effects on dependent resources.
+      recommendation:
+      - execute change set in an isolated environment first.
+      - block unsafe IAM/network changes pre-deployment.
+
+  - name: mass_deployment_risk_with_count_changes
+    prompt: |
+      Assess a Terraform update with changed count/for_each expressions and
+      highlight potential mass deployment risk.
+    expected_patterns:
+      - "for_each"
+      - "count"
+      - "mass deployment"
+      - "critical"
+    forbidden_patterns: []
+    tags: [terraform, risk-assessment]
+    mock_response: |
+      Evaluation of Terraform expressions:
+      - for_each and count changes can trigger mass deployment.
+      - this is critical for stateful resources and network objects.
+      Actions:
+      - apply targeted rollout and phased approvals.
+      - require plan review with rollback options first.

@@ -1,0 +1,86 @@
+name: Skill Evaluation (Real Copilot)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 2 * * *"
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    if: ${{ vars.ENABLE_REAL_EVAL == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+          cache-dependency-path: tests/pnpm-lock.yaml
+
+      - name: Install dependencies
+        working-directory: tests
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript check
+        working-directory: tests
+        run: pnpm typecheck
+
+      - name: Run unit tests
+        working-directory: tests
+        run: pnpm test:run
+
+      - name: Run skill evaluations (real Copilot)
+        id: harness
+        working-directory: tests
+        env:
+          GH_TOKEN: ${{ secrets.COPILOT_TOKEN }}
+        run: |
+          set +e
+          pnpm harness --all --output markdown --output-file results-real.md
+          HARNESS_EXIT=$?
+          pnpm harness --all --output json --output-file results-real.json
+          set -e
+          echo "exit_code=$HARNESS_EXIT" >> $GITHUB_OUTPUT
+          exit 0
+
+      - name: Write job summary
+        if: always()
+        working-directory: tests
+        run: |
+          if [ -f results-real.md ]; then
+            cat results-real.md >> $GITHUB_STEP_SUMMARY
+          else
+            echo "No real evaluation results file found." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "---" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "This workflow runs non-mock Copilot-backed evaluation." >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.harness.outputs.exit_code }}" != "0" ]; then
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "Some skills have failing real-eval scenarios." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Check evaluation results
+        if: always()
+        run: |
+          if [ "${{ steps.harness.outputs.exit_code }}" != "0" ]; then
+            echo "::warning::Some skills have failing real-eval scenarios"
+          fi
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evaluation-results-real
+          path: |
+            tests/results-real.md
+            tests/results-real.json

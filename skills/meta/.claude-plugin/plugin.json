@@ -1,0 +1,19 @@
+{
+  "name": "andrelademann-meta-skills",
+  "version": "1.0.0",
+  "description": "Meta skills for creating André-Lademann-compatible skills and auditing SKILL.md prompts for adversarial and secret-handling risks.",
+  "author": {
+    "name": "André Lademann",
+    "url": "https://github.com/vergissberlin"
+  },
+  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/meta",
+  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "license": "GPL-3.0",
+  "keywords": [
+    "meta",
+    "skill-authoring",
+    "catalog",
+    "prompt-security",
+    "skill-md"
+  ]
+}

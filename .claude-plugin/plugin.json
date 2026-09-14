@@ -1,0 +1,20 @@
+{
+  "name": "andrelademann-agent-skills",
+  "version": "1.0.0",
+  "description": "André Lademann Skill catalog for platform, frontend, data, and Terraform workflows.",
+  "author": {
+    "name": "André Lademann",
+    "url": "https://github.com/vergissberlin"
+  },
+  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "license": "GPL-3.0",
+  "keywords": [
+    "andrelademann",
+    "agent-skills",
+    "terraform",
+    "frontend",
+    "platform",
+    "data"
+  ]
+}

@@ -1,0 +1,12 @@
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/skill-creator/chat"
+  to = "/.netlify/functions/skill-creator-chat"
+  status = 200
+
+[[redirects]]
+  from = "/api/skill-creator/finalize"
+  to = "/.netlify/functions/skill-creator-finalize"
+  status = 200
