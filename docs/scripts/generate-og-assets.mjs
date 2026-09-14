@@ -13,7 +13,8 @@ const bgColor = '#1E2A45';
 const titleColor = '#FFFFFF';
 const subtitleColor = '#94a3b8';
 const accentColor = '#00FFDC';
-const subtitleText = 'André Lademann Skill';
+// The bundled canvas font can render the accented character as a missing-glyph box.
+const subtitleText = 'Andre Lademann Skill';
 const iconColor = '#00FFDC';
 const iconSize = 92;
 const iconRasterSize = 512;
@@ -88,7 +89,8 @@ function getIconName(skillName) {
     default: 'sparkles',
     'andrelademann-blog-header-image': 'photo',
     'andrelademann-blog-post-writer': 'article',
-    'andrelademann-blog-promote': 'speakerphone'
+    'andrelademann-blog-promote': 'speakerphone',
+    'google-trends-topic-scout': 'trending-up'
   };
 
   return iconMap[skillName] ?? 'sparkles';

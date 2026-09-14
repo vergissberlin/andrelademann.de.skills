@@ -16,6 +16,11 @@
       "name": "andrelademann-blog-promote",
       "path": "skills/blog/andrelademann-blog-promote/SKILL.md",
       "description": "Promote a published blog article across LinkedIn, X, Xing, daily.dev, and Teams."
+    },
+    {
+      "name": "google-trends-topic-scout",
+      "path": "skills/research/google-trends-topic-scout/SKILL.md",
+      "description": "Find current Google Trends topics that fit André Lademann's editorial themes."
     }
   ]
 }
