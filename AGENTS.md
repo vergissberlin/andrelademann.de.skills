@@ -49,6 +49,7 @@ This document defines the guardrails for agent work in this repository.
 - For new/moved/renamed skills, always keep `index.json` and `docs/index.json` (`path`) consistent.
 - Every skill listed in `docs/index.json` must have an Open Graph preview at `docs/public/og/skills/<skill-name>.png`. In addition, `docs/public/og/default.png` is required for catalog and tool pages.
 - OG design should follow the principles from `svg-logo-designer`: clear hierarchy, high contrast, readable skill name, and a consistent André Lademann look.
+- Keep the copy-ready integration templates under `integrations/` and `.github/copilot-instructions.md` aligned with `index.json`, the referenced `SKILL.md` files, and `.claude-plugin/marketplace.json` when skills change.
 
 ## Docs-Site UI Architecture
 

@@ -1,0 +1,26 @@
+---
+description: Use the André Lademann Skills catalog as project context and load the relevant SKILL.md before making domain-specific changes.
+globs: []
+alwaysApply: true
+---
+
+# André Lademann Skills for Cursor
+
+Use this repository's Skills catalog as additional project context. The catalog is described in [`index.json`](../../index.json), and the source instructions live in the referenced `SKILL.md` files below `skills/`.
+
+Before work in a matching domain:
+
+1. Read `index.json` to identify the relevant skill.
+2. Read the complete referenced `SKILL.md` before applying its workflow.
+3. Treat repository instructions such as `AGENTS.md` as higher-priority project guidance.
+4. Keep the change scoped to the user's request and do not invent a runtime integration or MCP server for this catalog.
+
+Available catalog skills:
+
+- `iac-infrastructure-as-code` → `skills/platform/iac-infrastructure-as-code/SKILL.md`
+- `mcp-builder` → `skills/platform/mcp-builder/SKILL.md`
+- `skill-creator` → `skills/meta/skill-creator/SKILL.md`
+- `skill-prompt-security-audit` → `skills/meta/skill-prompt-security-audit/SKILL.md`
+- `terraform-style-guide` → `skills/terraform/code-generation/terraform-style-guide/SKILL.md`
+
+When adding or changing a skill, keep `index.json`, `docs/index.json`, the AGENTS.md generator, metadata, and the integration examples consistent.

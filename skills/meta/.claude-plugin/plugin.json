@@ -1,5 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "andrelademann-meta-skills",
+  "displayName": "André Lademann Meta Skills",
   "version": "1.0.0",
   "description": "Meta skills for creating André-Lademann-compatible skills and auditing SKILL.md prompts for adversarial and secret-handling risks.",
   "author": {
@@ -14,6 +16,9 @@
     "skill-authoring",
     "catalog",
     "prompt-security",
-    "skill-md"
+    "skill-md",
+    "skills",
+    "agents",
+    "multi-tool"
   ]
 }

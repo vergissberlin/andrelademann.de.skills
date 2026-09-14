@@ -1,5 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "andrelademann-data-skills",
+  "displayName": "André Lademann Data Skills",
   "version": "1.0.0",
   "description": "Data skills for streaming pipeline stabilization, big data platform performance and cost optimization, and AI SDK tooling guardrails.",
   "author": {
@@ -14,6 +16,9 @@
     "ai",
     "streaming",
     "big-data",
-    "guardrails"
+    "guardrails",
+    "skills",
+    "agents",
+    "multi-tool"
   ]
 }

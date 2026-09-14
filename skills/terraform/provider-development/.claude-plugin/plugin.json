@@ -1,5 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "andrelademann-terraform-provider-development",
+  "displayName": "André Lademann Terraform Provider Development",
   "version": "1.0.0",
   "description": "Terraform provider development skills for building resources, actions, and acceptance tests with the Plugin Framework.",
   "author": {
@@ -14,6 +16,9 @@
     "provider",
     "plugin-framework",
     "resources",
-    "acceptance-testing"
+    "acceptance-testing",
+    "skills",
+    "agents",
+    "multi-tool"
   ]
 }

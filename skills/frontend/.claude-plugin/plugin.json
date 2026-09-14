@@ -1,5 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "andrelademann-frontend-skills",
+  "displayName": "André Lademann Frontend Skills",
   "version": "1.0.0",
   "description": "Frontend skills for Next.js App Router performance diagnostics and scalable Tailwind CSS design system patterns.",
   "author": {
@@ -14,6 +16,9 @@
     "nextjs",
     "tailwind",
     "app-router",
-    "design-tokens"
+    "design-tokens",
+    "skills",
+    "agents",
+    "multi-tool"
   ]
 }

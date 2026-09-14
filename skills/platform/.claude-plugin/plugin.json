@@ -1,5 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "andrelademann-platform-skills",
+  "displayName": "André Lademann Platform Skills",
   "version": "1.0.0",
   "description": "Platform skills for infrastructure-as-code risk reviews and observability-driven analysis of edge latency and reliability incidents.",
   "author": {
@@ -15,6 +17,9 @@
     "iac",
     "observability",
     "edge",
-    "mcp"
+    "mcp",
+    "skills",
+    "agents",
+    "multi-tool"
   ]
 }

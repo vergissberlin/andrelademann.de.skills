@@ -1,5 +1,7 @@
 {
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "andrelademann-terraform-code-generation",
+  "displayName": "André Lademann Terraform Code Generation",
   "version": "1.0.0",
   "description": "Terraform code generation skills focused on style, testing, imports, and Azure module quality requirements.",
   "author": {
@@ -14,6 +16,9 @@
     "code-generation",
     "testing",
     "azure-verified-modules",
-    "import"
+    "import",
+    "skills",
+    "agents",
+    "multi-tool"
   ]
 }
