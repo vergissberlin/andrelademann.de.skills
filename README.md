@@ -61,4 +61,4 @@ Setze dafür beim Docs-Build `PUBLIC_SKILL_CREATOR_API_URL` auf die externe API-
 Die API verwendet `OPENAI_API_KEY` und optional `OPENAI_MODEL` als Server-Secrets.
 Eine Netlify-Functions-Referenzimplementierung inklusive Routing liegt unter `docs/netlify/`.
 
-`RELEASE_PLEASE_TOKEN` ist als Repository-Secret für den Release-Please-Workflow erforderlich.
+`RELEASE_PLEASE_TOKEN` kann als Repository-Secret für den Release-Please-Workflow hinterlegt werden. Wenn es fehlt, verwendet der Workflow automatisch den eingebauten `GITHUB_TOKEN`; ein eigener PAT ist nur nötig, wenn von Release Please erzeugte PRs oder Releases weitere Workflows auslösen sollen.
