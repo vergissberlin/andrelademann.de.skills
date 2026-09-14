@@ -1,7 +1,7 @@
 ---
 name: andrelademann-blog-post-writer-guided
 description: Lead André Lademann through choosing and creating a complete post with a generated header image for blog.andrelademann.de. Use for guided writing or when the topic, audience, tags, or length remain open.
-version: 1.0.0
+version: 1.0.1
 ---
 
 # André Lademann Blog Post Writer Guided
@@ -31,7 +31,9 @@ Write according to `andrelademann-blog-post-writer`: British English (or, for a 
 
 ## Complete the visual package
 
-Once the article is drafted, generate its header image in the same task through `andrelademann-blog-header-image`. Derive the visual from the selected angle and completed draft; do not ask a separate visual-direction question unless the user has stated a specific visual preference. A German edition reuses the same `heroImage`/`ogImage` asset as its English pair — never generate a second image for a translation.
+`andrelademann-blog-header-image` is a required companion skill for this workflow. Activate it and follow its complete instructions once the article is drafted; referencing it or reproducing only part of its guidance is not sufficient. Generate the header image in the same task unless the user supplies an image, explicitly opts out, or explicitly requests a separate visual task.
+
+Derive the visual from the selected angle and completed draft; do not ask a separate visual-direction question unless the user has stated a specific visual preference. A German edition reuses the same `heroImage`/`ogImage` asset as its English pair — never generate a second image for a translation.
 
 Save the post under `src/content/posts/{slug}.md` or `.mdx`, use valid frontmatter with `draft: true` unless explicitly told otherwise, and set both `heroImage` and `ogImage` to the generated header asset.
 

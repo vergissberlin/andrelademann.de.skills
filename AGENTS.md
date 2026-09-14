@@ -27,6 +27,7 @@ This document defines the guardrails for agent work in this repository.
 
 ## Skills
 
+- Using either blog-post skill (`andrelademann-blog-post-writer` or `andrelademann-blog-post-writer-guided`) must also activate and follow `andrelademann-blog-header-image` in the same task, unless the user supplies an image, explicitly opts out, or explicitly requests a separate visual task.
 - For release notes, use `feat(skills):` or `feature(skills):` when a change primarily adds or updates skills in `skills/`, `index.json`, or `docs/index.json`. The `skills` scope maps to the **Skills** changelog section and matches **minor** semver bumps like any other feature (release-please only treats `feat` / `feature` as minor, not a separate `skills:` type).
 - Keep the catalog version in `index.json` aligned with release tags (`X.Y.Z`) and use pinned install commands such as `npx skills add vergissberlin/andrelademann.de.skills@X.Y.Z --skill <skill-name>`.
 - Skill folders must be organized in nested directories. Do not add new flat paths like `skills/<skill-name>/SKILL.md`.

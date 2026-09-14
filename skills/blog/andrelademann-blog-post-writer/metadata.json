@@ -4,5 +4,5 @@
   "purpose": "Use when the article topic and intended audience are already clear.",
   "tags": ["blog", "writing", "astro", "content"],
   "source": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/blog/andrelademann-blog-post-writer",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }

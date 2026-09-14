@@ -4,5 +4,5 @@
   "purpose": "Use when topic, audience, tags, length, or language still need guided clarification.",
   "tags": ["blog", "writing", "editorial", "guided-workflow"],
   "source": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/blog/andrelademann-blog-post-writer-guided",
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
