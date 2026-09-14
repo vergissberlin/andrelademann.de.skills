@@ -6,7 +6,7 @@
     "url": "https://github.com/vergissberlin"
   },
   "metadata": {
-    "description": "Vergissberlin marketplace for André Lademann's blog-writing and editorial-image skills.",
+    "description": "Vergissberlin marketplace for André Lademann's blog-writing, editorial-image, and promotion skills.",
     "version": "2.0.0"
   },
   "plugins": [
@@ -14,7 +14,7 @@
       "name": "andrelademann-blog-skills",
       "displayName": "André Lademann Blog Skills",
       "source": "./skills/blog",
-      "description": "Blog-writing and editorial-image skills for André Lademann's engineering blog.",
+      "description": "Blog-writing, editorial-image, and promotion skills for André Lademann's engineering blog.",
       "version": "1.0.0",
       "author": {
         "name": "André Lademann",
@@ -30,7 +30,8 @@
         "astro",
         "images",
         "skills",
-        "agents"
+        "agents",
+        "promotion"
       ],
       "category": "writing"
     }
