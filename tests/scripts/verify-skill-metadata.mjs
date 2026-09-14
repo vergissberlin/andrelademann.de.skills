@@ -28,7 +28,7 @@ function extractFrontmatterVersion(markdown) {
   const frontmatterMatch = markdown.match(/^---\n([\s\S]*?)\n---/);
   if (!frontmatterMatch) return null;
   const versionMatch = frontmatterMatch[1]?.match(/^version:\s*(.+)$/m);
-  return versionMatch?.[1]?.trim() ?? null;
+  return versionMatch?.[1]?.split("#", 1)[0]?.trim() ?? null;
 }
 
 const indexRaw = await fs.readFile(indexPath, "utf8");
@@ -64,9 +64,7 @@ for (const skill of catalog.skills ?? []) {
   let hasVersion = isNonEmptyString(metadata.version);
 
   if (!hasVersion && autoFixVersion) {
-    const skillMarkdown = await fs.readFile(skillPath, "utf8");
-    const frontmatterVersion = extractFrontmatterVersion(skillMarkdown) ?? "1.0.0";
-    metadata.version = frontmatterVersion;
+    metadata.version = catalog.version;
     await fs.writeFile(metadataPath, `${JSON.stringify(metadata, null, 2)}\n`, "utf8");
     fixed.push(relMetadataPath);
     hasVersion = true;
@@ -81,6 +79,16 @@ for (const skill of catalog.skills ?? []) {
     if (!hasSource) missingFields.push("source");
     if (!hasVersion) missingFields.push("version");
     invalid.push(`${relMetadataPath} (missing/empty: ${missingFields.join(", ")})`);
+    continue;
+  }
+
+  const skillMarkdown = await fs.readFile(skillPath, "utf8");
+  const frontmatterVersion = extractFrontmatterVersion(skillMarkdown);
+  if (frontmatterVersion !== catalog.version) {
+    invalid.push(`${skill.path} (version ${frontmatterVersion ?? "missing"} does not match catalog ${catalog.version})`);
+  }
+  if (metadata.version !== catalog.version) {
+    invalid.push(`${relMetadataPath} (version ${metadata.version} does not match catalog ${catalog.version})`);
   }
 }
 
