@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "andrelademann-skills",
   "displayName": "André Lademann Skills",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "André Lademann Skill catalog for AI coding agents across writing, images, and other domains.",
   "author": {
     "name": "André Lademann",

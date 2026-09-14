@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.4.1](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.4.0...2.4.1) (2026-09-14)
+
+
+### Bug Fixes
+
+* **claude:** restore marketplace synchronization ([6d5018b](https://github.com/vergissberlin/andrelademann.de.skills/commit/6d5018bc178cb5aaf83f68287b27e98d38617300))
+* **claude:** restore marketplace synchronization ([df50c65](https://github.com/vergissberlin/andrelademann.de.skills/commit/df50c651906d7586458b500fc251c53fbf4ff91a))
+
 ## [2.4.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.3.0...2.4.0) (2026-09-14)
 
 
