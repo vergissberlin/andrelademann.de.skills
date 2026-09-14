@@ -41,6 +41,17 @@ test('index search and filter interactions keep cards visible', async ({ page })
   await expect(page.locator('#visible-count')).not.toHaveText('0');
 });
 
+test('footer and favicon use the André Lademann portrait', async ({ page }) => {
+  await page.goto('/andrelademann.de.skills/');
+
+  const favicon = page.locator('link[rel="icon"]');
+  await expect(favicon).toHaveAttribute('href', /brand\/andre-lademann-favicon\.png$/);
+
+  const portrait = page.locator('footer img[alt="André Lademann"]');
+  await expect(portrait).toBeVisible();
+  await expect(portrait).toHaveAttribute('src', /brand\/andre-lademann\.webp$/);
+});
+
 test('theme toggle applies dark class manually', async ({ page }) => {
   await page.goto('/andrelademann.de.skills/');
 
