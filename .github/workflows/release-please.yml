@@ -14,13 +14,34 @@ permissions:
 jobs:
   release-please:
     runs-on: ubuntu-latest
+    outputs:
+      release-created: ${{ steps.release.outputs.release_created }}
+      tag-name: ${{ steps.release.outputs.tag_name }}
     steps:
       - name: Release Please
         id: release
         uses: googleapis/release-please-action@v4
         with:
-          # Use the optional PAT when configured so release-created events can
-          # trigger downstream workflows; otherwise use GitHub's built-in token.
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+  deploy-pages:
+    needs: release-please
+    if: needs.release-please.outputs.release-created == 'true'
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/pages.yml
+    with:
+      ref: ${{ needs.release-please.outputs.tag-name }}
+
+  sync-wiki:
+    needs: release-please
+    if: needs.release-please.outputs.release-created == 'true'
+    permissions:
+      contents: write
+    uses: ./.github/workflows/sync-wiki.yml
+    with:
+      ref: ${{ needs.release-please.outputs.tag-name }}
