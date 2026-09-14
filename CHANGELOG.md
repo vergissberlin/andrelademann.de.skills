@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.4.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.3.0...2.4.0) (2026-09-14)
+
+
+### Skills
+
+* **skills:** drop owner prefix from skill display titles ([#22](https://github.com/vergissberlin/andrelademann.de.skills/issues/22)) ([ff850d3](https://github.com/vergissberlin/andrelademann.de.skills/commit/ff850d3267099c4a941f8b4f16aaeac6869ba060))
+* **skills:** rename catalog to André Lademann Skills ([#19](https://github.com/vergissberlin/andrelademann.de.skills/issues/19)) ([9cc26cb](https://github.com/vergissberlin/andrelademann.de.skills/commit/9cc26cb64966206f2bebb7fc68f99a5a804c23d4))
+
+
+### Features
+
+* **docs:** use mug-only favicon and PWA icons ([#21](https://github.com/vergissberlin/andrelademann.de.skills/issues/21)) ([9bcf32d](https://github.com/vergissberlin/andrelademann.de.skills/commit/9bcf32da924c785dce391000667c58e1f1d57c4b))
+
 ## [2.3.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.2.0...2.3.0) (2026-09-14)
 
 
