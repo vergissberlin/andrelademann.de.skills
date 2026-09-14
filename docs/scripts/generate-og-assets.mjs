@@ -66,7 +66,8 @@ function getIconName(skillName) {
   const iconMap = {
     default: 'sparkles',
     'andrelademann-blog-header-image': 'photo',
-    'andrelademann-blog-post-writer': 'article'
+    'andrelademann-blog-post-writer': 'article',
+    'thinkport-blog-promote': 'speakerphone'
   };
 
   return iconMap[skillName] ?? 'sparkles';

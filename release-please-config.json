@@ -25,6 +25,15 @@
           "type": "json",
           "path": "skills/blog/andrelademann-blog-post-writer/metadata.json",
           "jsonpath": "$.version"
+        },
+        {
+          "type": "generic",
+          "path": "skills/thinkport/thinkport-blog-promote/SKILL.md"
+        },
+        {
+          "type": "json",
+          "path": "skills/thinkport/thinkport-blog-promote/metadata.json",
+          "jsonpath": "$.version"
         }
       ],
       "changelog-sections": [

@@ -14,5 +14,6 @@ Available catalog skills:
 
 - `andrelademann-blog-header-image` → `skills/blog/andrelademann-blog-header-image/SKILL.md`
 - `andrelademann-blog-post-writer` → `skills/blog/andrelademann-blog-post-writer/SKILL.md`
+- `thinkport-blog-promote` → `skills/thinkport/thinkport-blog-promote/SKILL.md`
 
 When adding or changing a skill, keep `index.json`, `docs/index.json`, metadata, `.claude-plugin/marketplace.json`, and the integration examples consistent.

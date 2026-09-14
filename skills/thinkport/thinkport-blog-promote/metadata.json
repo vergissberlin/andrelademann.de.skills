@@ -1,0 +1,14 @@
+{
+  "title": "Thinkport Blog Promote",
+  "description": "Draft and publish Thinkport article promotions across LinkedIn, X, Xing, daily.dev, and Teams.",
+  "purpose": "Use when a published Thinkport blog article should be shared across social and internal channels.",
+  "tags": [
+    "thinkport",
+    "blog",
+    "promotion",
+    "linkedin",
+    "social"
+  ],
+  "source": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/thinkport/thinkport-blog-promote",
+  "version": "2.2.0"
+}

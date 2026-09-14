@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "thinkport-blog-skills",
+  "displayName": "Thinkport Blog Skills",
+  "version": "1.0.0",
+  "description": "Promotion skills for published Thinkport blog articles.",
+  "author": {
+    "name": "André Lademann",
+    "url": "https://github.com/vergissberlin"
+  },
+  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/thinkport",
+  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "license": "GPL-3.0",
+  "keywords": [
+    "thinkport",
+    "blog",
+    "promotion",
+    "social",
+    "skills",
+    "agents"
+  ]
+}

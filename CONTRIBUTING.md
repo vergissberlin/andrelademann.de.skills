@@ -44,7 +44,7 @@ pnpm build
 
 ## Skills hinzufügen
 
-1. Ordner unter einer Domäne anlegen, z. B. `skills/blog/<skill-name>/`
+1. Ordner unter einer Domäne anlegen, z. B. `skills/blog/<skill-name>/` oder `skills/thinkport/<skill-name>/`
 2. `SKILL.md` mit Frontmatter erstellen
 3. Skill in `index.json` ergänzen
 4. Open-Graph-Asset anlegen: `docs/public/og/skills/<skill-name>.png` (1200×630)
