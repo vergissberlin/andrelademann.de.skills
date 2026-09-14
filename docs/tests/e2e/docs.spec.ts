@@ -41,7 +41,7 @@ test('index search and filter interactions keep cards visible', async ({ page })
   await expect(page.locator('#visible-count')).not.toHaveText('0');
 });
 
-test('footer and favicon use the André Lademann portrait', async ({ page }) => {
+test('footer uses the André Lademann portrait and favicon uses the mug mark', async ({ page }) => {
   await page.goto('/andrelademann.de.skills/');
 
   const favicon = page.locator('link[rel="icon"]');
