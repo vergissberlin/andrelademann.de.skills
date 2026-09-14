@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.5.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.4.1...2.5.0) (2026-09-14)
+
+
+### Skills
+
+* **skills:** add Google Trends topic scout ([e505d1c](https://github.com/vergissberlin/andrelademann.de.skills/commit/e505d1c8eec30b7e39c2dcf280d4c921285ea4d4))
+* **skills:** add Google Trends topic scout ([52dfb9a](https://github.com/vergissberlin/andrelademann.de.skills/commit/52dfb9a0bf001b3751f6916164b16b248a7813bf))
+
+
+### Features
+
+* **docs:** add Claude marketplace hint and editor install actions (Cursor, VS Code) ([7a86037](https://github.com/vergissberlin/andrelademann.de.skills/commit/7a860371abbdca39f890c9d382a18ef54a65f9b8))
+* **docs:** add marketplace and editor install actions ([306419d](https://github.com/vergissberlin/andrelademann.de.skills/commit/306419db8f39548dc7d3874537f3a45e18a07c94))
+* **github:** expand missing skill issue template ([fa2a7d7](https://github.com/vergissberlin/andrelademann.de.skills/commit/fa2a7d7a8dfd011d7d427472b59fe271bd76ef5b))
+* **github:** expand missing-skill issue template ([41f22a6](https://github.com/vergissberlin/andrelademann.de.skills/commit/41f22a6cdc6d23111312d6c04c2f91650514ad58))
+
 ## [2.4.1](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.4.0...2.4.1) (2026-09-14)
 
 
