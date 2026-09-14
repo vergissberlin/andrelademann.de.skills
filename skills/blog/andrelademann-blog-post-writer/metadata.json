@@ -2,7 +2,14 @@
   "title": "André Lademann Blog Post Writer",
   "description": "Plan or directly create a complete blog post and its generated visual package.",
   "purpose": "Use for guided editorial planning or direct article creation for André Lademann's blog.",
-  "tags": ["blog", "writing", "editorial", "guided-workflow", "astro", "content"],
+  "tags": [
+    "blog",
+    "writing",
+    "editorial",
+    "guided-workflow",
+    "astro",
+    "content"
+  ],
   "source": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/blog/andrelademann-blog-post-writer",
-  "version": "2.1.1"
+  "version": "2.2.0"
 }
