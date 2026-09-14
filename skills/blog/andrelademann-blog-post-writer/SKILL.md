@@ -90,8 +90,10 @@ When a post has both an English and a German edition:
 
 Every new post receives a header image in the same task unless the user supplies an asset, explicitly opts out, or asks to keep visual work separate.
 
+`andrelademann-blog-header-image` is a required companion skill for this workflow. Activate it and follow its complete instructions while creating the post; referencing it or reproducing only part of its guidance is not sufficient.
+
 1. Read the complete draft and choose one concrete visual metaphor or scene that represents its central argument. Never fall back to an unrelated generic laptop image or ask for separate visual direction unless the user has expressed a preference.
-2. Invoke `andrelademann-blog-header-image`. In Codex or ChatGPT, use the built-in image-generation capability directly; do not merely return an image prompt.
+2. Invoke the activated `andrelademann-blog-header-image` skill. In Codex or ChatGPT, use the built-in image-generation capability directly; do not merely return an image prompt.
 3. Save the approved result under `public/images/posts/{year}/{slug}/hero.png`, then update both image fields in the post's frontmatter.
 4. Do not overwrite an existing header image unless the user explicitly asks for replacement.
 
