@@ -31,15 +31,8 @@ This document defines the guardrails for agent work in this repository.
 - For release notes, use `feat(skills):` or `feature(skills):` when a change primarily adds or updates skills in `skills/`, `index.json`, or `docs/index.json`. The `skills` scope maps to the **Skills** changelog section and matches **minor** semver bumps like any other feature (release-please only treats `feat` / `feature` as minor, not a separate `skills:` type).
 - Keep the catalog version in `index.json` aligned with release tags (`X.Y.Z`) and use pinned install commands such as `npx skills add vergissberlin/andrelademann.de.skills@X.Y.Z --skill <skill-name>`.
 - Skill folders must be organized in nested directories. Do not add new flat paths like `skills/<skill-name>/SKILL.md`.
-- Terraform skills must always be in:
-  - `skills/terraform/code-generation/<skill-name>/SKILL.md`
-  - `skills/terraform/module-generation/<skill-name>/SKILL.md`
-  - `skills/terraform/provider-development/<skill-name>/SKILL.md`
-- When adding a new Terraform domain folder under `skills/terraform/`, add or update a matching `.claude-plugin/plugin.json` for that domain, add/update the corresponding entry in `.claude-plugin/marketplace.json`, and review root `.claude-plugin/plugin.json` keywords/description.
-- Place non-Terraform skills in matching domain folders, for example:
-  - `skills/platform/<skill-name>/SKILL.md`
-  - `skills/frontend/<skill-name>/SKILL.md`
-  - `skills/data/<skill-name>/SKILL.md`
+- Place skills in matching domain folders, for example:
+  - `skills/blog/<skill-name>/SKILL.md`
 - Store a separate metadata file for each skill at `skills/<domain>/<skill-name>/metadata.json` with:
   - `title` (human-readable skill title)
   - `description` (short description in English)

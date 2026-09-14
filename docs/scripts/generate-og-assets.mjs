@@ -65,9 +65,9 @@ function wrapText(ctx, text, maxWidth) {
 function getIconName(skillName) {
   const iconMap = {
     default: 'sparkles',
-    'iac-infrastructure-as-code': 'settings-cog',
-    'terraform-style-guide': 'file-code',
-    'skill-prompt-security-audit': 'shield-search'
+    'andrelademann-blog-header-image': 'photo',
+    'andrelademann-blog-post-writer-guided': 'book-2',
+    'andrelademann-blog-post-writer': 'article'
   };
 
   return iconMap[skillName] ?? 'sparkles';

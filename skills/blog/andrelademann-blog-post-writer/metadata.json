@@ -1,0 +1,8 @@
+{
+  "title": "André Lademann Blog Post Writer",
+  "description": "Create a complete British-English blog post and its generated visual package.",
+  "purpose": "Use when the article topic and intended audience are already clear.",
+  "tags": ["blog", "writing", "astro", "content"],
+  "source": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/blog/andrelademann-blog-post-writer",
+  "version": "1.0.0"
+}

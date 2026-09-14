@@ -32,7 +32,7 @@ pnpm install
 pnpm dev
 ```
 
-Die Katalogversion in `index.json` entspricht dem Release-Tag `X.Y.Z`. Installationsbefehle sollen auf diesen Tag zeigen, zum Beispiel `npx skills add vergissberlin/andrelademann.de.skills@1.5.0 --skill <skill-name>`.
+Die Katalogversion in `index.json` entspricht dem Release-Tag `X.Y.Z`. Installationsbefehle sollen auf diesen Tag zeigen, zum Beispiel `npx skills add vergissberlin/andrelademann.de.skills@2.0.0 --skill <skill-name>`.
 
 ## Build
 
@@ -44,7 +44,7 @@ pnpm build
 
 ## Skills hinzufügen
 
-1. Ordner unter einer Domäne anlegen, z. B. `skills/<domain>/<skill-name>/` oder für Terraform `skills/terraform/<area>/<skill-name>/`
+1. Ordner unter einer Domäne anlegen, z. B. `skills/blog/<skill-name>/`
 2. `SKILL.md` mit Frontmatter erstellen
 3. Skill in `index.json` ergänzen
 4. Skill im AGENTS.md-Generator verknüpfen: in `docs/src/pages/agent-md-generator.astro` unter `domainMap` den Skill-Namen zur passenden Domäne hinzufügen (oder eine neue Domäne anlegen)

@@ -12,16 +12,16 @@ const { skills, version } = JSON.parse(content) as { skills: Skill[]; version: s
 const baseUrl = (import.meta as ImportMeta & { env: { BASE_URL: string } }).env.BASE_URL;
 
 const domainMap = [
-  { id: 'infrastructure', label: 'Infrastructure / IaC', skills: ['iac-infrastructure-as-code'] },
-  { id: 'mcp', label: 'MCP servers', skills: ['mcp-builder'] },
   {
-    id: 'terraform',
-    label: 'Terraform (HashiCorp)',
-    skills: [
-      'terraform-style-guide'
-    ]
+    id: 'blog',
+    label: 'Blog writing',
+    skills: ['andrelademann-blog-post-writer', 'andrelademann-blog-post-writer-guided']
   },
-  { id: 'skill-authoring', label: 'Skill authoring', skills: ['skill-creator', 'skill-prompt-security-audit'] }
+  {
+    id: 'editorial-images',
+    label: 'Editorial images',
+    skills: ['andrelademann-blog-header-image']
+  }
 ];
 
 const codingPresetMap = [

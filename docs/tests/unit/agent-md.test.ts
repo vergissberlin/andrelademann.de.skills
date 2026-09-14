@@ -2,30 +2,30 @@ import { describe, expect, it } from 'vitest';
 import { buildSkillsSection, uniqueSkillsFromDomains, type DomainMapping, type SkillCatalogItem } from '../../src/lib/agentMd';
 
 const domainMap: DomainMapping[] = [
-  { id: 'infra', skills: ['iac-infrastructure-as-code'] },
-  { id: 'terraform', skills: ['terraform-style-guide', 'iac-infrastructure-as-code'] }
+  { id: 'blog', skills: ['andrelademann-blog-post-writer'] },
+  { id: 'editorial', skills: ['andrelademann-blog-header-image', 'andrelademann-blog-post-writer'] }
 ];
 
 const skillCatalog: SkillCatalogItem[] = [
   {
-    name: 'iac-infrastructure-as-code',
-    docUrl: '/andrelademann.de.skills/skills/iac-infrastructure-as-code/',
-    installCommand: 'npx skills add vergissberlin/andrelademann.de.skills@1.2.0 --skill iac-infrastructure-as-code'
+    name: 'andrelademann-blog-post-writer',
+    docUrl: '/andrelademann.de.skills/skills/andrelademann-blog-post-writer/',
+    installCommand: 'npx skills add vergissberlin/andrelademann.de.skills@2.0.0 --skill andrelademann-blog-post-writer'
   },
   {
-    name: 'terraform-style-guide',
-    docUrl: '/andrelademann.de.skills/skills/terraform-style-guide/',
-    installCommand: 'npx skills add vergissberlin/andrelademann.de.skills@1.2.0 --skill terraform-style-guide'
+    name: 'andrelademann-blog-header-image',
+    docUrl: '/andrelademann.de.skills/skills/andrelademann-blog-header-image/',
+    installCommand: 'npx skills add vergissberlin/andrelademann.de.skills@2.0.0 --skill andrelademann-blog-header-image'
   }
 ];
 
 describe('uniqueSkillsFromDomains', () => {
   it('returns unique skills across multiple domains', () => {
-    const result = uniqueSkillsFromDomains(['infra', 'terraform'], domainMap, skillCatalog);
+    const result = uniqueSkillsFromDomains(['blog', 'editorial'], domainMap, skillCatalog);
     expect(result).toHaveLength(2);
     expect(result.map((item) => item.name)).toEqual([
-      'iac-infrastructure-as-code',
-      'terraform-style-guide'
+      'andrelademann-blog-post-writer',
+      'andrelademann-blog-header-image'
     ]);
   });
 
@@ -44,7 +44,7 @@ describe('buildSkillsSection', () => {
 
   it('renders selected skills with docs links and install commands', () => {
     const markdown = buildSkillsSection([skillCatalog[0]], '/andrelademann.de.skills/');
-    expect(markdown).toContain('- iac-infrastructure-as-code: [docs](/andrelademann.de.skills/skills/iac-infrastructure-as-code/)');
-    expect(markdown).toContain('`npx skills add vergissberlin/andrelademann.de.skills@1.2.0 --skill iac-infrastructure-as-code`');
+    expect(markdown).toContain('- andrelademann-blog-post-writer: [docs](/andrelademann.de.skills/skills/andrelademann-blog-post-writer/)');
+    expect(markdown).toContain('`npx skills add vergissberlin/andrelademann.de.skills@2.0.0 --skill andrelademann-blog-post-writer`');
   });
 });

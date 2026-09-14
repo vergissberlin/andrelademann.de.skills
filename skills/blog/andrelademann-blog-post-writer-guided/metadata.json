@@ -1,0 +1,8 @@
+{
+  "title": "André Lademann Blog Post Writer Guided",
+  "description": "Guide a focused editorial brief and create a complete blog post with its generated header image.",
+  "purpose": "Use when topic, audience, tags, length, or language still need guided clarification.",
+  "tags": ["blog", "writing", "editorial", "guided-workflow"],
+  "source": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/blog/andrelademann-blog-post-writer-guided",
+  "version": "1.0.0"
+}
