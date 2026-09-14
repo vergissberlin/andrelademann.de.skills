@@ -6,7 +6,7 @@
     "url": "https://github.com/vergissberlin"
   },
   "metadata": {
-    "description": "Vergissberlin marketplace for André Lademann's blog-writing, editorial-image, and Thinkport promotion skills.",
+    "description": "Vergissberlin marketplace for André Lademann's blog-writing, editorial-image, and promotion skills.",
     "version": "2.0.0"
   },
   "plugins": [
@@ -14,7 +14,7 @@
       "name": "andrelademann-blog-skills",
       "displayName": "André Lademann Blog Skills",
       "source": "./skills/blog",
-      "description": "Blog-writing and editorial-image skills for André Lademann's engineering blog.",
+      "description": "Blog-writing, editorial-image, and promotion skills for André Lademann's engineering blog.",
       "version": "1.0.0",
       "author": {
         "name": "André Lademann",
@@ -30,30 +30,8 @@
         "astro",
         "images",
         "skills",
-        "agents"
-      ],
-      "category": "writing"
-    },
-    {
-      "name": "thinkport-blog-skills",
-      "displayName": "Thinkport Blog Skills",
-      "source": "./skills/thinkport",
-      "description": "Promotion skills for published Thinkport blog articles.",
-      "version": "1.0.0",
-      "author": {
-        "name": "André Lademann",
-        "url": "https://github.com/vergissberlin"
-      },
-      "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/thinkport",
-      "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
-      "license": "GPL-3.0",
-      "keywords": [
-        "thinkport",
-        "blog",
-        "promotion",
-        "social",
-        "skills",
-        "agents"
+        "agents",
+        "promotion"
       ],
       "category": "writing"
     }

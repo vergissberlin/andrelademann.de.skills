@@ -34,7 +34,6 @@ This document defines the guardrails for agent work in this repository.
 - Skill folders must be organized in nested directories. Do not add new flat paths like `skills/<skill-name>/SKILL.md`.
 - Place skills in matching domain folders, for example:
   - `skills/blog/<skill-name>/SKILL.md`
-  - `skills/thinkport/<skill-name>/SKILL.md`
 - Store a separate metadata file for each skill at `skills/<domain>/<skill-name>/metadata.json` with:
   - `title` (human-readable skill title)
   - `description` (short description in English)

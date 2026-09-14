@@ -13,9 +13,9 @@
       "description": "Plan or directly create a complete blog post and its generated visual package."
     },
     {
-      "name": "thinkport-blog-promote",
-      "path": "skills/thinkport/thinkport-blog-promote/SKILL.md",
-      "description": "Promote a published Thinkport blog article across LinkedIn, X, Xing, daily.dev, and Teams."
+      "name": "andrelademann-blog-promote",
+      "path": "skills/blog/andrelademann-blog-promote/SKILL.md",
+      "description": "Promote a published blog article across LinkedIn, X, Xing, daily.dev, and Teams."
     }
   ]
 }

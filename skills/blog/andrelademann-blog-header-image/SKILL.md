@@ -2,6 +2,7 @@
 name: andrelademann-blog-header-image
 description: Generate and integrate a photorealistic header image for a post on André Lademann's blog at blog.andrelademann.de. Use when creating or replacing a blog post hero or social image in this repository.
 version: 2.2.0 # x-release-please-version
+scope: blog
 ---
 
 # André Lademann Blog Header Image

@@ -67,7 +67,7 @@ function getIconName(skillName) {
     default: 'sparkles',
     'andrelademann-blog-header-image': 'photo',
     'andrelademann-blog-post-writer': 'article',
-    'thinkport-blog-promote': 'speakerphone'
+    'andrelademann-blog-promote': 'speakerphone'
   };
 
   return iconMap[skillName] ?? 'sparkles';

@@ -28,11 +28,11 @@
         },
         {
           "type": "generic",
-          "path": "skills/thinkport/thinkport-blog-promote/SKILL.md"
+          "path": "skills/blog/andrelademann-blog-promote/SKILL.md"
         },
         {
           "type": "json",
-          "path": "skills/thinkport/thinkport-blog-promote/metadata.json",
+          "path": "skills/blog/andrelademann-blog-promote/metadata.json",
           "jsonpath": "$.version"
         }
       ],

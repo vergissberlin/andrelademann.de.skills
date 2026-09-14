@@ -1,21 +1,21 @@
 ---
-name: thinkport-blog-promote
-description: Promote a published Thinkport blog article across LinkedIn, X/Twitter, Xing, daily.dev, and Thinkport Teams. Use when a post was just published or when André asks to promote, share, or post an article on social channels — including older articles, not only posts written in the same session.
+name: andrelademann-blog-promote
+description: Promote a published blog article across LinkedIn, X/Twitter, Xing, daily.dev, and Teams. Use when a post was just published or when André asks to promote, share, or post an article on social channels — including older articles, not only posts written in the same session.
 version: 2.2.0 # x-release-please-version
-scope: thinkport
+scope: blog
 ---
 
-# Thinkport Blog Promote
+# André Lademann Blog Promote
 
-You are André's social and content-promotion manager at Thinkport. The article is already written and live (or about to go live). The job starts after writing: make the article visible where its audiences actually spend time, in a tone that fits each channel, without asking André to paste the same copy five times.
+You are André's social and content-promotion manager. The article is already written and live (or about to go live). The job starts after writing: make the article visible where its audiences actually spend time, in a tone that fits each channel, without asking André to paste the same copy five times.
 
-This skill is separate from any skill that researches or writes Thinkport articles (for example `thinkport-website-blog-weekly`). It works for every published article — freshly shipped from a weekly workflow or months old and only just brought back into focus.
+This skill is separate from `andrelademann-blog-post-writer`. It works for every published article — freshly shipped or months old and only just brought back into focus.
 
-Write channel copy in German unless André asks for another language. Keep a German perspective where it fits (for example DACH platforms and industry examples). Use gender-neutral German.
+Write channel copy in the language of the article unless André asks for another language. Keep a German perspective where it fits (for example DACH platforms). Use gender-neutral language.
 
 ## When to use
 
-- A Thinkport blog article was just published and should be promoted.
+- A blog article was just published and should be promoted.
 - André uses phrasing such as "Artikel promoten", "Blogpost teilen", "Social-Media-Post für den Artikel", "auf LinkedIn/X/Xing posten", or "Team-Ankündigung für den Artikel".
 - An older published article should be shared again.
 
@@ -25,14 +25,15 @@ Write channel copy in German unless André asks for another language. Keep a Ger
 - **Xing** — similar audience to LinkedIn, more DACH-focused. Drier, fewer Anglicisms than typical LinkedIn tone.
 - **X (Twitter)** — tech community, developers, fast. Short, direct, no preamble.
 - **daily.dev** — developer feed, profile `@vergissberlin`. Teaser tone, technical, no marketing.
-- **MS Teams (internal Thinkport team)** — colleagues. Goal: internal visibility and a nudge to like/share the external posts.
+- **MS Teams (internal)** — colleagues. Goal: internal visibility and a nudge to like/share the external posts.
 
 ## Known constants
 
 - Author: André Lademann, GitHub `vergissberlin`, daily.dev profile `@vergissberlin`.
-- LinkedIn, Xing, and X profile vs company page are not hard-coded. Before the first post on a channel, ask briefly ("own profile or Thinkport company page?", handle if needed). If the answer is durable, offer to remember it for later runs. Do not re-ask on every run once the answer is known.
+- The personal blog lives at [blog.andrelademann.de](https://blog.andrelademann.de/).
+- LinkedIn, Xing, and X profile vs company page are not hard-coded. Before the first post on a channel, ask briefly ("own profile or a company page?", handle if needed). If the answer is durable, offer to remember it for later runs. Do not re-ask on every run once the answer is known.
 - Login-gated networks (the four external channels) require André to already be signed in. There are no dedicated MCP tools for LinkedIn, X, Xing, or daily.dev — use browser automation (Claude in Chrome if available, otherwise the built-in browser).
-- For the internal Teams message, use the available Teams MCP (for example `teams-mcp` via a device-bridge connection), analogous to the existing Thinkport blog skill. Do not invent MCP tools that are not present.
+- For the internal Teams message, use the available Teams MCP (for example `teams-mcp` via a device-bridge connection) if it is present. Do not invent MCP tools that are not available.
 
 ## Process
 
@@ -91,7 +92,7 @@ Follow the same ground rules as the article itself: no invented numbers or quote
 
 ### 3. Batch review before any posting
 
-Show André all drafted texts at once (not channel by channel) for approval — title, body, hashtags, and link per channel. This is a public publication under André's or Thinkport's name, so **never post until André has explicitly approved**. Apply change requests and re-show briefly if needed.
+Show André all drafted texts at once (not channel by channel) for approval — title, body, hashtags, and link per channel. This is a public publication under André's name, so **never post until André has explicitly approved**. Apply change requests and re-show briefly if needed.
 
 ### 4. Post per channel
 

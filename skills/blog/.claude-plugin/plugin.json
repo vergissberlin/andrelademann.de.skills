@@ -3,7 +3,7 @@
   "name": "andrelademann-blog-skills",
   "displayName": "André Lademann Blog Skills",
   "version": "1.0.0",
-  "description": "Blog-writing and editorial-image skills for André Lademann's engineering blog.",
+  "description": "Blog-writing, editorial-image, and promotion skills for André Lademann's engineering blog.",
   "author": {
     "name": "André Lademann",
     "url": "https://github.com/vergissberlin"
@@ -18,6 +18,7 @@
     "astro",
     "images",
     "skills",
-    "agents"
+    "agents",
+    "promotion"
   ]
 }
