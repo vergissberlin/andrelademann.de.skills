@@ -54,6 +54,6 @@ Alle Integrationsvorlagen sind unter [`integrations/`](integrations/) gesammelt.
 
 ## Skills
 
-Die Katalog-Skills stehen in [`index.json`](index.json). Die fachliche Quelle jedes Eintrags ist die verlinkte `SKILL.md`; zusätzliche Skill-Metadaten liegen jeweils in `metadata.json`.
+Die Skills stehen im Katalog [`index.json`](index.json). Die fachliche Quelle jedes Eintrags ist die verlinkte `SKILL.md`; zusätzliche Skill-Metadaten liegen jeweils in `metadata.json`.
 
 Weitere Entwicklungs-, Build- und Release-Informationen stehen in [`CONTRIBUTING.md`](CONTRIBUTING.md).

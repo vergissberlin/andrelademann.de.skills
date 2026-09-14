@@ -31,7 +31,31 @@
         "blog",
         "editorial"
       ],
+<<<<<<< HEAD
       "category": "productivity"
+    },
+    {
+      "name": "andrelademann-research-skills",
+      "displayName": "André Lademann Research Skills",
+      "source": "./skills/research",
+      "description": "Research skills for finding timely, source-backed editorial topics.",
+      "version": "1.0.0",
+      "author": {
+        "name": "André Lademann",
+        "url": "https://github.com/vergissberlin"
+      },
+      "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/research",
+      "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+      "license": "GPL-3.0",
+      "keywords": [
+        "research",
+        "google-trends",
+        "editorial",
+        "content-strategy",
+        "skills",
+        "agents"
+      ],
+      "category": "research"
     }
   ]
 }
