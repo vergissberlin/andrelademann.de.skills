@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.5.1](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.5.0...2.5.1) (2026-09-15)
+
+
+### Bug Fixes
+
+* **docs:** soften light mode catalog interface ([454c108](https://github.com/vergissberlin/andrelademann.de.skills/commit/454c108ba2a46fb3d24685808eb095c08382f6d6))
+
 ## [2.5.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.4.1...2.5.0) (2026-09-14)
 
 
