@@ -32,7 +32,7 @@ const catalogVersion: string | null = !showCatalogVersion
     : getCatalogVersion();
 
 const baseUrl = import.meta.env.BASE_URL;
-const portrait = `${baseUrl}brand/andre-lademann.webp`;
+const mug = `${baseUrl}brand/andre-lademann-favicon.png`;
 ---
 
 <footer class={footerClass}>
@@ -42,7 +42,7 @@ const portrait = `${baseUrl}brand/andre-lademann.webp`;
       class="inline-flex w-fit rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-kieks-aqua"
       aria-label="André Lademann Skills — home"
     >
-      <img src={portrait} alt="André Lademann" width="1024" height="1024" class="h-9 w-9 rounded-full border-2 border-kieks-aqua object-cover shadow-sm transition hover:border-kieks-fuchsia" loading="lazy" decoding="async" />
+      <img src={mug} alt="" width="192" height="192" class="h-10 w-10 object-contain transition-transform hover:-rotate-6" loading="lazy" decoding="async" />
     </a>
 
     <div class="text-left sm:text-right">
