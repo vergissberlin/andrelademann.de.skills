@@ -47,6 +47,12 @@ test('index explains how to add the Claude Code marketplace', async ({ page }) =
   await page.goto('/andrelademann.de.skills/');
 
   await expect(page.getByRole('heading', { name: 'Add the complete marketplace' })).toBeVisible();
+  const marketplace = page.locator('details').filter({ hasText: 'Add the complete marketplace' });
+  await expect(marketplace).not.toHaveAttribute('open', '');
+  await expect(page.locator('#marketplace-add-cmd')).toBeHidden();
+
+  await marketplace.locator('summary').click();
+  await expect(marketplace).toHaveAttribute('open', '');
   await expect(page.locator('#marketplace-add-cmd')).toHaveText('/plugin marketplace add vergissberlin/andrelademann.de.skills');
   await expect(page.locator('#marketplace-install-cmd')).toHaveText('/plugin install andrelademann-skills@vergissberlin');
 });
@@ -60,6 +66,7 @@ test('footer uses the André Lademann portrait and favicon uses the mug mark', a
   const portrait = page.locator('footer img[alt="André Lademann"]');
   await expect(portrait).toBeVisible();
   await expect(portrait).toHaveAttribute('src', /brand\/andre-lademann\.webp$/);
+  await expect(page.locator('footer').getByText('André Lademann Agents')).toBeVisible();
 });
 
 test('theme toggle applies dark class manually', async ({ page }) => {
