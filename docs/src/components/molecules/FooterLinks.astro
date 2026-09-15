@@ -39,10 +39,11 @@ const portrait = `${baseUrl}brand/andre-lademann.webp`;
   <div class:list={[containerClass, 'flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between']}>
     <a
       href={baseUrl}
-      class="inline-flex w-fit rounded-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-kieks-aqua"
-      aria-label="André Lademann Skills — home"
+      class="group inline-flex w-fit items-center gap-3 rounded-full pr-3 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-kieks-aqua"
+      aria-label="André Lademann Agents — home"
     >
-      <img src={portrait} alt="André Lademann" width="1024" height="1024" class="h-9 w-9 rounded-full border-2 border-kieks-aqua object-cover shadow-sm transition hover:border-kieks-fuchsia" loading="lazy" decoding="async" />
+      <img src={portrait} alt="André Lademann" width="1024" height="1024" class="h-9 w-9 rounded-full border-2 border-kieks-aqua object-cover shadow-sm transition group-hover:border-kieks-fuchsia" loading="lazy" decoding="async" />
+      <span class="font-heading text-sm font-semibold text-kieks-navy dark:text-slate-200">André Lademann Agents</span>
     </a>
 
     <div class="text-left sm:text-right">
