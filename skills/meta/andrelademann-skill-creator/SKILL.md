@@ -47,7 +47,7 @@ node skills/meta/andrelademann-skill-creator/scripts/create-skill.mjs \
   --test-prompt "<realistic edge-case request>"
 ```
 
-The generator refuses accidental overwrites and creates the nested skill directory, `SKILL.md`, `metadata.json`, a README from [templates/skill-readme.md](../../../templates/skill-readme.md), Anthropic-compatible `evals/evals.json`, and the repository harness files under `tests/scenarios/<skill-name>/`. It also synchronizes `index.json` and `docs/index.json`, registers version-bearing files for Release Please, updates the copy-ready integration lists, and generates the skill OG preview when the docs dependencies are available.
+The generator refuses accidental overwrites and creates the nested skill directory, `SKILL.md`, `metadata.json`, a README from [templates/skill-readme.md](../../../templates/skill-readme.md), Anthropic-compatible `evals/evals.json`, and the repository harness files under `tests/scenarios/<skill-name>/`. It also synchronizes `index.json` and `docs/index.json`, registers version-bearing files for Release Please, updates the copy-ready integration lists, refreshes `docs/src/data/harness-results.json`, and generates the skill OG preview when the docs/test dependencies are available.
 
 If the user explicitly authorizes replacing an existing skill, pass `--force` and preserve unrelated files. Do not use `--force` as a convenience.
 

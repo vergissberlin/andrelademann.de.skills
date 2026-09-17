@@ -1,0 +1,100 @@
+{
+  "total_skills": 5,
+  "passed_skills": 5,
+  "failed_skills": 0,
+  "total_scenarios": 2,
+  "passed_scenarios": 2,
+  "failed_scenarios": 0,
+  "avg_score": 20,
+  "duration_ms": 8,
+  "mode": "mock",
+  "skills": [
+    {
+      "skill_name": "andrelademann-blog-header-image",
+      "total_scenarios": 0,
+      "passed": 0,
+      "failed": 0,
+      "pass_rate": 0,
+      "avg_score": 0,
+      "duration_ms": 0,
+      "evaluation_source": "catalog_only",
+      "status": "catalog_only",
+      "results": []
+    },
+    {
+      "skill_name": "andrelademann-blog-post-writer",
+      "total_scenarios": 0,
+      "passed": 0,
+      "failed": 0,
+      "pass_rate": 0,
+      "avg_score": 0,
+      "duration_ms": 0,
+      "evaluation_source": "catalog_only",
+      "status": "catalog_only",
+      "results": []
+    },
+    {
+      "skill_name": "andrelademann-blog-promote",
+      "total_scenarios": 0,
+      "passed": 0,
+      "failed": 0,
+      "pass_rate": 0,
+      "avg_score": 0,
+      "duration_ms": 0,
+      "evaluation_source": "catalog_only",
+      "status": "catalog_only",
+      "results": []
+    },
+    {
+      "skill_name": "andrelademann-skill-creator",
+      "total_scenarios": 2,
+      "passed": 2,
+      "failed": 0,
+      "pass_rate": 1,
+      "avg_score": 100,
+      "duration_ms": 8,
+      "evaluation_source": "harness",
+      "status": "passed",
+      "results": [
+        {
+          "skill_name": "andrelademann-skill-creator",
+          "scenario": "primary-workflow",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Repository integration"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        },
+        {
+          "skill_name": "andrelademann-skill-creator",
+          "scenario": "boundary-case",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Repository integration"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        }
+      ]
+    },
+    {
+      "skill_name": "google-trends-topic-scout",
+      "total_scenarios": 0,
+      "passed": 0,
+      "failed": 0,
+      "pass_rate": 0,
+      "avg_score": 0,
+      "duration_ms": 0,
+      "evaluation_source": "catalog_only",
+      "status": "catalog_only",
+      "results": []
+    }
+  ]
+}

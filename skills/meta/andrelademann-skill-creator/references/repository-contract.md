@@ -18,6 +18,7 @@ docs/index.json
 tests/scenarios/<skill-name>/scenarios.yaml
 tests/scenarios/<skill-name>/acceptance-criteria.md
 docs/public/og/skills/<skill-name>.png
+docs/src/data/harness-results.json
 ```
 
 `index.json` and `docs/index.json` must be byte-identical. The catalog entry's `name`, directory name, frontmatter `name`, and `SKILL.md` path must agree. `metadata.json` needs `title`, `author`, `description`, `purpose`, `tags`, `source`, and `version`; its version and the frontmatter version must match `index.json`.
@@ -32,4 +33,4 @@ cd tests && pnpm check:metadata && pnpm typecheck && pnpm test:run
 cd ../docs && pnpm check && pnpm build
 ```
 
-The docs build consumes the copied `docs/skills` tree and harness snapshot produced by CI. A local detail page can therefore show test status only after that preparation step has run.
+The docs build consumes the copied `docs/skills` tree and the checked-in mock baseline at `docs/src/data/harness-results.json`; CI refreshes that snapshot before deployment. Keep it synchronized with the catalog so a local detail page never falls back to a missing snapshot.

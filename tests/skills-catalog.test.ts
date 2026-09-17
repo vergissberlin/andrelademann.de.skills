@@ -19,6 +19,7 @@ const REPO_ROOT = resolve(import.meta.dirname, "..");
 const CATALOG_PATH = join(REPO_ROOT, "index.json");
 const PLUGIN_PATH = join(REPO_ROOT, ".claude-plugin", "plugin.json");
 const MARKETPLACE_PATH = join(REPO_ROOT, ".claude-plugin", "marketplace.json");
+const HARNESS_SNAPSHOT_PATH = join(REPO_ROOT, "docs", "src", "data", "harness-results.json");
 
 function loadCatalog(): SkillCatalog {
   const raw = readFileSync(CATALOG_PATH, "utf-8");
@@ -86,5 +87,18 @@ describe("Skills catalog validation", () => {
       expect(expectedDirName).toBe(skill.name);
       expect(skill.path.endsWith(`/${skill.name}/SKILL.md`)).toBe(true);
     }
+  });
+
+  it("should keep the docs harness snapshot synchronized with the catalog", () => {
+    expect(existsSync(HARNESS_SNAPSHOT_PATH)).toBe(true);
+    const snapshot = JSON.parse(readFileSync(HARNESS_SNAPSHOT_PATH, "utf-8")) as {
+      mode: string;
+      skills: Array<{ skill_name: string }>;
+    };
+    const catalog = loadCatalog();
+    expect(snapshot.mode).toBe("mock");
+    expect(snapshot.skills.map((skill) => skill.skill_name).sort()).toEqual(
+      catalog.skills.map((skill) => skill.name).sort(),
+    );
   });
 });

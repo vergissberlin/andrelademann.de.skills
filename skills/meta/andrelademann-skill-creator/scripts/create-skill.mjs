@@ -176,6 +176,22 @@ async function generateOg(repoRoot) {
   }
 }
 
+async function generateHarnessSnapshot(repoRoot) {
+  const testsRoot = path.join(repoRoot, 'tests');
+  const outputPath = path.join(repoRoot, 'docs', 'src', 'data', 'harness-results.json');
+  await fs.mkdir(path.dirname(outputPath), { recursive: true });
+  try {
+    await execFileAsync(process.env.PNPM ?? 'pnpm', [
+      'harness', '--all', '--mock', '--output', 'json',
+      '--output-file', '../docs/src/data/harness-results.json',
+    ], { cwd: testsRoot });
+    return 'generated';
+  } catch (error) {
+    const message = error instanceof Error ? error.message.split('\n')[0] : String(error);
+    return `skipped (${message})`;
+  }
+}
+
 export async function createSkill(rawOptions) {
   const repoRoot = path.resolve(rawOptions.repoRoot ?? process.cwd());
   const input = { ...rawOptions };
@@ -229,8 +245,9 @@ export async function createSkill(rawOptions) {
     'integrations/copilot/copilot-instructions.md',
     'integrations/cursor/skills.mdc',
   ]) await updateIntegrationFile(path.join(repoRoot, relativePath), input);
+  const harnessStatus = await generateHarnessSnapshot(repoRoot);
   const ogStatus = await generateOg(repoRoot);
-  return { ...input, skillDir, scenarioDir, ogStatus };
+  return { ...input, skillDir, scenarioDir, harnessStatus, ogStatus };
 }
 
 async function main() {
@@ -241,6 +258,7 @@ async function main() {
   const result = await createSkill(options);
   console.log(`Created ${result.name} at ${path.relative(result.repoRoot ?? process.cwd(), result.skillDir)}`);
   console.log(`Harness fixtures: ${path.relative(result.repoRoot ?? process.cwd(), result.scenarioDir)}`);
+  console.log(`Harness snapshot: ${result.harnessStatus}`);
   console.log(`OG asset: ${result.ogStatus}`);
 }
 

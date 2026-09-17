@@ -50,6 +50,7 @@ This document defines the guardrails for agent work in this repository.
 - OG design should follow the principles from `svg-logo-designer`: clear hierarchy, high contrast, readable skill name, and a consistent André Lademann look.
 - Keep the copy-ready integration templates under `integrations/` and `.github/copilot-instructions.md` aligned with `index.json`, the referenced `SKILL.md` files, and `.claude-plugin/marketplace.json` when skills change.
 - Use `skills/meta/andrelademann-skill-creator/scripts/create-skill.mjs` for new repository skills so catalog, README, eval prompts, harness fixtures, release metadata, integrations, and OG assets stay synchronized; it must refuse overwrites unless `--force` is explicitly authorized.
+- Keep `docs/src/data/harness-results.json` as the checked-in mock baseline for local/static docs builds; the Pages workflow refreshes it before deployment.
 
 ## Docs-Site UI Architecture
 
