@@ -56,4 +56,6 @@ Alle Integrationsvorlagen sind unter [`integrations/`](integrations/) gesammelt.
 
 Die Skills stehen im Katalog [`index.json`](index.json). Die fachliche Quelle jedes Eintrags ist die verlinkte `SKILL.md`; zusätzliche Skill-Metadaten liegen jeweils in `metadata.json`.
 
+Neue Skills können mit [`andrelademann-skill-creator`](skills/meta/andrelademann-skill-creator/SKILL.md) erstellt werden. Der Generator legt Skill, README, Evals und Harness-Fixtures an und synchronisiert die Repository-Registrierung.
+
 Weitere Entwicklungs-, Build- und Release-Informationen stehen in [`CONTRIBUTING.md`](CONTRIBUTING.md).

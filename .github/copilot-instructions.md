@@ -15,5 +15,6 @@ Available catalog skills:
 - `andrelademann-blog-header-image` → `skills/blog/andrelademann-blog-header-image/SKILL.md`
 - `andrelademann-blog-post-writer` → `skills/blog/andrelademann-blog-post-writer/SKILL.md`
 - `andrelademann-blog-promote` → `skills/blog/andrelademann-blog-promote/SKILL.md`
+- `andrelademann-skill-creator` → `skills/meta/andrelademann-skill-creator/SKILL.md`
 
 When adding or changing a skill, keep `index.json`, `docs/index.json`, metadata, `.claude-plugin/marketplace.json`, and the integration examples consistent.

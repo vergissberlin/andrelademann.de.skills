@@ -21,6 +21,11 @@
       "name": "google-trends-topic-scout",
       "path": "skills/research/google-trends-topic-scout/SKILL.md",
       "description": "Find current Google Trends topics that fit André Lademann's editorial themes."
+    },
+    {
+      "name": "andrelademann-skill-creator",
+      "path": "skills/meta/andrelademann-skill-creator/SKILL.md",
+      "description": "Create, refine, test, document, and register skills in this repository."
     }
   ]
 }

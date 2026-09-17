@@ -58,6 +58,12 @@
           "type": "json",
           "path": "skills/research/google-trends-topic-scout/metadata.json",
           "jsonpath": "$.version"
+        },
+        "skills/meta/andrelademann-skill-creator/SKILL.md",
+        {
+          "type": "json",
+          "path": "skills/meta/andrelademann-skill-creator/metadata.json",
+          "jsonpath": "$.version"
         }
       ],
       "changelog-sections": [

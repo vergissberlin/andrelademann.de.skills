@@ -18,6 +18,7 @@ Danke fürs Mitmachen. Dieses Dokument beschreibt Entwicklung, Build, neue Skill
 ├── skills/                  # Skill-Definitionen (SKILL.md)
 ├── index.json               # Skill-Katalog-Metadaten
 ├── .github/workflows/pages.yml
+├── templates/skill-readme.md  # README-Vorlage für generierte Skills
 └── templates/basic-skill/
 ```
 
@@ -47,9 +48,13 @@ pnpm build
 1. Ordner unter einer Domäne anlegen, z. B. `skills/blog/<skill-name>/`
 2. `SKILL.md` mit Frontmatter und kurzem Titel ohne `André Lademann`-Präfix erstellen
 3. `metadata.json` mit `title`, `author`, `description`, `purpose`, `tags`, `source` und `version` ergänzen
-4. Skill in `index.json` ergänzen
-5. Open-Graph-Asset anlegen: `docs/public/og/skills/<skill-name>.png` (1200×630)
-6. Sicherstellen, dass `docs/public/og/default.png` vorhanden ist (Fallback für Nicht-Skill-Seiten)
+4. `README.md` aus [`templates/skill-readme.md`](templates/skill-readme.md) ableiten
+5. Harness-Fixtures unter `tests/scenarios/<skill-name>/` mit `scenarios.yaml` und `acceptance-criteria.md` ergänzen
+6. Skill in `index.json` ergänzen
+7. Open-Graph-Asset anlegen: `docs/public/og/skills/<skill-name>.png` (1200×630)
+8. Sicherstellen, dass `docs/public/og/default.png` vorhanden ist (Fallback für Nicht-Skill-Seiten)
+
+Für den vollständigen Ablauf bevorzugt [`create-skill.mjs`](skills/meta/andrelademann-skill-creator/scripts/create-skill.mjs) verwenden. Es erstellt aus Name, Domain, Beschreibung und Testprompts das Skill-Paket, README, Anthropic-kompatible Evals sowie `tests/scenarios/<skill-name>/`; anschließend synchronisiert es Katalog, Release-Please-Dateien, Integrationslisten und den OG-Preview.
 
 ## Integrationen pflegen
 

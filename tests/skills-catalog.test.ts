@@ -52,8 +52,9 @@ describe("Skills catalog validation", () => {
     expect(marketplace.$schema).toBe(
       "https://json.schemastore.org/claude-code-marketplace.json"
     );
-    expect(marketplace.plugins).toHaveLength(1);
-    expect(marketplace.plugins[0]).toMatchObject({
+    const rootMarketplacePlugin = marketplace.plugins.find((entry) => entry.name === plugin.name);
+    expect(rootMarketplacePlugin).toBeDefined();
+    expect(rootMarketplacePlugin).toMatchObject({
       name: plugin.name,
       source: "./",
       version: catalog.version,
