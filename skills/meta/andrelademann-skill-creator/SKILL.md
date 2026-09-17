@@ -3,7 +3,7 @@ name: andrelademann-skill-creator
 description: "Create and improve repository skills with tests, READMEs, and catalog registration. Use when authoring or extending a skill. Don't use for bulk evaluation, prose-only edits, or unrelated application code."
 license: MIT
 metadata:
-  version: 2.6.1 # x-release-please-version
+  version: 2.7.0 # x-release-please-version
   author: "André Lademann"
   scope: meta
 ---
