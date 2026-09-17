@@ -1,5 +1,20 @@
 # Changelog
 
+## [2.6.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.5.0...2.6.0) (2026-09-17)
+
+
+### Skills
+
+* **skills:** add Google Trends topic scout ([226e189](https://github.com/vergissberlin/andrelademann.de.skills/commit/226e18939cb899850178f81357724566f3e287c1))
+* **skills:** add repository skill creator ([1c344f8](https://github.com/vergissberlin/andrelademann.de.skills/commit/1c344f82c5d3361533f1e987e9cc4503536387b0))
+
+
+### Bug Fixes
+
+* **brand:** remove favicon background ([f20f87f](https://github.com/vergissberlin/andrelademann.de.skills/commit/f20f87f90a875caf83d87ae085d776e5210eb2ce))
+* **brand:** update favicon asset ([3a08485](https://github.com/vergissberlin/andrelademann.de.skills/commit/3a08485bc6e7af0077b85ee6b54d6efc1a1f1b97))
+* **docs:** soften light mode catalog interface ([454c108](https://github.com/vergissberlin/andrelademann.de.skills/commit/454c108ba2a46fb3d24685808eb095c08382f6d6))
+
 ## [2.5.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.4.1...2.5.0) (2026-09-14)
 
 
