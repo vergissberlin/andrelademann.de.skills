@@ -3,7 +3,7 @@ name: andrelademann-blog-post-writer
 description: "Create complete blog posts with generated header images. Use when the topic and audience are clear or need guided choices. Don't use for image-only work, social promotion, or trend research."
 license: MIT
 metadata:
-  version: 2.6.1 # x-release-please-version
+  version: 2.7.0 # x-release-please-version
   author: "André Lademann"
   scope: blog
 ---
