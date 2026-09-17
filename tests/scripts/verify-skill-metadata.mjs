@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { parse as parseYaml } from "yaml";
 
 const repoRoot = path.resolve(import.meta.dirname, "..", "..");
 const indexPath = path.join(repoRoot, "index.json");
@@ -27,8 +28,12 @@ function isNonEmptyStringArray(value) {
 function extractFrontmatterVersion(markdown) {
   const frontmatterMatch = markdown.match(/^---\n([\s\S]*?)\n---/);
   if (!frontmatterMatch) return null;
-  const versionMatch = frontmatterMatch[1]?.match(/^version:\s*(.+)$/m);
-  return versionMatch?.[1]?.split("#", 1)[0]?.trim() ?? null;
+  try {
+    const frontmatter = parseYaml(frontmatterMatch[1]);
+    return frontmatter?.metadata?.version ?? frontmatter?.version ?? null;
+  } catch {
+    return null;
+  }
 }
 
 const indexRaw = await fs.readFile(indexPath, "utf8");

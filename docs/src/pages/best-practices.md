@@ -25,7 +25,7 @@ subtitle: Guidelines for discoverable, safe, and maintainable Agent Skills.
 
 ## Versioning
 
-- Use semantic versioning in skill frontmatter (for example `version: 1.0.0`).
+- Use semantic versioning in skill frontmatter metadata (for example `metadata.version: 1.0.0`).
 - Mark breaking changes explicitly.
 - Optionally use Git tags for skill releases.
 

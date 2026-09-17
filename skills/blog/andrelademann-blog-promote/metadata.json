@@ -10,5 +10,6 @@
     "social"
   ],
   "source": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/blog/andrelademann-blog-promote",
-  "version": "2.6.0"
+  "scope": "blog",
+  "version": "2.6.1"
 }

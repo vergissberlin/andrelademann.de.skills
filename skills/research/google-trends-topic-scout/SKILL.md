@@ -1,7 +1,11 @@
 ---
 name: google-trends-topic-scout
-description: Find and rank currently rising Google Trends topics that match André Lademann's content themes, with source-backed angles and explicit spike-versus-sustained confidence. Use when looking for timely blog topics or editorial opportunities; do not use it to draft the article itself.
-version: 2.6.0
+description: "Find and rank source-backed Google Trends topics for André's editorial themes. Use when researching timely blog angles. Don't use for writing articles, generic keyword research, or social promotion."
+license: MIT
+metadata:
+  version: 2.6.1
+  author: "André Lademann"
+  scope: research
 ---
 
 # Google Trends Topic Scout
@@ -9,6 +13,22 @@ version: 2.6.0
 Find timely topics that are genuinely useful for André's readers, not merely popular. Return a short, ranked editorial shortlist and stop there unless the user separately asks for an article or content package.
 
 This skill is part of the André Lademann Skills catalog. Invoke it as `andrelademann-google-trends-topic-scout`.
+
+## When to Use
+
+Use this skill when the user needs timely, source-backed editorial topics; do not use it for article drafting or generic keyword research.
+
+## Instructions
+
+Follow the research contract, ranking rules, acceptance criteria, and edge-case handling below in order.
+
+## Prerequisites and safety
+
+- Require a selected geography, time window, retrieval date, and browser access before collecting signals; use the default profile only when the user gives no overrides.
+- Check the live Google Trends result and corroborate promising candidates with an authoritative source before ranking them.
+- Never invent trend scores, absolute search volume, sources, or confidence. If Trends or corroboration fails, report the error, label the fallback, and exclude unsupported claims.
+- Validate that the result remains a shortlist; do not turn research into an article without a separate request.
+- Use a dry-run research pass and confirm the shortlist before any downstream writing task; this scout creates no article files.
 
 ## Default profile
 
@@ -45,3 +65,22 @@ Keep the angle concrete: describe the reader problem, decision, implementation l
 Include links close to the claims they support. Separate observed facts from editorial inference, and mention meaningful uncertainty or freshness risk. If fewer than five candidates are genuinely relevant, return fewer and explain the quality threshold briefly.
 
 Do not write a full post, create files, publish anything, or schedule follow-up work unless the user explicitly asks for that next step.
+
+## Acceptance Criteria
+
+- Expected output is a ranked shortlist with the exact query, geography, time window, retrieval date, signal label, corroborating source, editorial angle, and confidence.
+- Verify every candidate has a primary trend observation and an authoritative source; mark inference separately from observed facts.
+- Example result:
+
+```yaml
+query: "example term"
+geography: DE
+signal: developing
+source_verified: true
+article_written: false
+```
+
+## Edge Cases
+
+- Treat a short-window spike without a supporting long-window signal as a short-lived hook, not a durable topic.
+- If Google Trends is unavailable, report the limitation and label any fallback as fallback research; never invent a trend score.

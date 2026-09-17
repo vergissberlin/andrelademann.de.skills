@@ -1,8 +1,11 @@
 ---
 name: andrelademann-blog-header-image
-description: Generate and integrate a photorealistic header image for a post on André Lademann's blog at blog.andrelademann.de. Use when creating or replacing a blog post hero or social image in this repository.
-version: 2.6.0 # x-release-please-version
-scope: blog
+description: "Generate and integrate photorealistic blog header images. Use when creating or replacing a post hero or social image. Don't use for article writing, social promotion, or generic image generation."
+license: MIT
+metadata:
+  version: 2.6.1 # x-release-please-version
+  author: "André Lademann"
+  scope: blog
 ---
 
 # Blog Header Image
@@ -10,6 +13,21 @@ scope: blog
 This skill belongs to the [André Lademann Skills](https://github.com/vergissberlin/andrelademann.de.skills) catalog. Invoke it as `andrelademann-blog-header-image`.
 
 Generate the actual header image for a blog post, not merely a prompt. This skill creates the single visual used as both the post's `heroImage` and `ogImage` on [blog.andrelademann.de](https://blog.andrelademann.de/).
+
+## When to Use
+
+Use this skill when a blog post needs a new or replacement hero image and the image-generation task is in scope.
+
+## Instructions
+
+Follow the visual brief, reference-image, generation, integration, safety, and acceptance-criteria sections in order.
+
+## Prerequisites and safety
+
+- Require the complete post, its frontmatter, and the image-generation capability before starting.
+- Check the destination path and existing `hero.png` before writing. Never overwrite an existing asset without explicit replacement authority.
+- Use a dry-run path check or a backup before any authorized replacement.
+- If a reference, generation, path, or content check fails, stop, report the error, and preserve the current asset. Do not claim completion until validation passes.
 
 ## Establish the visual brief
 
@@ -45,5 +63,11 @@ ogImage: "/images/posts/{year}/{slug}/hero.png"
 ```
 
 4. Verify that the file exists, the frontmatter path resolves under `public/`, and the article still passes the repository's content checks.
+
+## Acceptance criteria
+
+- Expected output includes one existing image path used identically for both `heroImage` and `ogImage`.
+- Verify the asset exists, the frontmatter resolves to it, and the content checks pass before reporting success.
+- Handle edge cases such as an existing image, missing references, generation failure, or an invalid destination by preserving the current asset and reporting the error.
 
 Report the final asset path, the prompt used, and that direct image generation was used.

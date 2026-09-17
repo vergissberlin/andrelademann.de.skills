@@ -12,5 +12,6 @@
     "trend-analysis"
   ],
   "source": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/research/google-trends-topic-scout",
-  "version": "2.6.0"
+  "scope": "research",
+  "version": "2.6.1"
 }

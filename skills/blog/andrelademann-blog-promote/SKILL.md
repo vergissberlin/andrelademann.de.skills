@@ -1,8 +1,11 @@
 ---
 name: andrelademann-blog-promote
-description: Promote a published blog article across LinkedIn, X/Twitter, Xing, daily.dev, and Teams. Use when a post was just published or when André asks to promote, share, or post an article on social channels — including older articles, not only posts written in the same session.
-version: 2.6.0 # x-release-please-version
-scope: blog
+description: "Publish approved promotions for blog articles across social channels. Use when an article needs tailored drafts and verified publication. Don't use for writing articles, generating images, or trend research."
+license: MIT
+metadata:
+  version: 2.6.1 # x-release-please-version
+  author: "André Lademann"
+  scope: blog
 ---
 
 # Blog Promote
@@ -125,3 +128,9 @@ Summarise where posts went live (with links) and what was skipped and why (for e
 - Do not attempt to log in for the user or ask for credentials — if login is missing, ask or skip
 - If profile vs company page is unclear, ask instead of guessing
 - At most one region/topic focus per post when the article covers several
+
+## Acceptance criteria
+
+- Expected output includes the article facts, one tailored draft per requested channel, approval state, and verified publication URLs.
+- Verify the final status separately as drafted, approved, saved, scheduled, sent, or skipped; never collapse these states into a single success claim.
+- Handle edge cases such as missing login, missing profile choice, rate limits, expired sessions, failed controls, or absent approval by stopping that channel and reporting the error.

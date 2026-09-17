@@ -7,3 +7,6 @@ docs/.astro/
 
 .env
 .env.*
+.asm-improver/
+*.SKILL.md.bak
+SKILL.md.bak

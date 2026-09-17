@@ -1,8 +1,11 @@
 ---
 name: andrelademann-skill-creator
-description: Create, refine, test, document, and register skills in the André Lademann Skills repository. Use whenever a user asks to create a skill, turn a workflow into a reusable skill, improve an existing SKILL.md, add skill tests, create a skill README, or extend this catalog with a new skill.
-version: 2.6.0 # x-release-please-version
-scope: meta
+description: "Create and improve repository skills with tests, READMEs, and catalog registration. Use when authoring or extending a skill. Don't use for bulk evaluation, prose-only edits, or unrelated application code."
+license: MIT
+metadata:
+  version: 2.6.1 # x-release-please-version
+  author: "André Lademann"
+  scope: meta
 ---
 
 # Skill Creator
@@ -10,6 +13,16 @@ scope: meta
 This skill belongs to the [André Lademann Skills](https://github.com/vergissberlin/andrelademann.de.skills) catalog. Invoke it as `andrelademann-skill-creator`.
 
 Create repository-native skills using the Anthropic Skill Creator method as the design baseline, then apply this repository's catalog, documentation, and test contract. The result is a usable skill, not just a draft prompt.
+
+## Prerequisites and safety
+
+- Require a clean working tree, a synchronized branch, the target domain, the final kebab-case name, and the user's explicit scope before editing.
+- Run a dry-run or inspect the exact target paths first. Never use `--force`, overwrite an existing skill, or remove files without explicit replacement authority.
+- If validation, generation, catalog synchronization, or an external dependency fails, stop, report the error, preserve existing files, and do not claim completion.
+
+## Repo sync before edits
+
+Run `git fetch origin` and `git pull --rebase origin <branch>` before any repository mutation. If the tree is dirty, stash only the unrelated changes and restore them after the sync; if conflicts occur, stop and ask the user.
 
 ## Start with intent
 
@@ -72,3 +85,9 @@ The docs skill detail page reads the harness snapshot and shows pass/fail status
 Check that the new catalog entry points to the real nested `SKILL.md`, both catalog files are byte-identical, metadata and skill versions match the catalog version, the README template placeholders are gone, the OG file exists, and the marketplace JSON remains valid. Run `git diff --check`, the metadata/unit/harness checks, and the docs check/build when dependencies permit.
 
 Finish with the created paths, test commands and results, any checks that could not run, and the Conventional Commit message used for the change.
+
+## Acceptance criteria
+
+- Expected output includes the skill path, metadata, README, Anthropic evals, harness fixtures, catalog updates, integration entries, and OG asset status.
+- Verify `index.json` and `docs/index.json` are byte-identical, metadata versions match, tests pass, and the generated paths exist before reporting success.
+- Handle edge cases such as an existing name, invalid slug, missing body, dirty tree, sync conflict, failed dependency, or failed test by stopping with a descriptive error.

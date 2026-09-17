@@ -55,7 +55,7 @@
       "failed": 0,
       "pass_rate": 1,
       "avg_score": 100,
-      "duration_ms": 3,
+      "duration_ms": 2,
       "evaluation_source": "harness",
       "status": "passed",
       "results": [
@@ -134,7 +134,7 @@
       "failed": 0,
       "pass_rate": 1,
       "avg_score": 100,
-      "duration_ms": 3,
+      "duration_ms": 2,
       "evaluation_source": "harness",
       "status": "passed",
       "results": [
@@ -173,7 +173,7 @@
       "failed": 0,
       "pass_rate": 1,
       "avg_score": 100,
-      "duration_ms": 1,
+      "duration_ms": 3,
       "evaluation_source": "harness",
       "status": "passed",
       "results": [

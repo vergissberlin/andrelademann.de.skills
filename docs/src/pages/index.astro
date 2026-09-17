@@ -12,6 +12,7 @@ type SkillMetadata = {
   author?: string;
   description?: string;
   source?: string;
+  scope?: string;
 };
 
 const indexPath = path.join(process.cwd(), 'index.json');
@@ -24,14 +25,15 @@ const withScope = await Promise.all(skills.map(async (skill) => {
   const skillPath = path.join(repoRoot, skill.path);
   const skillContent = await fs.readFile(skillPath, 'utf-8');
   const metadataPath = path.join(path.dirname(skillPath), 'metadata.json');
-  const fm = skillContent.match(/^---\n([\s\S]*?)\n---/);
-  const scope = fm?.[1].match(/^scope:\s*(.+)$/m)?.[1]?.trim() ?? 'general';
   let metadata: SkillMetadata = {};
   try {
     metadata = JSON.parse(await fs.readFile(metadataPath, 'utf-8')) as SkillMetadata;
   } catch {
     metadata = {};
   }
+  const fm = skillContent.match(/^---\n([\s\S]*?)\n---/);
+  const legacyScope = fm?.[1].match(/^scope:\s*(.+)$/m)?.[1]?.trim();
+  const scope = metadata.scope?.trim() || legacyScope || skill.path.split('/')[1] || 'general';
 
   return {
     ...skill,

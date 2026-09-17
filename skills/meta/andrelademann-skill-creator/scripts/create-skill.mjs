@@ -60,7 +60,7 @@ function yamlString(value) {
 
 function buildSkillMarkdown(input, body) {
   const instructions = body?.trim() || `## When to use\n\nUse this skill for ${input.description.toLowerCase()}\n\n## Workflow\n\n1. Inspect the user's context and confirm the scope.\n2. Apply the focused workflow for ${input.title}.\n3. Verify the result against the stated success criteria.\n\n## Output\n\nReport what changed, what was verified, and any remaining limitation.`;
-  return `---\nname: ${input.name}\ndescription: ${yamlString(input.description)}\nversion: ${input.version} # x-release-please-version\nscope: ${input.domain}\n---\n\n# ${input.title}\n\nThis skill belongs to the [André Lademann Skills](${REPOSITORY_URL}) catalog. Invoke it as \`${input.name}\`.\n\n${instructions.trim()}\n`;
+  return `---\nname: ${input.name}\ndescription: ${yamlString(input.description)}\nlicense: MIT\nmetadata:\n  version: ${input.version} # x-release-please-version\n  author: ${yamlString(AUTHOR)}\n  scope: ${input.domain}\n---\n\n# ${input.title}\n\nThis skill belongs to the [André Lademann Skills](${REPOSITORY_URL}) catalog. Invoke it as \`${input.name}\`.\n\n${instructions.trim()}\n`;
 }
 
 function buildMetadata(input) {

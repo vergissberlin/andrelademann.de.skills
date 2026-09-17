@@ -1,8 +1,11 @@
 ---
 name: your-skill-name
-description: Clearly describe when this skill should be triggered (trigger + problem).
-version: 1.0.0
-scope: domain-or-use-case
+description: "Clearly describe when this skill should be triggered. Don't use for unrelated domains or generic tasks."
+license: MIT
+metadata:
+  version: 1.0.0
+  author: "André Lademann"
+  scope: domain-or-use-case
 allowed-tools:
   - read-only-analysis
 safe-defaults:

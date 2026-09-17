@@ -1,8 +1,11 @@
 ---
 name: andrelademann-blog-post-writer
-description: Plan and create a complete post with a generated header image for André Lademann's blog at blog.andrelademann.de. Use for guided writing when editorial choices remain open, or for direct article creation when the topic and audience are already clear.
-version: 2.6.0 # x-release-please-version
-scope: blog
+description: "Create complete blog posts with generated header images. Use when the topic and audience are clear or need guided choices. Don't use for image-only work, social promotion, or trend research."
+license: MIT
+metadata:
+  version: 2.6.1 # x-release-please-version
+  author: "André Lademann"
+  scope: blog
 ---
 
 # Blog Post Writer
@@ -10,6 +13,12 @@ scope: blog
 This skill belongs to the [André Lademann Skills](https://github.com/vergissberlin/andrelademann.de.skills) catalog. Invoke it as `andrelademann-blog-post-writer`.
 
 Create a complete Markdown or MDX article and its finished visual package for André Lademann's personal blog, [blog.andrelademann.de](https://blog.andrelademann.de/). The blog covers cloud architecture, software development, AI and agent tooling, developer experience, careers, and personal engineering observations. It sounds like André sharing a considered opinion with fellow practitioners, never like corporate content marketing.
+
+## Prerequisites and safety
+
+- Require the repository guidance, target post context, confirmed audience, and the companion header-image skill before writing files.
+- Confirm the slug, publication state, and image destination before saving. Never overwrite an existing `hero.png` without explicit replacement authority.
+- If research, generation, frontmatter, or content validation fails, stop, report the error, preserve existing files, and do not claim completion.
 
 ## Start from the repository, not generic assumptions
 
@@ -103,3 +112,9 @@ Every new post receives a header image in the same task unless the user supplies
 ## Finish well
 
 Run the relevant content checks after saving. Report the post path, header-image path, audience mode, article type, approximate word count, applied tags, sources if used, and material assumptions. Do not call the post complete if its required generated header image is missing.
+
+## Acceptance criteria
+
+- Expected output includes the saved article path, valid frontmatter, one shared `heroImage`/`ogImage` path, and the generated header asset.
+- Verify content checks, image resolution, draft status, language, tags, and translation pairing when applicable before reporting success.
+- Handle edge cases such as missing audience choices, an existing image, unavailable research, invalid frontmatter, or a failed generation step by pausing and reporting the error.
