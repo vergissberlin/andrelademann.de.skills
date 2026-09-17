@@ -60,7 +60,7 @@ node skills/meta/andrelademann-skill-creator/scripts/create-skill.mjs \
   --test-prompt "<realistic edge-case request>"
 ```
 
-The generator refuses accidental overwrites and creates the nested skill directory, `SKILL.md`, `metadata.json`, a README from [templates/skill-readme.md](../../../templates/skill-readme.md), Anthropic-compatible `evals/evals.json`, and the repository harness files under `tests/scenarios/<skill-name>/`. It also synchronizes `index.json` and `docs/index.json`, registers version-bearing files for Release Please, updates the copy-ready integration lists, refreshes `docs/src/data/harness-results.json`, and generates the skill OG preview when the docs/test dependencies are available.
+The generator refuses accidental overwrites and creates the nested skill directory, `SKILL.md`, `metadata.json`, a README from [templates/skill-readme.md](../../../templates/skill-readme.md), Anthropic-compatible `evals/evals.json`, and the repository harness files under `tests/scenarios/<skill-name>/`. It also synchronizes `index.json` and `docs/index.json`, validates and normalizes the single root entry in `.claude-plugin/marketplace.json`, registers version-bearing files for Release Please, updates the copy-ready integration lists, refreshes `docs/src/data/harness-results.json`, and generates the skill OG preview when the docs/test dependencies are available. Individual skills must not get a second plugin manifest or marketplace entry.
 
 If the user explicitly authorizes replacing an existing skill, pass `--force` and preserve unrelated files. Do not use `--force` as a convenience.
 
@@ -82,12 +82,12 @@ The docs skill detail page reads the harness snapshot and shows pass/fail status
 
 ## Verify the complete change
 
-Check that the new catalog entry points to the real nested `SKILL.md`, both catalog files are byte-identical, metadata and skill versions match the catalog version, the README template placeholders are gone, the OG file exists, and the marketplace JSON remains valid. Run `git diff --check`, the metadata/unit/harness checks, and the docs check/build when dependencies permit.
+Check that the new catalog entry points to the real nested `SKILL.md`, both catalog files are byte-identical, metadata and skill versions match the catalog version, the README template placeholders are gone, the OG file exists, and the marketplace JSON contains exactly one root plugin entry pointing to `./`. Run `git diff --check`, the metadata/unit/harness checks, and the docs check/build when dependencies permit.
 
 Finish with the created paths, test commands and results, any checks that could not run, and the Conventional Commit message used for the change.
 
 ## Acceptance criteria
 
 - Expected output includes the skill path, metadata, README, Anthropic evals, harness fixtures, catalog updates, integration entries, and OG asset status.
-- Verify `index.json` and `docs/index.json` are byte-identical, metadata versions match, tests pass, and the generated paths exist before reporting success.
+- Verify `index.json` and `docs/index.json` are byte-identical, metadata versions match, the marketplace has one synchronized root entry, tests pass, and the generated paths exist before reporting success.
 - Handle edge cases such as an existing name, invalid slug, missing body, dirty tree, sync conflict, failed dependency, or failed test by stopping with a descriptive error.

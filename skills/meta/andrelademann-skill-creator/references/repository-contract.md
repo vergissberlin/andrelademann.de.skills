@@ -23,7 +23,7 @@ docs/src/data/harness-results.json
 
 `index.json` and `docs/index.json` must be byte-identical. The catalog entry's `name`, directory name, frontmatter `name`, and `SKILL.md` path must agree. `metadata.json` needs `title`, `author`, `description`, `purpose`, `tags`, `source`, and `version`; its version and the frontmatter version must match `index.json`.
 
-Keep `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and the integration templates valid and aligned with the root catalog. Register new version-bearing files in `release-please-config.json`. The root Claude marketplace points at `./`, so a catalog entry automatically makes the skill available through the root plugin; do not invent a duplicate plugin entry.
+Keep `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, and the integration templates valid and aligned with the root catalog. Register new version-bearing files in `release-please-config.json`. The root Claude marketplace points at `./`, so a catalog entry automatically makes the skill available through the root plugin; do not create a domain manifest or duplicate marketplace entry for an individual skill.
 
 Use these checks from the repository root:
 

@@ -61,6 +61,7 @@ describe("Skills catalog validation", () => {
       source: "./",
       version: catalog.version,
     });
+    expect(marketplace.plugins).toHaveLength(1);
     expect(plugin.version).toBe(catalog.version);
     expect(marketplace.metadata.version).toBe(catalog.version);
   });

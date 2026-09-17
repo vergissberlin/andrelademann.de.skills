@@ -14,11 +14,20 @@ async function createFixture() {
   await mkdir(join(root, "docs"), { recursive: true });
   await mkdir(join(root, "tests"), { recursive: true });
   await mkdir(join(root, "templates"), { recursive: true });
+  await mkdir(join(root, ".claude-plugin"), { recursive: true });
   await mkdir(join(root, ".github"), { recursive: true });
   await mkdir(join(root, "integrations/copilot"), { recursive: true });
   await mkdir(join(root, "integrations/cursor"), { recursive: true });
   await writeFile(join(root, "index.json"), JSON.stringify({ name: "test", version: "1.2.3", skills: [] }, null, 2) + "\n");
   await writeFile(join(root, "docs/index.json"), "{}\n");
+  await writeFile(join(root, ".claude-plugin/plugin.json"), JSON.stringify({ name: "test", version: "0.0.1" }, null, 2) + "\n");
+  await writeFile(join(root, ".claude-plugin/marketplace.json"), JSON.stringify({
+    metadata: { version: "0.0.1" },
+    plugins: [
+      { name: "test", source: "./", version: "0.0.1" },
+      { name: "test-research", source: "./skills/research", version: "1.0.0" },
+    ],
+  }, null, 2) + "\n");
   await writeFile(join(root, "templates/skill-readme.md"), "# {{TITLE}}\n\n{{DESCRIPTION}}\n\n{{PURPOSE}}\n\n{{SOURCE}}\n");
   await writeFile(join(root, "release-please-config.json"), JSON.stringify({ packages: { ".": { "extra-files": [] } } }, null, 2) + "\n");
   for (const file of [
@@ -53,6 +62,14 @@ describe("repository skill creator", () => {
       expect(await readFile(join(root, "tests/scenarios/example-skill/scenarios.yaml"), "utf8")).toContain("primary-workflow");
       expect(await readFile(join(root, "release-please-config.json"), "utf8")).toContain("skills/meta/example-skill/metadata.json");
       expect(await readFile(join(root, ".github/copilot-instructions.md"), "utf8")).toContain("example-skill");
+      const marketplace = JSON.parse(await readFile(join(root, ".claude-plugin/marketplace.json"), "utf8")) as {
+        metadata: { version: string };
+        plugins: Array<{ name: string; source: string; version: string }>;
+      };
+      expect(marketplace.metadata.version).toBe("1.2.3");
+      expect(marketplace.plugins).toEqual([{ name: "test", source: "./", version: "1.2.3" }]);
+      const plugin = JSON.parse(await readFile(join(root, ".claude-plugin/plugin.json"), "utf8")) as { version: string };
+      expect(plugin.version).toBe("1.2.3");
     } finally {
       await rm(root, { recursive: true, force: true });
     }

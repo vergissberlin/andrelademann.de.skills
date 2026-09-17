@@ -155,6 +155,29 @@ async function updateReleaseConfig(repoRoot, input) {
   await writeJson(configPath, config);
 }
 
+async function updateMarketplace(repoRoot, input) {
+  const pluginPath = path.join(repoRoot, '.claude-plugin', 'plugin.json');
+  const marketplacePath = path.join(repoRoot, '.claude-plugin', 'marketplace.json');
+  const plugin = await readJson(pluginPath);
+  const marketplace = await readJson(marketplacePath);
+  const rootPlugin = (marketplace.plugins ?? []).find((entry) => entry.name === plugin.name);
+
+  if (!rootPlugin) {
+    throw new Error(`Marketplace is missing the root plugin entry ${plugin.name}`);
+  }
+  if (rootPlugin.source !== './') {
+    throw new Error(`Root marketplace plugin ${plugin.name} must use source ./`);
+  }
+
+  const catalog = await readJson(path.join(repoRoot, 'index.json'));
+  plugin.version = catalog.version;
+  marketplace.metadata = { ...(marketplace.metadata ?? {}), version: catalog.version };
+  rootPlugin.version = catalog.version;
+  marketplace.plugins = [rootPlugin];
+  await writeJson(pluginPath, plugin);
+  await writeJson(marketplacePath, marketplace);
+}
+
 async function updateIntegrationFile(filePath, input) {
   let content = await fs.readFile(filePath, 'utf8');
   const line = `- \`${input.name}\` → \`skills/${input.domain}/${input.name}/SKILL.md\``;
@@ -202,6 +225,7 @@ export async function createSkill(rawOptions) {
   const catalog = await readJson(path.join(repoRoot, 'index.json'));
   input.version = input.version ?? catalog.version;
   if (!/^\d+\.\d+\.\d+$/.test(input.version)) throw new Error(`version must be semver: ${input.version}`);
+  if (input.version !== catalog.version) throw new Error(`version must match catalog.version (${catalog.version}): ${input.version}`);
   input.purpose = input.purpose ?? `Use when ${input.description.charAt(0).toLowerCase()}${input.description.slice(1)}`;
   input.tags = asArray(input.tags);
   if (input.tags.length === 0) input.tags = [input.domain, 'agent-workflows'];
@@ -239,6 +263,7 @@ export async function createSkill(rawOptions) {
   await fs.writeFile(path.join(scenarioDir, 'acceptance-criteria.md'), buildAcceptanceCriteria(input), 'utf8');
 
   await updateCatalog(repoRoot, input);
+  await updateMarketplace(repoRoot, input);
   await updateReleaseConfig(repoRoot, input);
   for (const relativePath of [
     '.github/copilot-instructions.md',

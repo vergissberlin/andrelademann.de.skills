@@ -58,7 +58,7 @@ Für den vollständigen Ablauf bevorzugt [`create-skill.mjs`](skills/meta/andrel
 
 ## Integrationen pflegen
 
-Beim Hinzufügen oder Ändern eines Skills müssen die Vorlagen unter [`integrations/`](integrations/) konsistent bleiben. Insbesondere die Beispiel-Skill-Liste in [`integrations/copilot/copilot-instructions.md`](integrations/copilot/copilot-instructions.md), [`.github/copilot-instructions.md`](.github/copilot-instructions.md) und [`integrations/cursor/skills.mdc`](integrations/cursor/skills.mdc) sowie die Einträge in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) prüfen und aktualisieren.
+Beim Hinzufügen oder Ändern eines Skills müssen die Vorlagen unter [`integrations/`](integrations/) konsistent bleiben. Insbesondere die Beispiel-Skill-Liste in [`integrations/copilot/copilot-instructions.md`](integrations/copilot/copilot-instructions.md), [`.github/copilot-instructions.md`](.github/copilot-instructions.md) und [`integrations/cursor/skills.mdc`](integrations/cursor/skills.mdc) sowie der einzelne Root-Eintrag in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json) sind zu prüfen und aktuell zu halten. Skills werden nicht als separate Marketplace-Plugins registriert.
 
 ## Deployment
 
