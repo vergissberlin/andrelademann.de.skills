@@ -1,7 +1,7 @@
 ---
 name: google-trends-topic-scout
 description: Find and rank currently rising Google Trends topics that match André Lademann's content themes, with source-backed angles and explicit spike-versus-sustained confidence. Use when looking for timely blog topics or editorial opportunities; do not use it to draft the article itself.
-version: 2.5.0
+version: 2.6.0
 ---
 
 # Google Trends Topic Scout

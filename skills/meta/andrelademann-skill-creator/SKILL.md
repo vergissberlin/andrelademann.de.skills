@@ -1,7 +1,7 @@
 ---
 name: andrelademann-skill-creator
 description: Create, refine, test, document, and register skills in the André Lademann Skills repository. Use whenever a user asks to create a skill, turn a workflow into a reusable skill, improve an existing SKILL.md, add skill tests, create a skill README, or extend this catalog with a new skill.
-version: 2.5.0 # x-release-please-version
+version: 2.6.0 # x-release-please-version
 scope: meta
 ---
 

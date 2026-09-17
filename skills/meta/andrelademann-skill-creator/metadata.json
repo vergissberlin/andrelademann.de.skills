@@ -11,5 +11,5 @@
     "repository-automation"
   ],
   "source": "https://github.com/anthropics/skills/tree/main/skills/skill-creator",
-  "version": "2.5.0"
+  "version": "2.6.0"
 }
