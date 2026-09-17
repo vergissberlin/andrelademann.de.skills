@@ -19,6 +19,7 @@ const REPO_ROOT = resolve(import.meta.dirname, "..");
 const CATALOG_PATH = join(REPO_ROOT, "index.json");
 const PLUGIN_PATH = join(REPO_ROOT, ".claude-plugin", "plugin.json");
 const MARKETPLACE_PATH = join(REPO_ROOT, ".claude-plugin", "marketplace.json");
+const SCENARIOS_PATH = join(REPO_ROOT, "tests", "scenarios");
 const HARNESS_SNAPSHOT_PATH = join(REPO_ROOT, "docs", "src", "data", "harness-results.json");
 
 function loadCatalog(): SkillCatalog {
@@ -100,5 +101,21 @@ describe("Skills catalog validation", () => {
     expect(snapshot.skills.map((skill) => skill.skill_name).sort()).toEqual(
       catalog.skills.map((skill) => skill.name).sort(),
     );
+  });
+
+  it("should provide harness fixtures for every catalog skill", () => {
+    const catalog = loadCatalog();
+
+    for (const skill of catalog.skills) {
+      const skillScenariosPath = join(SCENARIOS_PATH, skill.name);
+      expect(
+        existsSync(join(skillScenariosPath, "scenarios.yaml")),
+        `${skill.name} scenarios missing`,
+      ).toBe(true);
+      expect(
+        existsSync(join(skillScenariosPath, "acceptance-criteria.md")),
+        `${skill.name} acceptance criteria missing`,
+      ).toBe(true);
+    }
   });
 });

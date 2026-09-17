@@ -1,0 +1,35 @@
+config:
+  model: gpt-4
+  max_tokens: 2500
+  temperature: 0.3
+scenarios:
+  - name: rank-source-backed-topics
+    prompt: "Create a verification manifest for a Germany-focused Google Trends shortlist with the retrieval context, relative signals, authoritative corroboration, and no full article draft."
+    expected_patterns:
+      - "geography = \"DE\""
+      - "trends_values_relative = True"
+      - "corroborated = True"
+      - "full_article_written = False"
+    forbidden_patterns:
+      - "absolute_search_volume ="
+    tags: ["primary", "research"]
+    mock_response: |-
+      geography = "DE"
+      retrieval_context_recorded = True
+      trends_values_relative = True
+      corroborated = True
+      full_article_written = False
+  - name: distinguish-spike-from-signal
+    prompt: "Classify a candidate that appears only in a short window as a short-lived hook, compare it with the long window, and stop at the ranked shortlist."
+    expected_patterns:
+      - "short_window_classification = \"short-lived hook\""
+      - "long_window_compared = True"
+      - "ranked_shortlist_only = True"
+    forbidden_patterns:
+      - "durable_signal = True"
+    tags: ["edge-case", "confidence"]
+    mock_response: |-
+      short_window_classification = "short-lived hook"
+      long_window_compared = True
+      ranked_shortlist_only = True
+      durable_signal = False

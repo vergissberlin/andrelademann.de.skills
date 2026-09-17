@@ -1,0 +1,35 @@
+config:
+  model: gpt-4
+  max_tokens: 2500
+  temperature: 0.3
+scenarios:
+  - name: create-draft-package
+    prompt: "Create a verification manifest for a complete draft blog package with a British-English article, generated header image, and synchronized frontmatter image fields."
+    expected_patterns:
+      - "draft = True"
+      - "heroImage = \"/images/posts/2026/example/hero.png\""
+      - "ogImage = \"/images/posts/2026/example/hero.png\""
+      - "companion_skill_used = True"
+    forbidden_patterns:
+      - "draft = False"
+    tags: ["primary", "article"]
+    mock_response: |-
+      article_path = "src/content/posts/2026/example.md"
+      draft = True
+      locale = "en"
+      heroImage = "/images/posts/2026/example/hero.png"
+      ogImage = "/images/posts/2026/example/hero.png"
+      companion_skill_used = True
+  - name: keep-existing-image
+    prompt: "Create a safe manifest for updating an existing article when its hero image must not be overwritten without explicit replacement authority."
+    expected_patterns:
+      - "existing_image_preserved = True"
+      - "replacement_authorized = False"
+      - "draft = True"
+    forbidden_patterns:
+      - "existing_image_preserved = False"
+    tags: ["edge-case", "safety"]
+    mock_response: |-
+      existing_image_preserved = True
+      replacement_authorized = False
+      draft = True

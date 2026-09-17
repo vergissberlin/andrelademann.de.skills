@@ -2,48 +2,130 @@
   "total_skills": 5,
   "passed_skills": 5,
   "failed_skills": 0,
-  "total_scenarios": 2,
-  "passed_scenarios": 2,
+  "total_scenarios": 10,
+  "passed_scenarios": 10,
   "failed_scenarios": 0,
-  "avg_score": 20,
-  "duration_ms": 8,
+  "avg_score": 100,
+  "duration_ms": 16,
   "mode": "mock",
   "skills": [
     {
       "skill_name": "andrelademann-blog-header-image",
-      "total_scenarios": 0,
-      "passed": 0,
+      "total_scenarios": 2,
+      "passed": 2,
       "failed": 0,
-      "pass_rate": 0,
-      "avg_score": 0,
-      "duration_ms": 0,
-      "evaluation_source": "catalog_only",
-      "status": "catalog_only",
-      "results": []
+      "pass_rate": 1,
+      "avg_score": 100,
+      "duration_ms": 7,
+      "evaluation_source": "harness",
+      "status": "passed",
+      "results": [
+        {
+          "skill_name": "andrelademann-blog-header-image",
+          "scenario": "create-header-package",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Image integration"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        },
+        {
+          "skill_name": "andrelademann-blog-header-image",
+          "scenario": "preserve-existing-asset",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Existing asset safety"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        }
+      ]
     },
     {
       "skill_name": "andrelademann-blog-post-writer",
-      "total_scenarios": 0,
-      "passed": 0,
+      "total_scenarios": 2,
+      "passed": 2,
       "failed": 0,
-      "pass_rate": 0,
-      "avg_score": 0,
-      "duration_ms": 0,
-      "evaluation_source": "catalog_only",
-      "status": "catalog_only",
-      "results": []
+      "pass_rate": 1,
+      "avg_score": 100,
+      "duration_ms": 3,
+      "evaluation_source": "harness",
+      "status": "passed",
+      "results": [
+        {
+          "skill_name": "andrelademann-blog-post-writer",
+          "scenario": "create-draft-package",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Article package"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        },
+        {
+          "skill_name": "andrelademann-blog-post-writer",
+          "scenario": "keep-existing-image",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Image replacement safety"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        }
+      ]
     },
     {
       "skill_name": "andrelademann-blog-promote",
-      "total_scenarios": 0,
-      "passed": 0,
+      "total_scenarios": 2,
+      "passed": 2,
       "failed": 0,
-      "pass_rate": 0,
-      "avg_score": 0,
-      "duration_ms": 0,
-      "evaluation_source": "catalog_only",
-      "status": "catalog_only",
-      "results": []
+      "pass_rate": 1,
+      "avg_score": 100,
+      "duration_ms": 2,
+      "evaluation_source": "harness",
+      "status": "passed",
+      "results": [
+        {
+          "skill_name": "andrelademann-blog-promote",
+          "scenario": "prepare-approved-campaign",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Publication verification",
+            "Publication approval"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        },
+        {
+          "skill_name": "andrelademann-blog-promote",
+          "scenario": "stop-without-approval",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Approval boundary"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        }
+      ]
     },
     {
       "skill_name": "andrelademann-skill-creator",
@@ -52,7 +134,7 @@
       "failed": 0,
       "pass_rate": 1,
       "avg_score": 100,
-      "duration_ms": 8,
+      "duration_ms": 3,
       "evaluation_source": "harness",
       "status": "passed",
       "results": [
@@ -86,15 +168,42 @@
     },
     {
       "skill_name": "google-trends-topic-scout",
-      "total_scenarios": 0,
-      "passed": 0,
+      "total_scenarios": 2,
+      "passed": 2,
       "failed": 0,
-      "pass_rate": 0,
-      "avg_score": 0,
-      "duration_ms": 0,
-      "evaluation_source": "catalog_only",
-      "status": "catalog_only",
-      "results": []
+      "pass_rate": 1,
+      "avg_score": 100,
+      "duration_ms": 1,
+      "evaluation_source": "harness",
+      "status": "passed",
+      "results": [
+        {
+          "skill_name": "google-trends-topic-scout",
+          "scenario": "rank-source-backed-topics",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Research evidence"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        },
+        {
+          "skill_name": "google-trends-topic-scout",
+          "scenario": "distinguish-spike-from-signal",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Signal confidence"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        }
+      ]
     }
   ]
 }

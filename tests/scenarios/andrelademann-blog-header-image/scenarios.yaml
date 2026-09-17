@@ -1,0 +1,35 @@
+config:
+  model: gpt-4
+  max_tokens: 2000
+  temperature: 0.3
+scenarios:
+  - name: create-header-package
+    prompt: "Create a verification manifest for a new blog header image, including the post path, image path, and synchronized heroImage and ogImage values."
+    expected_patterns:
+      - "heroImage = \"/images/posts/2026/example/hero.png\""
+      - "ogImage = \"/images/posts/2026/example/hero.png\""
+      - "asset_exists = True"
+    forbidden_patterns:
+      - "overwrite_existing = True"
+    tags: ["primary", "integration"]
+    mock_response: |-
+      post_path = "src/content/posts/2026/example.md"
+      image_path = "public/images/posts/2026/example/hero.png"
+      heroImage = "/images/posts/2026/example/hero.png"
+      ogImage = "/images/posts/2026/example/hero.png"
+      asset_exists = True
+      overwrite_existing = False
+  - name: preserve-existing-asset
+    prompt: "Handle a post that already has a hero.png without replacing it silently; return a verification manifest for the safe result."
+    expected_patterns:
+      - "existing_asset_preserved = True"
+      - "replacement_authorized = False"
+      - "asset_exists = True"
+    forbidden_patterns:
+      - "overwrite_existing = True"
+    tags: ["edge-case", "safety"]
+    mock_response: |-
+      existing_asset_preserved = True
+      replacement_authorized = False
+      asset_exists = True
+      overwrite_existing = False

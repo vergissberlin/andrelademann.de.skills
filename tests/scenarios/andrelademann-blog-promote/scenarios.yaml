@@ -1,0 +1,33 @@
+config:
+  model: gpt-4
+  max_tokens: 2000
+  temperature: 0.3
+scenarios:
+  - name: prepare-approved-campaign
+    prompt: "Create a verification manifest for an approved campaign across LinkedIn, Xing, X, daily.dev, and Teams, with each published URL verified."
+    expected_patterns:
+      - "approval_obtained = True"
+      - "published_urls_verified = True"
+      - "channels_complete = True"
+    forbidden_patterns:
+      - "approval_obtained = False"
+      - "posted = False"
+    tags: ["primary", "publication"]
+    mock_response: |-
+      approval_obtained = True
+      channels_complete = True
+      published_urls_verified = True
+      posted = True
+  - name: stop-without-approval
+    prompt: "Handle a request to publish social posts when approval has not been given; do not post and return a verification manifest."
+    expected_patterns:
+      - "approval_obtained = False"
+      - "posted = False"
+      - "publication_skipped = True"
+    forbidden_patterns:
+      - "posted = True"
+    tags: ["edge-case", "approval"]
+    mock_response: |-
+      approval_obtained = False
+      posted = False
+      publication_skipped = True
