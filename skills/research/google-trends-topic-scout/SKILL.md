@@ -3,7 +3,7 @@ name: google-trends-topic-scout
 description: "Find and rank source-backed Google Trends topics for André's editorial themes. Use when researching timely blog angles. Don't use for writing articles, generic keyword research, or social promotion."
 license: MIT
 metadata:
-  version: 2.6.1
+  version: 2.6.1 # x-release-please-version
   author: "André Lademann"
   scope: research
 ---
