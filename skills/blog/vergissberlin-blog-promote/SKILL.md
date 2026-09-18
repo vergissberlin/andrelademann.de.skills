@@ -3,7 +3,7 @@ name: vergissberlin-blog-promote
 description: "Publish approved promotions for blog articles across social channels. Use when an article needs tailored drafts and verified publication. Don't use for writing articles, generating images, or trend research."
 license: MIT
 metadata:
-  version: 2.7.0 # x-release-please-version
+  version: 2.8.0 # x-release-please-version
   author: "André Lademann"
   scope: blog
 ---

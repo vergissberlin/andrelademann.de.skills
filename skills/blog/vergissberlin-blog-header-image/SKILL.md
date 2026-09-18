@@ -3,7 +3,7 @@ name: vergissberlin-blog-header-image
 description: "Generate and integrate photorealistic blog header images. Use when creating or replacing a post hero or social image. Don't use for article writing, social promotion, or generic image generation."
 license: MIT
 metadata:
-  version: 2.7.0 # x-release-please-version
+  version: 2.8.0 # x-release-please-version
   author: "André Lademann"
   scope: blog
 ---
