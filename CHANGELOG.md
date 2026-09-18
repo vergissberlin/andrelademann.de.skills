@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.8.0](https://github.com/vergissberlin/skills/compare/2.7.0...2.8.0) (2026-09-18)
+
+
+### Skills
+
+* **skills:** rename catalog and skill namespace ([b9cfaa6](https://github.com/vergissberlin/skills/commit/b9cfaa643b0857278ba8bff1af5ee96a6fbe4f89))
+
+
+### Bug Fixes
+
+* **skills:** enforce a single root marketplace plugin ([56abd49](https://github.com/vergissberlin/skills/commit/56abd49fdc51b15d24ebab1cd1aace1062d1e4ff))
+
 ## [2.7.0](https://github.com/vergissberlin/andrelademann.de.skills/compare/2.6.1...2.7.0) (2026-09-17)
 
 

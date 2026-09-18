@@ -7,7 +7,7 @@
   },
   "metadata": {
     "description": "Vergissberlin marketplace for Vergissberlin Skills.",
-    "version": "2.7.0"
+    "version": "2.8.0"
   },
   "plugins": [
     {
@@ -15,7 +15,7 @@
       "displayName": "Vergissberlin Skills",
       "source": "./",
       "description": "Portable agent skills by André Lademann, grouped by domain in this catalog.",
-      "version": "2.7.0",
+      "version": "2.8.0",
       "author": {
         "name": "André Lademann",
         "url": "https://github.com/vergissberlin"
