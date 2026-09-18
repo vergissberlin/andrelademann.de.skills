@@ -1,0 +1,15 @@
+{
+  "title": "Blog Header Image",
+  "author": "André Lademann",
+  "description": "Generate and safely integrate photorealistic editorial header images for blog posts.",
+  "purpose": "Use when creating or replacing a blog post hero or social image.",
+  "tags": [
+    "blog",
+    "images",
+    "editorial",
+    "image-generation"
+  ],
+  "source": "https://github.com/vergissberlin/skills/tree/main/skills/blog/vergissberlin-blog-header-image",
+  "scope": "blog",
+  "version": "2.7.0"
+}

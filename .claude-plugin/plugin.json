@@ -1,15 +1,15 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
-  "name": "andrelademann-skills",
-  "displayName": "André Lademann Skills",
+  "name": "vergissberlin-skills",
+  "displayName": "Vergissberlin Skills",
   "version": "2.7.0",
   "description": "André Lademann Skill catalog for AI coding agents across writing, images, and other domains.",
   "author": {
     "name": "André Lademann",
     "url": "https://github.com/vergissberlin"
   },
-  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills",
-  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "homepage": "https://github.com/vergissberlin/skills",
+  "repository": "https://github.com/vergissberlin/skills",
   "license": "GPL-3.0",
   "keywords": [
     "andrelademann",

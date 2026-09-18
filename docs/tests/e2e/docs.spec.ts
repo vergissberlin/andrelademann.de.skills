@@ -2,13 +2,13 @@ import { expect, test } from '@playwright/test';
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
-    localStorage.removeItem('andrelademann-skills-theme');
+    localStorage.removeItem('vergissberlin-skills-theme');
   });
 });
 
 test('mobile hamburger menu toggles on index page', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto('/andrelademann.de.skills/');
+  await page.goto('/');
 
   const toggle = page.locator('#site-nav-toggle');
   const navLinks = page.locator('#site-nav-panel');
@@ -24,7 +24,7 @@ test('mobile hamburger menu toggles on index page', async ({ page }) => {
 });
 
 test('index search and filter interactions keep cards visible', async ({ page }) => {
-  await page.goto('/andrelademann.de.skills/');
+  await page.goto('/');
 
   await page.keyboard.press('Control+k');
   await expect(page.locator('#search-input')).toBeFocused();
@@ -32,7 +32,7 @@ test('index search and filter interactions keep cards visible', async ({ page })
   const cards = page.locator('#skills-grid .card');
   await expect(cards.first()).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Blog Post Writer', level: 2 })).toBeVisible();
-  await expect(page.getByText('André Lademann Skills').first()).toBeVisible();
+  await expect(page.getByText('Vergissberlin Skills').first()).toBeVisible();
 
   await page.fill('#search-input', 'blog');
   const filteredCountText = await page.locator('#visible-count').textContent();
@@ -44,7 +44,7 @@ test('index search and filter interactions keep cards visible', async ({ page })
 });
 
 test('index explains how to add the Claude Code marketplace', async ({ page }) => {
-  await page.goto('/andrelademann.de.skills/');
+  await page.goto('/');
 
   await expect(page.getByRole('heading', { name: 'Add the complete marketplace' })).toBeVisible();
   const marketplace = page.locator('details').filter({ hasText: 'Add the complete marketplace' });
@@ -53,12 +53,12 @@ test('index explains how to add the Claude Code marketplace', async ({ page }) =
 
   await marketplace.locator('summary').click();
   await expect(marketplace).toHaveAttribute('open', '');
-  await expect(page.locator('#marketplace-add-cmd')).toHaveText('/plugin marketplace add vergissberlin/andrelademann.de.skills');
-  await expect(page.locator('#marketplace-install-cmd')).toHaveText('/plugin install andrelademann-skills@vergissberlin');
+  await expect(page.locator('#marketplace-add-cmd')).toHaveText('/plugin marketplace add vergissberlin/skills');
+  await expect(page.locator('#marketplace-install-cmd')).toHaveText('/plugin install vergissberlin-skills@vergissberlin');
 });
 
 test('footer uses the André Lademann portrait and favicon uses the mug mark', async ({ page }) => {
-  await page.goto('/andrelademann.de.skills/');
+  await page.goto('/');
 
   const favicon = page.locator('link[rel="icon"]');
   await expect(favicon).toHaveAttribute('href', /brand\/andre-lademann-favicon\.png$/);
@@ -70,7 +70,7 @@ test('footer uses the André Lademann portrait and favicon uses the mug mark', a
 });
 
 test('theme toggle applies dark class manually', async ({ page }) => {
-  await page.goto('/andrelademann.de.skills/');
+  await page.goto('/');
 
   const themeToggle = page.locator('#theme-toggle-button').first();
   for (let attempt = 0; attempt < 3; attempt += 1) {
@@ -80,13 +80,13 @@ test('theme toggle applies dark class manually', async ({ page }) => {
   }
   await expect(page.locator('html')).toHaveClass(/dark/);
 
-  const savedTheme = await page.evaluate(() => localStorage.getItem('andrelademann-skills-theme'));
+  const savedTheme = await page.evaluate(() => localStorage.getItem('vergissberlin-skills-theme'));
   expect(savedTheme === 'dark' || savedTheme === 'system').toBeTruthy();
 });
 
 test('system theme follows prefers-color-scheme', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'dark' });
-  await page.goto('/andrelademann.de.skills/');
+  await page.goto('/');
 
   const themeToggle = page.locator('#theme-toggle-button').first();
   await themeToggle.click();
@@ -96,10 +96,10 @@ test('system theme follows prefers-color-scheme', async ({ page }) => {
 });
 
 test('skill detail uses a short title and catalog origin', async ({ page }) => {
-  await page.goto('/andrelademann.de.skills/skills/andrelademann-blog-post-writer/');
+  await page.goto('/skills/vergissberlin-blog-post-writer/');
 
   const banner = page.getByRole('banner');
-  await expect(banner.getByText('André Lademann Skills')).toBeVisible();
+  await expect(banner.getByText('Vergissberlin Skills')).toBeVisible();
   await expect(banner.getByRole('heading', { level: 1 })).toHaveText('Blog Post Writer');
   await expect(page.getByText('Author', { exact: true })).toBeVisible();
   await expect(page.getByText('André Lademann', { exact: true }).first()).toBeVisible();

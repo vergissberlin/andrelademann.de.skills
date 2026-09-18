@@ -1,4 +1,4 @@
-### André Lademann Skills Wiki
+### Vergissberlin Skills Wiki
 
 - [Startseite](Home)
 - [Skills verwenden](skills-verwenden)

@@ -2,27 +2,29 @@ import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 import AstroPWA from '@vite-pwa/astro';
 
+const basePath = process.env.NODE_ENV === 'development' ? '/' : '/skills/';
+
 export default defineConfig({
-  site: 'https://vergissberlin.github.io/andrelademann.de.skills',
-  base: '/andrelademann.de.skills/',
+  site: 'https://vergissberlin.github.io/skills',
+  base: basePath,
   output: 'static',
   outDir: './dist',
   integrations: [
     AstroPWA({
       registerType: 'autoUpdate',
       manifest: {
-        name: 'André Lademann Skills',
-        short_name: 'AL Skills',
+        name: 'Vergissberlin Skills',
+        short_name: 'Skills',
         description: 'Agent Skills catalog',
-        start_url: '/andrelademann.de.skills/',
-        scope: '/andrelademann.de.skills/',
+        start_url: basePath,
+        scope: basePath,
         display: 'standalone',
         theme_color: '#1E2A45',
         background_color: '#1E2A45',
         icons: [
-          { src: '/andrelademann.de.skills/pwa-192x192.png', sizes: '192x192', type: 'image/png' },
-          { src: '/andrelademann.de.skills/pwa-512x512.png', sizes: '512x512', type: 'image/png' },
-          { src: '/andrelademann.de.skills/pwa-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
+          { src: `${basePath}pwa-192x192.png`, sizes: '192x192', type: 'image/png' },
+          { src: `${basePath}pwa-512x512.png`, sizes: '512x512', type: 'image/png' },
+          { src: `${basePath}pwa-512x512.png`, sizes: '512x512', type: 'image/png', purpose: 'maskable' }
         ]
       },
       workbox: {

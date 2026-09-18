@@ -14,7 +14,7 @@ safe-defaults:
 
 # <Skill Title>
 
-This skill belongs to the [André Lademann Skills](https://github.com/vergissberlin/andrelademann.de.skills) catalog. Invoke it as `your-skill-name`.
+This skill belongs to the [Vergissberlin Skills](https://github.com/vergissberlin/skills) catalog. Invoke it as `your-skill-name`.
 
 ## When to Use?
 

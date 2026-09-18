@@ -1,7 +1,7 @@
 ---
 layout: ../layouts/MarkdownPageLayout.astro
-title: Legal Notice | André Lademann Skills
-description: Legal notice and repository contact information for the André Lademann Skills documentation.
+title: Legal Notice | Vergissberlin Skills
+description: Legal notice and repository contact information for the Vergissberlin Skills documentation.
 heading: Legal Notice
 subtitle: Repository ownership and contact information.
 ---
@@ -12,9 +12,9 @@ André Lademann
 
 ## Project Links
 
-- **Repository:** [vergissberlin/andrelademann.de.skills](https://github.com/vergissberlin/andrelademann.de.skills)
+- **Repository:** [vergissberlin/skills](https://github.com/vergissberlin/skills)
 - **GitHub profile:** [vergissberlin](https://github.com/vergissberlin)
-- **Issue tracker:** [Open an issue](https://github.com/vergissberlin/andrelademann.de.skills/issues)
+- **Issue tracker:** [Open an issue](https://github.com/vergissberlin/skills/issues)
 
 ## Contact
 

@@ -14,7 +14,7 @@ const titleColor = '#FFFFFF';
 const subtitleColor = '#94a3b8';
 const accentColor = '#00FFDC';
 // The bundled canvas font can render the accented character as a missing-glyph box.
-const subtitleText = 'Andre Lademann Skill';
+const subtitleText = 'Vergissberlin Skills';
 const iconColor = '#00FFDC';
 const iconSize = 92;
 const iconRasterSize = 512;
@@ -33,7 +33,7 @@ function configureCanvasQuality(ctx) {
 
 function formatSkillLabel(skillName) {
   return skillName
-    .replace(/^andrelademann-/, '')
+    .replace(/^vergissberlin-/, '')
     .split('-')
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
@@ -87,10 +87,10 @@ function wrapText(ctx, text, maxWidth) {
 function getIconName(skillName) {
   const iconMap = {
     default: 'sparkles',
-    'andrelademann-blog-header-image': 'photo',
-    'andrelademann-blog-post-writer': 'article',
-    'andrelademann-blog-promote': 'speakerphone',
-    'google-trends-topic-scout': 'trending-up'
+    'vergissberlin-blog-header-image': 'photo',
+    'vergissberlin-blog-post-writer': 'article',
+    'vergissberlin-blog-promote': 'speakerphone',
+    'vergissberlin-google-trends-topic-scout': 'trending-up'
   };
 
   return iconMap[skillName] ?? 'sparkles';
@@ -157,7 +157,7 @@ async function main() {
 
   await fs.mkdir(outputSkills, { recursive: true });
 
-  await renderOgImage(path.join(outputRoot, 'default.png'), 'André Lademann Skills', getIconName('default'));
+  await renderOgImage(path.join(outputRoot, 'default.png'), 'Vergissberlin Skills', getIconName('default'));
 
   for (const skill of skills) {
     const title = await readSkillTitle(skill);

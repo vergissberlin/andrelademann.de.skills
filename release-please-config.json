@@ -25,44 +25,44 @@
         },
         {
           "type": "generic",
-          "path": "skills/blog/andrelademann-blog-header-image/SKILL.md"
+          "path": "skills/blog/vergissberlin-blog-header-image/SKILL.md"
         },
         {
           "type": "json",
-          "path": "skills/blog/andrelademann-blog-header-image/metadata.json",
+          "path": "skills/blog/vergissberlin-blog-header-image/metadata.json",
           "jsonpath": "$.version"
         },
         {
           "type": "generic",
-          "path": "skills/blog/andrelademann-blog-post-writer/SKILL.md"
+          "path": "skills/blog/vergissberlin-blog-post-writer/SKILL.md"
         },
         {
           "type": "json",
-          "path": "skills/blog/andrelademann-blog-post-writer/metadata.json",
+          "path": "skills/blog/vergissberlin-blog-post-writer/metadata.json",
           "jsonpath": "$.version"
         },
         {
           "type": "generic",
-          "path": "skills/blog/andrelademann-blog-promote/SKILL.md"
+          "path": "skills/blog/vergissberlin-blog-promote/SKILL.md"
         },
         {
           "type": "json",
-          "path": "skills/blog/andrelademann-blog-promote/metadata.json",
+          "path": "skills/blog/vergissberlin-blog-promote/metadata.json",
           "jsonpath": "$.version"
         },
         {
           "type": "generic",
-          "path": "skills/research/google-trends-topic-scout/SKILL.md"
+          "path": "skills/research/vergissberlin-google-trends-topic-scout/SKILL.md"
         },
         {
           "type": "json",
-          "path": "skills/research/google-trends-topic-scout/metadata.json",
+          "path": "skills/research/vergissberlin-google-trends-topic-scout/metadata.json",
           "jsonpath": "$.version"
         },
-        "skills/meta/andrelademann-skill-creator/SKILL.md",
+        "skills/meta/vergissberlin-skill-creator/SKILL.md",
         {
           "type": "json",
-          "path": "skills/meta/andrelademann-skill-creator/metadata.json",
+          "path": "skills/meta/vergissberlin-skill-creator/metadata.json",
           "jsonpath": "$.version"
         }
       ],

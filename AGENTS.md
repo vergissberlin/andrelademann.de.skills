@@ -28,10 +28,10 @@ This document defines the guardrails for agent work in this repository.
 
 ## Skills
 
-- The published catalog (`index.json`, `docs/index.json`) and the Claude marketplace plugin (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`) use the general names `andrelademann-skills` and **André Lademann Skills**. Do not name the root catalog after a single domain. This repository publishes one root plugin; skills in domain folders must not get separate plugin manifests or marketplace entries.
-- Using the blog-post skill (`andrelademann-blog-post-writer`) must also activate and follow `andrelademann-blog-header-image` in the same task, unless the user supplies an image, explicitly opts out, or explicitly requests a separate visual task.
+- The published catalog (`index.json`, `docs/index.json`) and the Claude marketplace plugin (`.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`) use the general names `vergissberlin-skills` and **Vergissberlin Skills**. Do not name the root catalog after a single domain. This repository publishes one root plugin; skills in domain folders must not get separate plugin manifests or marketplace entries.
+- Using the blog-post skill (`vergissberlin-blog-post-writer`) must also activate and follow `vergissberlin-blog-header-image` in the same task, unless the user supplies an image, explicitly opts out, or explicitly requests a separate visual task.
 - For release notes, use `feat(skills):` or `feature(skills):` when a change primarily adds or updates skills in `skills/`, `index.json`, or `docs/index.json`. The `skills` scope maps to the **Skills** changelog section and matches **minor** semver bumps like any other feature (release-please only treats `feat` / `feature` as minor, not a separate `skills:` type).
-- Keep the catalog version in `index.json` and every skill `metadata.version` in `SKILL.md` frontmatter and `metadata.json` aligned with release tags (`X.Y.Z`). Keep the domain in `metadata.scope`; do not add non-standard top-level frontmatter fields. Register both version-bearing skill files in `release-please-config.json` whenever adding a skill so Release Please updates them together. Use pinned install commands such as `npx skills add vergissberlin/andrelademann.de.skills@X.Y.Z --skill <skill-name>`.
+- Keep the catalog version in `index.json` and every skill `metadata.version` in `SKILL.md` frontmatter and `metadata.json` aligned with release tags (`X.Y.Z`). Keep the domain in `metadata.scope`; do not add non-standard top-level frontmatter fields. Register both version-bearing skill files in `release-please-config.json` whenever adding a skill so Release Please updates them together. Use pinned install commands such as `npx skills add vergissberlin/skills@X.Y.Z --skill <skill-name>`.
 - Keep the root Claude plugin and marketplace versions in `.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json` aligned with the catalog version, and register every version field in `release-please-config.json` so Claude can detect marketplace updates.
 - Skill folders must be organized in nested directories. Do not add new flat paths like `skills/<skill-name>/SKILL.md`.
 - Place skills in matching domain folders, for example:
@@ -44,12 +44,12 @@ This document defines the guardrails for agent work in this repository.
   - `tags` (array of concise topic tags, e.g. `["terraform", "testing"]`)
   - `source` (canonical upstream/source URL when applicable)
   - `version` (skill version string; align with SKILL.md frontmatter `version`)
-- Skill display titles (`metadata.json` `title` and the `SKILL.md` H1) must not repeat the catalog owner. Keep origin visible through `author`, the `source` URL, catalog chrome, and a short provenance line in `SKILL.md` that names the André Lademann Skills catalog and the invoke id (`andrelademann-<skill>`).
+- Skill display titles (`metadata.json` `title` and the `SKILL.md` H1) must not repeat the catalog owner. Keep origin visible through `author`, the `source` URL, catalog chrome, and a short provenance line in `SKILL.md` that names the Vergissberlin Skills catalog and the invoke id (`vergissberlin-<skill>`).
 - For new/moved/renamed skills, always keep `index.json` and `docs/index.json` (`path`) consistent.
 - Every skill listed in `docs/index.json` must have an Open Graph preview at `docs/public/og/skills/<skill-name>.png`. In addition, `docs/public/og/default.png` is required for catalog and tool pages.
 - OG design should follow the principles from `svg-logo-designer`: clear hierarchy, high contrast, readable skill name, and a consistent André Lademann look.
 - Keep the copy-ready integration templates under `integrations/` and `.github/copilot-instructions.md` aligned with `index.json`, the referenced `SKILL.md` files, and the single root entry in `.claude-plugin/marketplace.json` when skills change.
-- Use `skills/meta/andrelademann-skill-creator/scripts/create-skill.mjs` for new repository skills so catalog, README, eval prompts, harness fixtures, release metadata, integrations, and OG assets stay synchronized; it must refuse overwrites unless `--force` is explicitly authorized.
+- Use `skills/meta/vergissberlin-skill-creator/scripts/create-skill.mjs` for new repository skills so catalog, README, eval prompts, harness fixtures, release metadata, integrations, and OG assets stay synchronized; it must refuse overwrites unless `--force` is explicitly authorized.
 - Keep `docs/src/data/harness-results.json` as the checked-in mock baseline for local/static docs builds; the Pages workflow refreshes it before deployment.
 
 ## Docs-Site UI Architecture

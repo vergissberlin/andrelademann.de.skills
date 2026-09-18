@@ -1,10 +1,10 @@
 ---
-description: Use the André Lademann Skills catalog as project context and load the relevant SKILL.md before making domain-specific changes.
+description: Use the Vergissberlin Skills catalog as project context and load the relevant SKILL.md before making domain-specific changes.
 globs: []
 alwaysApply: true
 ---
 
-# André Lademann Skills for Cursor
+# Vergissberlin Skills for Cursor
 
 Use this repository's Skills catalog as additional project context. The catalog is described in [`index.json`](../../index.json), and the source instructions live in the referenced `SKILL.md` files below `skills/`.
 
@@ -17,9 +17,9 @@ Before work in a matching domain:
 
 Available catalog skills:
 
-- `andrelademann-blog-header-image` → `skills/blog/andrelademann-blog-header-image/SKILL.md`
-- `andrelademann-blog-post-writer` → `skills/blog/andrelademann-blog-post-writer/SKILL.md`
-- `andrelademann-blog-promote` → `skills/blog/andrelademann-blog-promote/SKILL.md`
-- `andrelademann-skill-creator` → `skills/meta/andrelademann-skill-creator/SKILL.md`
+- `vergissberlin-blog-header-image` → `skills/blog/vergissberlin-blog-header-image/SKILL.md`
+- `vergissberlin-blog-post-writer` → `skills/blog/vergissberlin-blog-post-writer/SKILL.md`
+- `vergissberlin-blog-promote` → `skills/blog/vergissberlin-blog-promote/SKILL.md`
+- `vergissberlin-skill-creator` → `skills/meta/vergissberlin-skill-creator/SKILL.md`
 
 When adding or changing a skill, keep `index.json`, `docs/index.json`, metadata, and the integration examples consistent.

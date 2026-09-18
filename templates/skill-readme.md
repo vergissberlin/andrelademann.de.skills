@@ -2,7 +2,7 @@
 
 {{DESCRIPTION}}
 
-This skill is part of the [André Lademann Skills](https://github.com/vergissberlin/andrelademann.de.skills) catalog and is invoked as `{{NAME}}`.
+This skill is part of the [Vergissberlin Skills](https://github.com/vergissberlin/skills) catalog and is invoked as `{{NAME}}`.
 
 ## When to use
 

@@ -8,7 +8,7 @@ export type SkillFile = {
   githubUrl: string;
 };
 
-const REPO_URL = 'https://github.com/vergissberlin/andrelademann.de.skills';
+const REPO_URL = 'https://github.com/vergissberlin/skills';
 
 async function listFilesRecursive(dirPath: string): Promise<string[]> {
   const entries = await fs.readdir(dirPath, { withFileTypes: true });

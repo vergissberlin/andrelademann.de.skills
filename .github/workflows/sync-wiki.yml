@@ -35,7 +35,7 @@ jobs:
       - name: Clone wiki repository
         run: |
           rm -rf /tmp/skills-wiki
-          git clone "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vergissberlin/andrelademann.de.skills.wiki.git" /tmp/skills-wiki
+          git clone "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/vergissberlin/skills.wiki.git" /tmp/skills-wiki
 
       - name: Sync wiki content
         run: |

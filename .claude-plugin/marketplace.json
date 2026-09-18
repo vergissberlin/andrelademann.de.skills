@@ -6,13 +6,13 @@
     "url": "https://github.com/vergissberlin"
   },
   "metadata": {
-    "description": "Vergissberlin marketplace for André Lademann Skills.",
+    "description": "Vergissberlin marketplace for Vergissberlin Skills.",
     "version": "2.7.0"
   },
   "plugins": [
     {
-      "name": "andrelademann-skills",
-      "displayName": "André Lademann Skills",
+      "name": "vergissberlin-skills",
+      "displayName": "Vergissberlin Skills",
       "source": "./",
       "description": "Portable agent skills by André Lademann, grouped by domain in this catalog.",
       "version": "2.7.0",
@@ -20,8 +20,8 @@
         "name": "André Lademann",
         "url": "https://github.com/vergissberlin"
       },
-      "homepage": "https://github.com/vergissberlin/andrelademann.de.skills",
-      "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+      "homepage": "https://github.com/vergissberlin/skills",
+      "repository": "https://github.com/vergissberlin/skills",
       "license": "GPL-3.0",
       "keywords": [
         "skills",

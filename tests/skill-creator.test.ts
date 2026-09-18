@@ -7,10 +7,10 @@ import { describe, expect, it } from "vitest";
 
 const execFileAsync = promisify(execFile);
 const REPO_ROOT = join(import.meta.dirname, "..");
-const SCRIPT = join(REPO_ROOT, "skills/meta/andrelademann-skill-creator/scripts/create-skill.mjs");
+const SCRIPT = join(REPO_ROOT, "skills/meta/vergissberlin-skill-creator/scripts/create-skill.mjs");
 
 async function createFixture() {
-  const root = await mkdtemp(join(tmpdir(), "andrelademann-skill-creator-"));
+  const root = await mkdtemp(join(tmpdir(), "vergissberlin-skill-creator-"));
   await mkdir(join(root, "docs"), { recursive: true });
   await mkdir(join(root, "tests"), { recursive: true });
   await mkdir(join(root, "templates"), { recursive: true });

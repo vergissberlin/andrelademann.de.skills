@@ -33,7 +33,7 @@ pnpm install
 pnpm dev
 ```
 
-Die Katalogversion in `index.json` und die Version jedes Skills in `SKILL.md` sowie `metadata.json` entsprechen dem Release-Tag `X.Y.Z`. Neue Skills müssen mit beiden versionsführenden Dateien in `release-please-config.json` eingetragen werden, damit Release Please alle Versionsnummern gemeinsam aktualisiert. Installationsbefehle sollen auf diesen Tag zeigen, zum Beispiel `npx skills add vergissberlin/andrelademann.de.skills@2.0.0 --skill <skill-name>`.
+Die Katalogversion in `index.json` und die Version jedes Skills in `SKILL.md` sowie `metadata.json` entsprechen dem Release-Tag `X.Y.Z`. Neue Skills müssen mit beiden versionsführenden Dateien in `release-please-config.json` eingetragen werden, damit Release Please alle Versionsnummern gemeinsam aktualisiert. Installationsbefehle sollen auf diesen Tag zeigen, zum Beispiel `npx skills add vergissberlin/skills@2.0.0 --skill <skill-name>`.
 
 ## Build
 
@@ -54,7 +54,7 @@ pnpm build
 7. Open-Graph-Asset anlegen: `docs/public/og/skills/<skill-name>.png` (1200×630)
 8. Sicherstellen, dass `docs/public/og/default.png` vorhanden ist (Fallback für Nicht-Skill-Seiten)
 
-Für den vollständigen Ablauf bevorzugt [`create-skill.mjs`](skills/meta/andrelademann-skill-creator/scripts/create-skill.mjs) verwenden. Es erstellt aus Name, Domain, Beschreibung und Testprompts das Skill-Paket, README, Anthropic-kompatible Evals sowie `tests/scenarios/<skill-name>/`; anschließend synchronisiert es Katalog, Release-Please-Dateien, Integrationslisten und den OG-Preview.
+Für den vollständigen Ablauf bevorzugt [`create-skill.mjs`](skills/meta/vergissberlin-skill-creator/scripts/create-skill.mjs) verwenden. Es erstellt aus Name, Domain, Beschreibung und Testprompts das Skill-Paket, README, Anthropic-kompatible Evals sowie `tests/scenarios/<skill-name>/`; anschließend synchronisiert es Katalog, Release-Please-Dateien, Integrationslisten und den OG-Preview.
 
 ## Integrationen pflegen
 

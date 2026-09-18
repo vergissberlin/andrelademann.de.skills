@@ -42,7 +42,7 @@ const resolvedOgDescription = ogDescription ?? description;
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <link rel="canonical" href={resolvedCanonical} />
-    <meta property="og:site_name" content="André Lademann Skills" />
+    <meta property="og:site_name" content="Vergissberlin Skills" />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={resolvedOgTitle} />
     <meta property="og:description" content={resolvedOgDescription} />
@@ -61,13 +61,13 @@ const resolvedOgDescription = ogDescription ?? description;
     />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="AL Skills" />
+    <meta name="apple-mobile-web-app-title" content="Skills" />
     <link rel="icon" type="image/png" href={`${baseUrl}brand/andre-lademann-favicon.png`} />
     <link rel="apple-touch-icon" href={`${baseUrl}brand/andre-lademann-favicon.png`} />
     <title>{title}</title>
     <script is:inline>
       (() => {
-        const themeKey = 'andrelademann-skills-theme';
+        const themeKey = 'vergissberlin-skills-theme';
         const root = document.documentElement;
         const media = window.matchMedia('(prefers-color-scheme: dark)');
         const stored = localStorage.getItem(themeKey);

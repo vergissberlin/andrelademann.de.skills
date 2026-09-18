@@ -7,9 +7,9 @@ import {
 
 describe('skill install commands', () => {
   it('pins repository installs to the normalized catalog version', () => {
-    expect(buildSkillsRepositoryRef('v2.4.1')).toBe('vergissberlin/andrelademann.de.skills@2.4.1');
+    expect(buildSkillsRepositoryRef('v2.4.1')).toBe('vergissberlin/skills@2.4.1');
     expect(buildSkillInstallCommand('2.4.1', 'example-skill')).toBe(
-      'npx skills add vergissberlin/andrelademann.de.skills@2.4.1 --skill example-skill',
+      'npx skills add vergissberlin/skills@2.4.1 --skill example-skill',
     );
   });
 

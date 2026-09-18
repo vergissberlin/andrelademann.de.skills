@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
-  "name": "andrelademann-blog-skills",
+  "name": "vergissberlin-blog-skills",
   "displayName": "André Lademann Blog Skills",
   "version": "1.0.0",
   "description": "Blog-writing, editorial-image, and promotion skills for André Lademann's engineering blog.",
@@ -8,8 +8,8 @@
     "name": "André Lademann",
     "url": "https://github.com/vergissberlin"
   },
-  "homepage": "https://github.com/vergissberlin/andrelademann.de.skills/tree/main/skills/blog",
-  "repository": "https://github.com/vergissberlin/andrelademann.de.skills",
+  "homepage": "https://github.com/vergissberlin/skills/tree/main/skills/blog",
+  "repository": "https://github.com/vergissberlin/skills",
   "license": "GPL-3.0",
   "keywords": [
     "blog",

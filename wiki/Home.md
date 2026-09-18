@@ -1,6 +1,6 @@
-# André Lademann Skills Wiki
+# Vergissberlin Skills Wiki
 
-Willkommen im Wiki zu den André Lademann Skills.
+Willkommen im Wiki zu den Vergissberlin Skills.
 
 Hier findest du:
 

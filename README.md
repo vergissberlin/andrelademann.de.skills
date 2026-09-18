@@ -1,4 +1,4 @@
-# André Lademann Skills
+# Vergissberlin Skills
 
 Ein kompakter Skills-Katalog für AI-Coding-Agents – mit Claude-Code-Marketplace und copy-ready Integrationsvorlagen für ChatGPT, GitHub Copilot, Cursor und VS Code.
 
@@ -9,14 +9,14 @@ Ein kompakter Skills-Katalog für AI-Coding-Agents – mit Claude-Code-Marketpla
 Marketplace hinzufügen und anschließend einzelne Plugins installieren:
 
 ```text
-/plugin marketplace add vergissberlin/andrelademann.de.skills
+/plugin marketplace add vergissberlin/skills
 /plugin install <name>@vergissberlin
 ```
 
 Alternativ kann ein einzelner Skill über den generischen Installer bezogen werden:
 
 ```bash
-npx skills add vergissberlin/andrelademann.de.skills@2.0.0 --skill <skill-name>
+npx skills add vergissberlin/skills@2.0.0 --skill <skill-name>
 ```
 
 Die Marketplace-Einträge und Domain-Plugins liegen unter [`.claude-plugin/`](.claude-plugin/).
@@ -56,6 +56,6 @@ Alle Integrationsvorlagen sind unter [`integrations/`](integrations/) gesammelt.
 
 Die Skills stehen im Katalog [`index.json`](index.json). Die fachliche Quelle jedes Eintrags ist die verlinkte `SKILL.md`; zusätzliche Skill-Metadaten liegen jeweils in `metadata.json`.
 
-Neue Skills können mit [`andrelademann-skill-creator`](skills/meta/andrelademann-skill-creator/SKILL.md) erstellt werden. Der Generator legt Skill, README, Evals und Harness-Fixtures an und synchronisiert die Repository-Registrierung.
+Neue Skills können mit [`vergissberlin-skill-creator`](skills/meta/vergissberlin-skill-creator/SKILL.md) erstellt werden. Der Generator legt Skill, README, Evals und Harness-Fixtures an und synchronisiert die Repository-Registrierung.
 
 Weitere Entwicklungs-, Build- und Release-Informationen stehen in [`CONTRIBUTING.md`](CONTRIBUTING.md).

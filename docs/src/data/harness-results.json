@@ -6,22 +6,22 @@
   "passed_scenarios": 10,
   "failed_scenarios": 0,
   "avg_score": 100,
-  "duration_ms": 16,
+  "duration_ms": 14,
   "mode": "mock",
   "skills": [
     {
-      "skill_name": "andrelademann-blog-header-image",
+      "skill_name": "vergissberlin-blog-header-image",
       "total_scenarios": 2,
       "passed": 2,
       "failed": 0,
       "pass_rate": 1,
       "avg_score": 100,
-      "duration_ms": 7,
+      "duration_ms": 6,
       "evaluation_source": "harness",
       "status": "passed",
       "results": [
         {
-          "skill_name": "andrelademann-blog-header-image",
+          "skill_name": "vergissberlin-blog-header-image",
           "scenario": "create-header-package",
           "passed": true,
           "score": 100,
@@ -34,7 +34,7 @@
           "findings": []
         },
         {
-          "skill_name": "andrelademann-blog-header-image",
+          "skill_name": "vergissberlin-blog-header-image",
           "scenario": "preserve-existing-asset",
           "passed": true,
           "score": 100,
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "skill_name": "andrelademann-blog-post-writer",
+      "skill_name": "vergissberlin-blog-post-writer",
       "total_scenarios": 2,
       "passed": 2,
       "failed": 0,
@@ -60,7 +60,7 @@
       "status": "passed",
       "results": [
         {
-          "skill_name": "andrelademann-blog-post-writer",
+          "skill_name": "vergissberlin-blog-post-writer",
           "scenario": "create-draft-package",
           "passed": true,
           "score": 100,
@@ -73,7 +73,7 @@
           "findings": []
         },
         {
-          "skill_name": "andrelademann-blog-post-writer",
+          "skill_name": "vergissberlin-blog-post-writer",
           "scenario": "keep-existing-image",
           "passed": true,
           "score": 100,
@@ -88,7 +88,7 @@
       ]
     },
     {
-      "skill_name": "andrelademann-blog-promote",
+      "skill_name": "vergissberlin-blog-promote",
       "total_scenarios": 2,
       "passed": 2,
       "failed": 0,
@@ -99,7 +99,7 @@
       "status": "passed",
       "results": [
         {
-          "skill_name": "andrelademann-blog-promote",
+          "skill_name": "vergissberlin-blog-promote",
           "scenario": "prepare-approved-campaign",
           "passed": true,
           "score": 100,
@@ -113,7 +113,7 @@
           "findings": []
         },
         {
-          "skill_name": "andrelademann-blog-promote",
+          "skill_name": "vergissberlin-blog-promote",
           "scenario": "stop-without-approval",
           "passed": true,
           "score": 100,
@@ -128,7 +128,7 @@
       ]
     },
     {
-      "skill_name": "andrelademann-skill-creator",
+      "skill_name": "vergissberlin-google-trends-topic-scout",
       "total_scenarios": 2,
       "passed": 2,
       "failed": 0,
@@ -139,46 +139,7 @@
       "status": "passed",
       "results": [
         {
-          "skill_name": "andrelademann-skill-creator",
-          "scenario": "primary-workflow",
-          "passed": true,
-          "score": 100,
-          "error_count": 0,
-          "warning_count": 0,
-          "matched_correct": [
-            "Repository integration"
-          ],
-          "matched_incorrect": [],
-          "findings": []
-        },
-        {
-          "skill_name": "andrelademann-skill-creator",
-          "scenario": "boundary-case",
-          "passed": true,
-          "score": 100,
-          "error_count": 0,
-          "warning_count": 0,
-          "matched_correct": [
-            "Repository integration"
-          ],
-          "matched_incorrect": [],
-          "findings": []
-        }
-      ]
-    },
-    {
-      "skill_name": "google-trends-topic-scout",
-      "total_scenarios": 2,
-      "passed": 2,
-      "failed": 0,
-      "pass_rate": 1,
-      "avg_score": 100,
-      "duration_ms": 3,
-      "evaluation_source": "harness",
-      "status": "passed",
-      "results": [
-        {
-          "skill_name": "google-trends-topic-scout",
+          "skill_name": "vergissberlin-google-trends-topic-scout",
           "scenario": "rank-source-backed-topics",
           "passed": true,
           "score": 100,
@@ -191,7 +152,7 @@
           "findings": []
         },
         {
-          "skill_name": "google-trends-topic-scout",
+          "skill_name": "vergissberlin-google-trends-topic-scout",
           "scenario": "distinguish-spike-from-signal",
           "passed": true,
           "score": 100,
@@ -199,6 +160,45 @@
           "warning_count": 0,
           "matched_correct": [
             "Signal confidence"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        }
+      ]
+    },
+    {
+      "skill_name": "vergissberlin-skill-creator",
+      "total_scenarios": 2,
+      "passed": 2,
+      "failed": 0,
+      "pass_rate": 1,
+      "avg_score": 100,
+      "duration_ms": 1,
+      "evaluation_source": "harness",
+      "status": "passed",
+      "results": [
+        {
+          "skill_name": "vergissberlin-skill-creator",
+          "scenario": "primary-workflow",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Repository integration"
+          ],
+          "matched_incorrect": [],
+          "findings": []
+        },
+        {
+          "skill_name": "vergissberlin-skill-creator",
+          "scenario": "boundary-case",
+          "passed": true,
+          "score": 100,
+          "error_count": 0,
+          "warning_count": 0,
+          "matched_correct": [
+            "Repository integration"
           ],
           "matched_incorrect": [],
           "findings": []

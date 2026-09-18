@@ -1,4 +1,4 @@
-# André Lademann Skills catalog
+# Vergissberlin Skills catalog
 
 Use this repository's Skills catalog as additional context for domain-specific work. The catalog index is `index.json`; each entry points to the authoritative `SKILL.md` under `skills/`.
 
@@ -12,9 +12,9 @@ Before starting work in a matching domain:
 
 Available catalog skills:
 
-- `andrelademann-blog-header-image` → `skills/blog/andrelademann-blog-header-image/SKILL.md`
-- `andrelademann-blog-post-writer` → `skills/blog/andrelademann-blog-post-writer/SKILL.md`
-- `andrelademann-blog-promote` → `skills/blog/andrelademann-blog-promote/SKILL.md`
-- `andrelademann-skill-creator` → `skills/meta/andrelademann-skill-creator/SKILL.md`
+- `vergissberlin-blog-header-image` → `skills/blog/vergissberlin-blog-header-image/SKILL.md`
+- `vergissberlin-blog-post-writer` → `skills/blog/vergissberlin-blog-post-writer/SKILL.md`
+- `vergissberlin-blog-promote` → `skills/blog/vergissberlin-blog-promote/SKILL.md`
+- `vergissberlin-skill-creator` → `skills/meta/vergissberlin-skill-creator/SKILL.md`
 
 When adding or changing a skill, keep `index.json`, `docs/index.json`, metadata, `.claude-plugin/marketplace.json`, and the integration examples consistent.

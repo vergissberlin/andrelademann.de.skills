@@ -1,4 +1,4 @@
-export const SKILLS_REPOSITORY = 'vergissberlin/andrelademann.de.skills';
+export const SKILLS_REPOSITORY = 'vergissberlin/skills';
 
 function normalizeTagRef(version: string): string {
   const normalized = version.trim();

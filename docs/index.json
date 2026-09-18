@@ -1,30 +1,30 @@
 {
-  "name": "andrelademann-skills",
+  "name": "vergissberlin-skills",
   "version": "2.7.0",
   "skills": [
     {
-      "name": "andrelademann-blog-header-image",
-      "path": "skills/blog/andrelademann-blog-header-image/SKILL.md",
+      "name": "vergissberlin-blog-header-image",
+      "path": "skills/blog/vergissberlin-blog-header-image/SKILL.md",
       "description": "Generate and integrate photorealistic editorial header images for blog posts."
     },
     {
-      "name": "andrelademann-blog-post-writer",
-      "path": "skills/blog/andrelademann-blog-post-writer/SKILL.md",
+      "name": "vergissberlin-blog-post-writer",
+      "path": "skills/blog/vergissberlin-blog-post-writer/SKILL.md",
       "description": "Plan or directly create a complete blog post and its generated visual package."
     },
     {
-      "name": "andrelademann-blog-promote",
-      "path": "skills/blog/andrelademann-blog-promote/SKILL.md",
+      "name": "vergissberlin-blog-promote",
+      "path": "skills/blog/vergissberlin-blog-promote/SKILL.md",
       "description": "Promote a published blog article across LinkedIn, X, Xing, daily.dev, and Teams."
     },
     {
-      "name": "google-trends-topic-scout",
-      "path": "skills/research/google-trends-topic-scout/SKILL.md",
+      "name": "vergissberlin-google-trends-topic-scout",
+      "path": "skills/research/vergissberlin-google-trends-topic-scout/SKILL.md",
       "description": "Find current Google Trends topics that fit André Lademann's editorial themes."
     },
     {
-      "name": "andrelademann-skill-creator",
-      "path": "skills/meta/andrelademann-skill-creator/SKILL.md",
+      "name": "vergissberlin-skill-creator",
+      "path": "skills/meta/vergissberlin-skill-creator/SKILL.md",
       "description": "Create, refine, test, document, and register skills in this repository."
     }
   ]

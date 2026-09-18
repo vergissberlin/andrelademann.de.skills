@@ -1,0 +1,15 @@
+{
+  "title": "Blog Promote",
+  "author": "André Lademann",
+  "description": "Draft and publish article promotions across LinkedIn, X, Xing, daily.dev, and Teams.",
+  "purpose": "Use when a published blog article should be shared across social and internal channels.",
+  "tags": [
+    "blog",
+    "promotion",
+    "linkedin",
+    "social"
+  ],
+  "source": "https://github.com/vergissberlin/skills/tree/main/skills/blog/vergissberlin-blog-promote",
+  "scope": "blog",
+  "version": "2.7.0"
+}
